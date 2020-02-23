@@ -67,6 +67,18 @@ export default {
   setAdminProducts(state, payload) {
     state.adminProducts = payload
   },
+
+  // ORDERS
+  setAdminOrders(state, payload) {
+    state.adminOrders = payload
+  },
+  setAdminCustomers(state, payload) {
+    state.adminCustomers = payload
+  },
+  setAdminAddresses(state, payload) {
+    state.adminAddresses = payload
+  },
+
   // HOME
   setAdminCarousels(state, payload) {
     state.adminCarousels = payload
@@ -74,7 +86,23 @@ export default {
   setAdminReviews(state, payload) {
     state.adminReviews = payload
   },
+
+  // DATA
+  setAdminCarriers(state, payload) {
+    state.adminCarriers = payload
+  },
+  setAdminPaymentMethods(state, payload) {
+    state.adminPaymentMethods = payload
+  },
+  setAdminTax(state, payload) {
+    state.adminTax = payload
+  },
+
+  // MAIN
   setAdminShopData(state, payload) {
     state.adminShopData = payload
+  },
+  setAdminEmployees(state, payload) {
+    state.adminEmployees = payload
   }
 }

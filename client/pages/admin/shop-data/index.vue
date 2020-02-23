@@ -17,7 +17,7 @@
                   <v-col cols="12" md="3">
                     <span
                       ><h4 class="title font-weight-light">
-                        Reviews
+                        Shop Data
                       </h4></span
                     >
                   </v-col>
@@ -43,22 +43,22 @@
               <div>
                 <v-data-table
                   :headers="headers"
-                  :items="reviews"
+                  :items="shopData"
                   :items-per-page="10"
                   :search="search"
                 >
-                  <template v-slot:item.image="{ item }">
+                  <template v-slot:item.logo="{ item }">
                     <v-img
-                      :src="item.image"
+                      :src="item.logo"
                       max-width="50px"
                       max-height="50px"
                     />
                   </template>
-                  <template v-slot:item.description="{ item }"
-                    >{{ truncate(item.description) }}
+                  <template v-slot:item.price="{ item }"
+                    >₹{{ item.price }}
                   </template>
-                  <template v-slot:item.enabled="{ item }">
-                    <v-icon v-if="item.enabled === 1" color="success"
+                  <template v-slot:item.maintanance="{ item }">
+                    <v-icon v-if="item.maintanance === 1" color="success"
                       >mdi-check</v-icon
                     >
                     <v-icon v-else color="error">mdi-close</v-icon>
@@ -81,28 +81,25 @@
 export default {
   layout: 'admin',
   async fetch({ store, params }) {
-    await store.dispatch('fetchAdminReviews')
+    await store.dispatch('fetchAdminShopData')
   },
   data: () => ({
     search: '',
     headers: [
       { text: 'ID', value: 'id' },
-      { text: 'Title', value: 'title', sortable: false },
-      { text: 'Description', value: 'description', sortable: false },
-      { text: 'Customer', value: 'name' },
-      { text: 'Enabled', value: 'enabled' },
+      { text: 'Image', value: 'logo', sortable: false },
+      { text: 'Name', value: 'name' },
+      { text: 'E-Mail', value: 'email' },
+      { text: 'Mobile', value: 'mobile' },
+      { text: 'Latitude', value: 'latitude' },
+      { text: 'Longitude', value: 'longtitude' },
+      { text: 'Maintenance', value: 'maintanance' },
       { text: 'Actions', value: 'actions', sortable: false }
     ]
   }),
   computed: {
-    reviews() {
-      return this.$store.getters.adminReviews
-    }
-  },
-  methods: {
-    truncate(input) {
-      if (input.length > 100) return input.substring(0, 100) + '...'
-      else return input
+    shopData() {
+      return this.$store.getters.adminShopData
     }
   }
 }

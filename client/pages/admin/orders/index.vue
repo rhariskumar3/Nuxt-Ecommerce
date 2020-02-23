@@ -17,7 +17,7 @@
                   <v-col cols="12" md="3">
                     <span
                       ><h4 class="title font-weight-light">
-                        Reviews
+                        Orders
                       </h4></span
                     >
                   </v-col>
@@ -43,25 +43,12 @@
               <div>
                 <v-data-table
                   :headers="headers"
-                  :items="reviews"
+                  :items="orders"
                   :items-per-page="10"
                   :search="search"
                 >
-                  <template v-slot:item.image="{ item }">
-                    <v-img
-                      :src="item.image"
-                      max-width="50px"
-                      max-height="50px"
-                    />
-                  </template>
-                  <template v-slot:item.description="{ item }"
-                    >{{ truncate(item.description) }}
-                  </template>
-                  <template v-slot:item.enabled="{ item }">
-                    <v-icon v-if="item.enabled === 1" color="success"
-                      >mdi-check</v-icon
-                    >
-                    <v-icon v-else color="error">mdi-close</v-icon>
+                  <template v-slot:item.total_paid="{ item }"
+                    >₹{{ item.total_paid }}
                   </template>
                   <template v-slot:item.actions="{ item }">
                     <v-icon @click="item">mdi-pencil</v-icon>
@@ -81,28 +68,24 @@
 export default {
   layout: 'admin',
   async fetch({ store, params }) {
-    await store.dispatch('fetchAdminReviews')
+    await store.dispatch('fetchAdminOrders')
   },
   data: () => ({
     search: '',
     headers: [
       { text: 'ID', value: 'id' },
-      { text: 'Title', value: 'title', sortable: false },
-      { text: 'Description', value: 'description', sortable: false },
+      { text: 'Reference', value: 'reference' },
       { text: 'Customer', value: 'name' },
-      { text: 'Enabled', value: 'enabled' },
+      { text: 'Total', value: 'total_paid' },
+      { text: 'Payment', value: 'payment' },
+      { text: 'Status', value: 'order_state' },
+      { text: 'Date', value: 'created_at' },
       { text: 'Actions', value: 'actions', sortable: false }
     ]
   }),
   computed: {
-    reviews() {
-      return this.$store.getters.adminReviews
-    }
-  },
-  methods: {
-    truncate(input) {
-      if (input.length > 100) return input.substring(0, 100) + '...'
-      else return input
+    orders() {
+      return this.$store.getters.adminOrders
     }
   }
 }

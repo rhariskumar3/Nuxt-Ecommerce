@@ -37,7 +37,18 @@ Address.getAddressById = function (addressId, result) {
     });
 };
 Address.getAllAddress = function (result) {
-    sql.query("Select * from address", function (err, res) {
+    sql.query(`SELECT address.id,
+                      c.first_name,
+                      c.last_name,
+                      address_1 AS address,
+                      pin_code,
+                      c2.name   AS city,
+                      s.name    AS state,
+                      active
+               FROM address
+                        INNER JOIN customers c on address.customer = c.id
+                        INNER JOIN cities c2 on address.city = c2.id
+                        INNER JOIN states s on c2.state_id = s.id`, function (err, res) {
         if (err) result(null, err);
         else result(null, res);
     });

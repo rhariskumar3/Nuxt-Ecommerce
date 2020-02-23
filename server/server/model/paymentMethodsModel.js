@@ -37,7 +37,8 @@ PaymentMethods.getPaymentMethodsById = function (paymentMethodsId, result) {
     });
 };
 PaymentMethods.getAllPaymentMethods = function (result) {
-    sql.query("Select * from payment_methods", function (err, res) {
+    sql.query(`SELECT id, name, logo, merchant_id, ISNULL(live_key) as live, ISNULL(test_key) as test, enabled
+               FROM payment_methods`, function (err, res) {
         if (err) result(null, err);
         else result(null, res);
     });

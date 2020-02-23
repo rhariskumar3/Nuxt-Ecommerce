@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e2982c0-9875-4736-a884-be8f4eda26c8" name="Default Changelist" comment="">
+    <list default="true" id="7e2982c0-9875-4736-a884-be8f4eda26c8" name="Default Changelist" comment="Admin Routes">
+      <change beforePath="$PROJECT_DIR$/../client/components/base/AdminHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/components/base/AdminHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/pages/admin/carousels/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/carousels/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/pages/admin/categories/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/categories/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/pages/admin/products/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/products/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/pages/admin/reviews/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/reviews/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/getters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/store/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/mutations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/store/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/state.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fd447639-6f21-4a9a-9f2d-27c2a2552391.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fd447639-6f21-4a9a-9f2d-27c2a2552391.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/carriersDataController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/carriersController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/addressModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/customerAddressModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/carriersModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/carriersModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/customerAddressModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/customerAddressModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/ordersModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/ordersModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/paymentMethodsModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/paymentMethodsModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/approutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/approutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +181,7 @@
       <workItem from="1581995973717" duration="8950000" />
       <workItem from="1582203737709" duration="4518000" />
       <workItem from="1582340443041" duration="1709000" />
-      <workItem from="1582431154075" duration="9694000" />
+      <workItem from="1582431154075" duration="18840000" />
     </task>
     <task id="LOCAL-00001" summary="Admin Pages">
       <created>1582445487547</created>
@@ -175,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582445487547</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Admin Routes">
+      <created>1582447885902</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582447885902</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,12 +217,17 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="Admin Pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Admin Pages" />
+    <MESSAGE value="Admin Routes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin Routes" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="423" y="102" key="#Deployment" timestamp="1582464212853">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="423" y="102" key="#Deployment/0.0.1575.886@0.0.1575.886" timestamp="1582464212853" />
     <state x="381" y="102" key="#JSLint" timestamp="1581838079558">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
@@ -213,10 +240,10 @@
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="522" y="130" key="#addressModel.js/0.0.1575.886@0.0.1575.886" timestamp="1581837787561" />
-    <state x="243" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581860260725">
+    <state x="243" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582459892581">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="243" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1575.886@0.0.1575.886" timestamp="1581860260725" />
+    <state x="243" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1575.886@0.0.1575.886" timestamp="1582459892581" />
     <state x="469" y="171" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1582203747384">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
@@ -225,38 +252,46 @@
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="556" y="310" key="#com.intellij.ws.actions.HttpClientConvertFromCurlDialog/0.0.1575.886@0.0.1575.886" timestamp="1581837591249" />
-    <state x="422" y="38" key="CommitChangelistDialog2" timestamp="1582445486370">
+    <state x="180" y="38" width="1301" height="811" key="CommitChangelistDialog2" timestamp="1582464284667">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="422" y="38" key="CommitChangelistDialog2/0.0.1575.886@0.0.1575.886" timestamp="1582445486370" />
+    <state x="180" y="38" width="1301" height="811" key="CommitChangelistDialog2/0.0.1575.886@0.0.1575.886" timestamp="1582464284667" />
     <state x="568" y="198" key="FileChooserDialogImpl" timestamp="1582204391436">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="568" y="198" key="FileChooserDialogImpl/0.0.1575.886@0.0.1575.886" timestamp="1582204391436" />
-    <state width="1051" height="231" key="GridCell.Tab.0.bottom" timestamp="1582445178904">
+    <state width="1051" height="231" key="GridCell.Tab.0.bottom" timestamp="1582463904648">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state width="1051" height="231" key="GridCell.Tab.0.bottom/0.0.1575.886@0.0.1575.886" timestamp="1582445178904" />
-    <state width="1051" height="231" key="GridCell.Tab.0.center" timestamp="1582445178904">
+    <state width="1051" height="231" key="GridCell.Tab.0.bottom/0.0.1575.886@0.0.1575.886" timestamp="1582463904648" />
+    <state width="1051" height="231" key="GridCell.Tab.0.center" timestamp="1582463904648">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state width="1051" height="231" key="GridCell.Tab.0.center/0.0.1575.886@0.0.1575.886" timestamp="1582445178904" />
-    <state width="1051" height="231" key="GridCell.Tab.0.left" timestamp="1582445178903">
+    <state width="1051" height="231" key="GridCell.Tab.0.center/0.0.1575.886@0.0.1575.886" timestamp="1582463904648" />
+    <state width="1051" height="231" key="GridCell.Tab.0.left" timestamp="1582463904648">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state width="1051" height="231" key="GridCell.Tab.0.left/0.0.1575.886@0.0.1575.886" timestamp="1582445178903" />
-    <state width="1051" height="231" key="GridCell.Tab.0.right" timestamp="1582445178904">
+    <state width="1051" height="231" key="GridCell.Tab.0.left/0.0.1575.886@0.0.1575.886" timestamp="1582463904648" />
+    <state width="1051" height="231" key="GridCell.Tab.0.right" timestamp="1582463904648">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state width="1051" height="231" key="GridCell.Tab.0.right/0.0.1575.886@0.0.1575.886" timestamp="1582445178904" />
+    <state width="1051" height="231" key="GridCell.Tab.0.right/0.0.1575.886@0.0.1575.886" timestamp="1582463904648" />
     <state x="297" y="35" key="SettingsEditor" timestamp="1581838905751">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="297" y="35" key="SettingsEditor/0.0.1575.886@0.0.1575.886" timestamp="1581838905751" />
-    <state x="381" y="176" key="Vcs.Push.Dialog.v2" timestamp="1582445494660">
+    <state x="381" y="176" key="Vcs.Push.Dialog.v2" timestamp="1582464287234">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="381" y="176" key="Vcs.Push.Dialog.v2/0.0.1575.886@0.0.1575.886" timestamp="1582445494660" />
+    <state x="381" y="176" key="Vcs.Push.Dialog.v2/0.0.1575.886@0.0.1575.886" timestamp="1582464287234" />
+    <state x="616" y="328" width="344" height="263" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1" timestamp="1582459913089">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="616" y="328" width="344" height="263" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1/0.0.1575.886@0.0.1575.886" timestamp="1582459913089" />
+    <state x="674" y="323" width="312" height="240" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1582460870383">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="674" y="323" width="312" height="240" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1575.886@0.0.1575.886" timestamp="1582460870383" />
     <state x="369" y="98" key="com.intellij.database.dbimport.ImportDialog" timestamp="1582050904281">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
@@ -265,6 +300,10 @@
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="1008" y="174" key="com.intellij.database.run.ParametersPanel.Standalone/0.0.1575.886@0.0.1575.886" timestamp="1581838978111" />
+    <state x="498" y="85" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1582460866796">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="498" y="85" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1575.886@0.0.1575.886" timestamp="1582460866796" />
     <state x="490" y="267" key="com.intellij.ide.util.TipDialog" timestamp="1582431156199">
       <screen x="0" y="0" width="1575" height="886" />
     </state>

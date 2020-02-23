@@ -17,7 +17,7 @@
                   <v-col cols="12" md="3">
                     <span
                       ><h4 class="title font-weight-light">
-                        Reviews
+                        Employees
                       </h4></span
                     >
                   </v-col>
@@ -43,22 +43,18 @@
               <div>
                 <v-data-table
                   :headers="headers"
-                  :items="reviews"
+                  :items="employees"
                   :items-per-page="10"
                   :search="search"
                 >
-                  <template v-slot:item.image="{ item }">
-                    <v-img
-                      :src="item.image"
-                      max-width="50px"
-                      max-height="50px"
-                    />
+                  <template v-slot:item.active="{ item }">
+                    <v-icon v-if="item.active === 1" color="success"
+                      >mdi-check</v-icon
+                    >
+                    <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
-                  <template v-slot:item.description="{ item }"
-                    >{{ truncate(item.description) }}
-                  </template>
-                  <template v-slot:item.enabled="{ item }">
-                    <v-icon v-if="item.enabled === 1" color="success"
+                  <template v-slot:item.admin="{ item }">
+                    <v-icon v-if="item.admin === 1" color="success"
                       >mdi-check</v-icon
                     >
                     <v-icon v-else color="error">mdi-close</v-icon>
@@ -81,28 +77,23 @@
 export default {
   layout: 'admin',
   async fetch({ store, params }) {
-    await store.dispatch('fetchAdminReviews')
+    await store.dispatch('fetchAdminEmployees')
   },
   data: () => ({
     search: '',
     headers: [
       { text: 'ID', value: 'id' },
-      { text: 'Title', value: 'title', sortable: false },
-      { text: 'Description', value: 'description', sortable: false },
-      { text: 'Customer', value: 'name' },
-      { text: 'Enabled', value: 'enabled' },
+      { text: 'First Name', value: 'first_name' },
+      { text: 'Last Name', value: 'last_name' },
+      { text: 'E-Mail', value: 'email' },
+      { text: 'Active', value: 'active' },
+      { text: 'Admin', value: 'admin' },
       { text: 'Actions', value: 'actions', sortable: false }
     ]
   }),
   computed: {
-    reviews() {
-      return this.$store.getters.adminReviews
-    }
-  },
-  methods: {
-    truncate(input) {
-      if (input.length > 100) return input.substring(0, 100) + '...'
-      else return input
+    employees() {
+      return this.$store.getters.adminEmployees
     }
   }
 }

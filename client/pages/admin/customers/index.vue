@@ -17,7 +17,7 @@
                   <v-col cols="12" md="3">
                     <span
                       ><h4 class="title font-weight-light">
-                        Reviews
+                        Customers
                       </h4></span
                     >
                   </v-col>
@@ -32,9 +32,9 @@
                     />
                   </v-col>
                   <v-col cols="12" md="4">
-                    <v-row align-center justify="end" class="mx-4"
-                      ><v-btn absolute class="secondary">New</v-btn></v-row
-                    >
+                    <v-row align-center justify="end" class="mx-4">
+                      <v-btn absolute class="secondary">New</v-btn>
+                    </v-row>
                   </v-col>
                 </v-row>
               </v-card>
@@ -43,24 +43,20 @@
               <div>
                 <v-data-table
                   :headers="headers"
-                  :items="reviews"
+                  :items="customers"
                   :items-per-page="10"
                   :search="search"
                 >
-                  <template v-slot:item.image="{ item }">
-                    <v-img
-                      :src="item.image"
-                      max-width="50px"
-                      max-height="50px"
-                    />
+                  <template v-slot:item.newsletter="{ item }">
+                    <v-icon v-if="item.newsletter === 1" color="success"
+                      >mdi-check
+                    </v-icon>
+                    <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
-                  <template v-slot:item.description="{ item }"
-                    >{{ truncate(item.description) }}
-                  </template>
-                  <template v-slot:item.enabled="{ item }">
-                    <v-icon v-if="item.enabled === 1" color="success"
-                      >mdi-check</v-icon
-                    >
+                  <template v-slot:item.blocked="{ item }">
+                    <v-icon v-if="item.blocked === 1" color="success"
+                      >mdi-check
+                    </v-icon>
                     <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
                   <template v-slot:item.actions="{ item }">
@@ -81,28 +77,24 @@
 export default {
   layout: 'admin',
   async fetch({ store, params }) {
-    await store.dispatch('fetchAdminReviews')
+    await store.dispatch('fetchAdminCustomers')
   },
   data: () => ({
     search: '',
     headers: [
       { text: 'ID', value: 'id' },
-      { text: 'Title', value: 'title', sortable: false },
-      { text: 'Description', value: 'description', sortable: false },
-      { text: 'Customer', value: 'name' },
-      { text: 'Enabled', value: 'enabled' },
+      { text: 'First Name', value: 'first_name' },
+      { text: 'Last Name', value: 'last_name' },
+      { text: 'E-Mail', value: 'email' },
+      { text: 'Mobile', value: 'mobile' },
+      { text: 'Newsletter', value: 'newsletter' },
+      { text: 'Blocked', value: 'blocked' },
       { text: 'Actions', value: 'actions', sortable: false }
     ]
   }),
   computed: {
-    reviews() {
-      return this.$store.getters.adminReviews
-    }
-  },
-  methods: {
-    truncate(input) {
-      if (input.length > 100) return input.substring(0, 100) + '...'
-      else return input
+    customers() {
+      return this.$store.getters.adminCustomers
     }
   }
 }
@@ -113,18 +105,22 @@ export default {
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
 }
+
 .v-card .v-offset {
   top: -20px !important;
   margin-bottom: -20px !important;
 }
+
 .v-offset {
   margin: 0 auto;
   max-width: calc(100% - 32px);
   position: relative;
 }
+
 .v-card .v-offset .v-card--material__header.v-card {
   padding: 15px;
 }
+
 .v-card .title {
   margin-top: 0;
   line-height: 1.5em !important;
@@ -132,9 +128,11 @@ export default {
   font-size: 1.125rem !important;
   margin-bottom: 5px !important;
 }
+
 .v-card .category {
   margin: 0;
 }
+
 .category {
   font-size: 14px;
 }

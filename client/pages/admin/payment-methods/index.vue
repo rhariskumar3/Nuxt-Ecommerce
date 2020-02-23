@@ -17,7 +17,7 @@
                   <v-col cols="12" md="3">
                     <span
                       ><h4 class="title font-weight-light">
-                        Reviews
+                        Payment Methods
                       </h4></span
                     >
                   </v-col>
@@ -43,19 +43,28 @@
               <div>
                 <v-data-table
                   :headers="headers"
-                  :items="reviews"
+                  :items="products"
                   :items-per-page="10"
                   :search="search"
                 >
                   <template v-slot:item.image="{ item }">
                     <v-img
-                      :src="item.image"
+                      :src="item.logo"
                       max-width="50px"
                       max-height="50px"
                     />
                   </template>
-                  <template v-slot:item.description="{ item }"
-                    >{{ truncate(item.description) }}
+                  <template v-slot:item.live="{ item }">
+                    <v-icon v-if="item.live === 1" color="success"
+                      >mdi-check</v-icon
+                    >
+                    <v-icon v-else color="error">mdi-close</v-icon>
+                  </template>
+                  <template v-slot:item.test="{ item }">
+                    <v-icon v-if="item.test === 1" color="success"
+                      >mdi-check</v-icon
+                    >
+                    <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
                   <template v-slot:item.enabled="{ item }">
                     <v-icon v-if="item.enabled === 1" color="success"
@@ -81,28 +90,24 @@
 export default {
   layout: 'admin',
   async fetch({ store, params }) {
-    await store.dispatch('fetchAdminReviews')
+    await store.dispatch('fetchAdminPaymentMethods')
   },
   data: () => ({
     search: '',
     headers: [
       { text: 'ID', value: 'id' },
-      { text: 'Title', value: 'title', sortable: false },
-      { text: 'Description', value: 'description', sortable: false },
-      { text: 'Customer', value: 'name' },
+      { text: 'Image', value: 'logo', sortable: false },
+      { text: 'Name', value: 'name' },
+      { text: 'Merchant ID', value: 'merchant_id' },
+      { text: 'Live', value: 'live' },
+      { text: 'Test', value: 'test' },
       { text: 'Enabled', value: 'enabled' },
       { text: 'Actions', value: 'actions', sortable: false }
     ]
   }),
   computed: {
-    reviews() {
-      return this.$store.getters.adminReviews
-    }
-  },
-  methods: {
-    truncate(input) {
-      if (input.length > 100) return input.substring(0, 100) + '...'
-      else return input
+    products() {
+      return this.$store.getters.adminPaymentMethods
     }
   }
 }

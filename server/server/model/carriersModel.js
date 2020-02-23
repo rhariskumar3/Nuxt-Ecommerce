@@ -30,7 +30,9 @@ Carriers.getCarriersById = function (carriersId, result) {
     });
 };
 Carriers.getAllCarriers = function (result) {
-    sql.query("Select * from carriers", function (err, res) {
+    sql.query(`SELECT carriers.id, carriers.name, transit_time, logo, max_weight, enabled, z.name AS zone
+               FROM carriers
+                        INNER JOIN zones z on carriers.zone = z.id`, function (err, res) {
         if (err) result(null, err);
         else result(null, res);
     });

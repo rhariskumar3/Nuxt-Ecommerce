@@ -153,6 +153,45 @@ export default {
       })
       .catch((err) => dispatch('LOG', err))
   },
+
+  // ORDERS
+  async fetchAdminOrders({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/orders')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminOrders', response)
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
+  },
+  async fetchAdminCustomers({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/customers')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminCustomers', response)
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
+  },
+  async fetchAdminAddresses({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/customer-addresses')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminAddresses', response)
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
+  },
+
   // HOME
   async fetchAdminCarousels({ commit, getters, dispatch }) {
     commit('LOADING', true)
@@ -178,6 +217,46 @@ export default {
       })
       .catch((err) => dispatch('LOG', err))
   },
+
+  // DATA
+  async fetchAdminCarriers({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/carriers')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminCarriers', response)
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
+  },
+  async fetchAdminPaymentMethods({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/payment-methods')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminPaymentMethods', response)
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
+  },
+  async fetchAdminTax({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/tax')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminTax', response)
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
+  },
+
+  // MAIN
   async fetchAdminShopData({ commit, getters, dispatch }) {
     commit('LOADING', true)
     await this.$api
@@ -185,7 +264,19 @@ export default {
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log('=====>', response)
-        commit('setAdminShopData', response[0])
+        commit('setAdminShopData', response)
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
+  },
+  async fetchAdminEmployees({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/employees')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminEmployees', response)
         commit('LOADING', false)
       })
       .catch((err) => dispatch('LOG', err))

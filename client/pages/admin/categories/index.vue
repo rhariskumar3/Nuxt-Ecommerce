@@ -33,7 +33,7 @@
                   </v-col>
                   <v-col cols="12" md="4">
                     <v-row align-center justify="end" class="mx-4">
-                      <v-btn flat absolute class="secondary">New</v-btn>
+                      <v-btn absolute class="secondary">New</v-btn>
                     </v-row>
                   </v-col>
                 </v-row>
@@ -43,7 +43,7 @@
               <div>
                 <v-data-table
                   :headers="headers"
-                  :items="products"
+                  :items="categories"
                   :items-per-page="10"
                   :search="search"
                 >
@@ -95,7 +95,7 @@ export default {
     ]
   }),
   computed: {
-    products() {
+    categories() {
       return this.$store.getters.adminCollections
     }
   },

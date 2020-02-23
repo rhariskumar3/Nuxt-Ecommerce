@@ -35,8 +35,22 @@ export default () => ({
   // PRODUCTS
   adminCollections: {},
   adminProducts: {},
+
+  // ORDERS
+  adminOrders: {},
+  adminCustomers: {},
+  adminAddresses: {},
+
   // HOME
   adminCarousels: {},
   adminReviews: {},
+
+  // DATA
+  adminCarriers: {},
+  adminPaymentMethods: {},
+  adminTax: {},
+
+  // MAIN
+  adminEmployees: {},
   adminShopData: {}
 })

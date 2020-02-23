@@ -117,24 +117,24 @@ module.exports = function (app) {
 
     // customer Address Routes
     app
-        .route("/admin/customer-address")
+        .route("/admin/customer-addresses")
         .get(customerAddress.list_all)
         .post(customerAddress.create);
 
     app
-        .route("/admin/customer-address/:id(\\d+)")
+        .route("/admin/customer-addresses/:id(\\d+)")
         .get(customerAddress.read)
         .put(customerAddress.update)
         .delete(customerAddress.delete);
 
     // carrier Routes
     app
-        .route("/admin/carrier")
+        .route("/admin/carriers")
         .get(carriers.list_all)
         .post(carriers.create);
 
     app
-        .route("/admin/carrier/:id(\\d+)")
+        .route("/admin/carriers/:id(\\d+)")
         .get(carriers.read)
         .put(carriers.update)
         .delete(carriers.delete);
@@ -178,12 +178,12 @@ module.exports = function (app) {
     // shop Data Routes
     app
         .route("/admin/shop-data")
-        .get(product.list_all)
-        .post(product.create);
+        .get(shopData.list_all)
+        .post(shopData.create);
 
     app
         .route("/admin/shop-data/:id(\\d+)")
-        .get(product.read)
-        .put(product.update)
-        .delete(product.delete);
+        .get(shopData.read)
+        .put(shopData.update)
+        .delete(shopData.delete);
 };

@@ -8,10 +8,6 @@
 
       <v-spacer />
 
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn icon to="/" v-on="on">

@@ -27,8 +27,22 @@ export default {
   // PRODUCTS
   adminCollections: (state) => state.adminCollections,
   adminProducts: (state) => state.adminProducts,
+
+  // ORDERS
+  adminOrders: (state) => state.adminOrders,
+  adminCustomers: (state) => state.adminCustomers,
+  adminAddresses: (state) => state.adminAddresses,
+
   // HOME
   adminCarousels: (state) => state.adminCarousels,
   adminReviews: (state) => state.adminReviews,
-  adminShopData: (state) => state.adminShopData
+
+  // DATA
+  adminCarriers: (state) => state.adminCarriers,
+  adminPaymentMethods: (state) => state.adminPaymentMethods,
+  adminTax: (state) => state.adminTax,
+
+  // MAIN
+  adminShopData: (state) => state.adminShopData,
+  adminEmployees: (state) => state.adminEmployees
 }

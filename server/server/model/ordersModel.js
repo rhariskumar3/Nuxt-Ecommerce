@@ -39,7 +39,16 @@ Orders.getOrdersById = function (ordersId, result) {
     });
 };
 Orders.getAllOrders = function (result) {
-    sql.query("Select * from orders", function (err, res) {
+    sql.query(`SELECT orders.id,
+                      reference,
+                      CONCAT_WS(' ', first_name, last_name) AS name,
+                      total_paid,
+                      payment,
+                      os.name                               AS order_state,
+                      orders.created_at
+               FROM orders
+                        INNER JOIN customers c on orders.customer_id = c.id
+                        INNER JOIN order_states os on orders.current_state = os.id`, function (err, res) {
         if (err) result(null, err);
         else result(null, res);
     });

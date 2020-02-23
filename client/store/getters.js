@@ -21,5 +21,14 @@ export default {
   shopData: (state) => state.shopData,
 
   // ORDER
-  carts: (state) => state.carts
+  carts: (state) => state.carts,
+
+  // ADMIN
+  // PRODUCTS
+  adminCollections: (state) => state.adminCollections,
+  adminProducts: (state) => state.adminProducts,
+  // HOME
+  adminCarousels: (state) => state.adminCarousels,
+  adminReviews: (state) => state.adminReviews,
+  adminShopData: (state) => state.adminShopData
 }

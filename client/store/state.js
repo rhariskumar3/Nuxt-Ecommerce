@@ -1,6 +1,5 @@
 export default () => ({
   // SYSTEM
-  IS_ADMIN: false,
   LOADING: false,
   ERR: null,
 
@@ -27,5 +26,17 @@ export default () => ({
   shopData: {},
 
   // ORDER
-  carts: []
+  carts: [],
+
+  // ADMIN
+  // User
+  adminAuthUser: null,
+
+  // PRODUCTS
+  adminCollections: {},
+  adminProducts: {},
+  // HOME
+  adminCarousels: {},
+  adminReviews: {},
+  adminShopData: {}
 })

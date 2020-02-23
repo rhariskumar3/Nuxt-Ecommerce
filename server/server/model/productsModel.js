@@ -42,7 +42,18 @@ Products.getProductsById = function (productsId, result) {
     });
 };
 Products.getAllProducts = function (result) {
-    sql.query("Select * from products", function (err, res) {
+    sql.query(`SELECT products.id,
+                      products.name,
+                      quantity,
+                      price,
+                      products.enabled AS enabled,
+                      title            AS category,
+                      image_1          AS image,
+                      t.name           AS tax
+               from products
+                        INNER JOIN categories c on products.category = c.id
+                        INNER JOIN product_media pm on products.media = pm.id
+                        INNER JOIN tax t on products.tax = t.id`, function (err, res) {
         if (err) result(null, err);
         else result(null, res);
     });

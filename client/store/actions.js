@@ -1,5 +1,8 @@
 export default {
-  nuxtServerInit({ dispatch }, { req }) {
+  nuxtServerInit({ commit, dispatch }, { req }) {
+    if (req.session && req.session.authUser) {
+      commit('SET_USER', req.session.authUser)
+    }
     return Promise.all([dispatch('fetchShopData')])
   },
   // APP
@@ -122,5 +125,69 @@ export default {
     commit('LOADING', true)
     commit('setCarts', payload)
     commit('LOADING', false)
+  },
+
+  // ADMIN
+  // PRODUCTS
+  async fetchAdminCollections({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/category')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminCollections', response)
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
+  },
+  async fetchAdminProducts({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/products')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminProducts', response)
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
+  },
+  // HOME
+  async fetchAdminCarousels({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/carousel')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminCarousels', response)
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
+  },
+  async fetchAdminReviews({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/reviews')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminReviews', response)
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
+  },
+  async fetchAdminShopData({ commit, getters, dispatch }) {
+    commit('LOADING', true)
+    await this.$api
+      .$get('/admin/shop-data')
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('=====>', response)
+        commit('setAdminShopData', response[0])
+        commit('LOADING', false)
+      })
+      .catch((err) => dispatch('LOG', err))
   }
 }

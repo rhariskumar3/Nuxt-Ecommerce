@@ -23,28 +23,9 @@ export default {
       default: null
     }
   },
-  data: () => ({
-    pageNotFound: 'Not Found',
-    serverBreak: 'Our Server is on a Break',
-    otherError: 'An error occurred'
-  }),
   computed: {
     reason() {
-      let msg = this.error.statusCode + ' '
-      switch (this.error.statusCode) {
-        case 404:
-          msg += this.pageNotFound
-          break
-
-        case 500:
-          msg += this.serverBreak
-          break
-
-        default:
-          msg += this.otherError
-          break
-      }
-      return msg
+      return this.error.statusCode + ' ' + this.error.message
     }
   },
   head() {

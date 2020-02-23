@@ -20,6 +20,13 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  manifest: {
+    name: 'Somewhat ecommerce application',
+    short_name: 'ecom'
+  },
+  router: {
+    middleware: 'router-auth'
+  },
   loading: { color: '#fff' },
   css: [],
   plugins: [{ src: '@/plugins/back-to-top.js', ssr: false }, '~/plugins/axios'],

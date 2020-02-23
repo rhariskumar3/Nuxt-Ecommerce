@@ -18,7 +18,7 @@
           v-text="this.$store.getters.shopData.name"
         />
 
-        <v-spacer></v-spacer>
+        <v-spacer />
 
         <v-btn icon class="theme--dark" to="/account">
           <v-icon>mdi-account</v-icon>

@@ -3,8 +3,11 @@
     v-if="$vuetify.breakpoint.xsOnly"
     v-model="drawer"
     clipped
+    color="success"
     fixed
+    bottom
     app
+    dark
     temporary
   >
     <v-list>

@@ -27,7 +27,9 @@ Reviews.getReviewsById = function (reviewsId, result) {
     });
 };
 Reviews.getAllReviews = function (result) {
-    sql.query("Select * from reviews", function (err, res) {
+    sql.query(`SELECT reviews.id, title, description, enabled, CONCAT_WS(' ', first_name, last_name) AS name
+               FROM reviews
+                        INNER JOIN customers c on reviews.customer_id = c.id`, function (err, res) {
         if (err) result(null, err);
         else result(null, res);
     });

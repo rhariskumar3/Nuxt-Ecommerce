@@ -294,13 +294,6 @@ export default {
       (v) => !!v || 'E-mail is required',
       (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid'
     ],
-    passwordRules: [
-      (v) => !!v || 'Password is required',
-      (v) => (v && v.length >= 5) || 'Password must have 5+ characters',
-      (v) => /(?=.*[A-Z])/.test(v) || 'Must have one uppercase character',
-      (v) => /(?=.*\d)/.test(v) || 'Must have one number',
-      (v) => /([!@$%])/.test(v) || 'Must have one special character [!@#$%]'
-    ],
     contactInfo: {
       email: '',
       firstName: '',

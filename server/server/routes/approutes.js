@@ -14,29 +14,29 @@ module.exports = function (app) {
     // carousel Routes
     app
         .route("/carousel")
-        .get(carousel.list_all_user)
+        .get(carousel.list_all_user);
     // reviews Routes
     app
         .route("/reviews")
-        .get(review.list_all_user)
+        .get(review.list_all_user);
     // category Routes
     app
         .route("/category")
-        .get(category.list_all_user)
+        .get(category.list_all_user);
     // product Routes
     app
         .route("/product")
-        .get(product.list_all_user)
+        .get(product.list_all_user);
     app
         .route("/product/category_url=:url")
-        .get(product.list_all_under_category_url)
+        .get(product.list_all_under_category_url);
     app
         .route("/product/:url")
-        .get(product.readByUrl)
+        .get(product.readByUrl);
     // shop Data Routes
     app
         .route("/shop-data")
-        .get(shopData.list_all)
+        .get(shopData.list_all);
     // ADMIN ROUTES
     // carousel Routes
     app
@@ -62,24 +62,24 @@ module.exports = function (app) {
         .delete(review.delete);
     // category Routes
     app
-        .route("/category")
+        .route("/admin/category")
         .get(category.list_all)
         .post(category.create);
 
     app
-        .route("/category/:id(\\d+)")
+        .route("/admin/category/:id(\\d+)")
         .get(category.read)
         .put(category.update)
         .delete(category.delete);
 
     // product Routes
     app
-        .route("/admin/product")
+        .route("/admin/products")
         .get(product.list_all)
         .post(product.create);
 
     app
-        .route("/admin/product/:id(\\d+)")
+        .route("/admin/products/:id(\\d+)")
         .get(product.read)
         .put(product.update)
         .delete(product.delete);

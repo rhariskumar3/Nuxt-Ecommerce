@@ -52,5 +52,29 @@ export default {
     } else if (operation === 'add')
       cart.push({ id: pId, product: payload.product })
     state.carts = cart
+  },
+
+  // ADMIN
+  // USER
+  SET_ADMIN_USER(state, user) {
+    state.adminAuthUser = user
+  },
+
+  // PRODUCT
+  setAdminCollections(state, payload) {
+    state.adminCollections = payload
+  },
+  setAdminProducts(state, payload) {
+    state.adminProducts = payload
+  },
+  // HOME
+  setAdminCarousels(state, payload) {
+    state.adminCarousels = payload
+  },
+  setAdminReviews(state, payload) {
+    state.adminReviews = payload
+  },
+  setAdminShopData(state, payload) {
+    state.adminShopData = payload
   }
 }

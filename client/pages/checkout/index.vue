@@ -31,6 +31,7 @@ import CartFinal from '~/components/checkout/FinalCart'
 import AppError from '~/components/base/Error'
 
 export default {
+  layout: 'error',
   components: {
     CartForm,
     CartFinal,

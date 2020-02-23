@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e2982c0-9875-4736-a884-be8f4eda26c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/ecom.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/components/base/Drawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/components/base/Drawer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/components/base/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/components/base/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/components/checkout/Form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/components/checkout/Form.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/layouts/error.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/layouts/error.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/middleware/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/nuxt.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/pages/checkout/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/checkout/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/getters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/store/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/mutations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/store/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/state.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fd447639-6f21-4a9a-9f2d-27c2a2552391.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fd447639-6f21-4a9a-9f2d-27c2a2552391.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/productsModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/productsModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/reviewsModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/reviewsModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/carriersDataController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/carriersController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/addressModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/customerAddressModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/approutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/approutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,6 +55,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/rhariskumar3/Nuxt-Ecommerce.git" />
+      </set>
+    </option>
   </component>
   <component name="JsBowerSettings">
     <node-interpreter value="project" />
@@ -173,8 +166,16 @@
       <workItem from="1581995973717" duration="8950000" />
       <workItem from="1582203737709" duration="4518000" />
       <workItem from="1582340443041" duration="1709000" />
-      <workItem from="1582431154075" duration="7319000" />
+      <workItem from="1582431154075" duration="9694000" />
     </task>
+    <task id="LOCAL-00001" summary="Admin Pages">
+      <created>1582445487547</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1582445487547</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +191,14 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="Admin Pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin Pages" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="381" y="102" key="#JSLint" timestamp="1581838079558">
@@ -216,6 +225,10 @@
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="556" y="310" key="#com.intellij.ws.actions.HttpClientConvertFromCurlDialog/0.0.1575.886@0.0.1575.886" timestamp="1581837591249" />
+    <state x="422" y="38" key="CommitChangelistDialog2" timestamp="1582445486370">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="422" y="38" key="CommitChangelistDialog2/0.0.1575.886@0.0.1575.886" timestamp="1582445486370" />
     <state x="568" y="198" key="FileChooserDialogImpl" timestamp="1582204391436">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
@@ -240,6 +253,10 @@
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="297" y="35" key="SettingsEditor/0.0.1575.886@0.0.1575.886" timestamp="1581838905751" />
+    <state x="381" y="176" key="Vcs.Push.Dialog.v2" timestamp="1582445494660">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="381" y="176" key="Vcs.Push.Dialog.v2/0.0.1575.886@0.0.1575.886" timestamp="1582445494660" />
     <state x="369" y="98" key="com.intellij.database.dbimport.ImportDialog" timestamp="1582050904281">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
@@ -252,6 +269,10 @@
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="490" y="267" key="com.intellij.ide.util.TipDialog/0.0.1575.886@0.0.1575.886" timestamp="1582431156199" />
+    <state x="606" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582445741297">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="606" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1575.886@0.0.1575.886" timestamp="1582445741297" />
     <state x="505" y="200" key="jetbrains.nodejs.interpreters-dialog" timestamp="1581837484281">
       <screen x="0" y="0" width="1575" height="886" />
     </state>

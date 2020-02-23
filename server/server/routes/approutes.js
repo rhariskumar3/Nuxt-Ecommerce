@@ -8,6 +8,13 @@ const shopData = require("../controller/shopDataController");
 const cities = require("../controller/cityController");
 const states = require("../controller/stateController");
 const countries = require("../controller/countryController");
+const carriers = require("../controller/carriersController");
+const customers = require("../controller/customersController");
+const customerAddress = require("../controller/customerAdressController");
+const employees = require("../controller/employeeController");
+const orders = require("../controller/ordersController");
+const paymentMethods = require("../controller/paymentMethodsController");
+const tax = require("../controller/taxController");
 
 module.exports = function (app) {
     // USER ROUTES
@@ -83,6 +90,90 @@ module.exports = function (app) {
         .get(product.read)
         .put(product.update)
         .delete(product.delete);
+
+    // orders Routes
+    app
+        .route("/admin/orders")
+        .get(orders.list_all)
+        .post(orders.create);
+
+    app
+        .route("/admin/orders/:id(\\d+)")
+        .get(orders.read)
+        .put(orders.update)
+        .delete(orders.delete);
+
+    // customers Routes
+    app
+        .route("/admin/customers")
+        .get(customers.list_all)
+        .post(customers.create);
+
+    app
+        .route("/admin/customers/:id(\\d+)")
+        .get(customers.read)
+        .put(customers.update)
+        .delete(customers.delete);
+
+    // customer Address Routes
+    app
+        .route("/admin/customer-address")
+        .get(customerAddress.list_all)
+        .post(customerAddress.create);
+
+    app
+        .route("/admin/customer-address/:id(\\d+)")
+        .get(customerAddress.read)
+        .put(customerAddress.update)
+        .delete(customerAddress.delete);
+
+    // carrier Routes
+    app
+        .route("/admin/carrier")
+        .get(carriers.list_all)
+        .post(carriers.create);
+
+    app
+        .route("/admin/carrier/:id(\\d+)")
+        .get(carriers.read)
+        .put(carriers.update)
+        .delete(carriers.delete);
+
+    // payment methods Routes
+    app
+        .route("/admin/payment-methods")
+        .get(paymentMethods.list_all)
+        .post(paymentMethods.create);
+
+    app
+        .route("/admin/payment-methods/:id(\\d+)")
+        .get(paymentMethods.read)
+        .put(paymentMethods.update)
+        .delete(paymentMethods.delete);
+
+    // tax Routes
+    app
+        .route("/admin/tax")
+        .get(tax.list_all)
+        .post(tax.create);
+
+    app
+        .route("/admin/tax/:id(\\d+)")
+        .get(tax.read)
+        .put(tax.update)
+        .delete(tax.delete);
+
+    // employees Routes
+    app
+        .route("/admin/employees")
+        .get(employees.list_all)
+        .post(employees.create);
+
+    app
+        .route("/admin/employees/:id(\\d+)")
+        .get(employees.read)
+        .put(employees.update)
+        .delete(employees.delete);
 
     // shop Data Routes
     app

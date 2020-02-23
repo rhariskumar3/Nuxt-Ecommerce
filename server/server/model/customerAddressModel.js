@@ -22,7 +22,7 @@ const Address = function (address) {
 };
 Address.createAddress = function (newAddress, result) {
     sql.query(`INSERT INTO address
-               set ? `, newAddress, function (err, res) {
+               SET ? `, newAddress, function (err, res) {
         if (err) result(err, null);
         else result(null, res.insertId);
     });

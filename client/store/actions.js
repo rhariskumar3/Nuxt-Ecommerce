@@ -135,8 +135,12 @@ export default {
 const getData = async function (url, axios, commit) {
   commit('LOADING', true)
   const response = await axios.get(url)
-  // eslint-disable-next-line prettier/prettier
-    console.log(response)
+  // eslint-disable-next-line no-console
+  console.log(
+    response.status + ' ' + response.config.method + ' ' + response.config.url
+  )
+  // eslint-disable-next-line no-console
+  console.log(response.data)
   commit('LOADING', false)
   return response.data
 }

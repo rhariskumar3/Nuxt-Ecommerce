@@ -10,7 +10,7 @@
               :key="i"
               class="col-auto primary--text"
             >
-              <v-card :href="'/collections/' + collection.friendly_url">
+              <v-card :to="'/collections/' + collection.friendly_url">
                 <v-img
                   :src="collection.image"
                   class="white--text align-end"
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Banner from '~/components/product/Banner'
+import Banner from '@/components/product/Banner'
 
 export default {
   components: {

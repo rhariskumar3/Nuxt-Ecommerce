@@ -29,7 +29,7 @@
               :key="i"
               class="col-auto primary--text"
             >
-              <a :href="'/collections/' + collection.friendly_url">
+              <a :to="'/collections/' + collection.friendly_url">
                 <v-avatar style="height: 96px; min-width: 96px; width: 96px;">
                   <v-img :src="collection.image">
                     <v-overlay
@@ -54,9 +54,9 @@
 </template>
 
 <script>
-import Banner from '~/components/product/Banner'
-import Product from '~/components/product/Medium'
-import AppError from '~/components/base/Error'
+import Banner from '@/components/product/Banner'
+import Product from '@/components/product/Medium'
+import AppError from '@/components/base/Error'
 
 export default {
   components: {

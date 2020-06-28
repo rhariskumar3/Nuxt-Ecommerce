@@ -29,7 +29,7 @@ export default {
         icon: 'mdi-store',
         value: '$34,245',
         secondary: 'Last 24 Hours',
-        secondaryIcon: 'mdi-calendar'
+        secondaryIcon: 'mdi-calendar',
       },
       {
         title: 'Used Space',
@@ -37,7 +37,7 @@ export default {
         icon: 'mdi-content-copy',
         value: '49/50GB',
         secondary: 'Get More Space...',
-        secondaryIcon: 'mdi-alert'
+        secondaryIcon: 'mdi-alert',
       },
       {
         title: 'Fixed Issues',
@@ -45,7 +45,7 @@ export default {
         icon: 'mdi-information-outline',
         value: '75',
         secondary: 'Tracked from Github',
-        secondaryIcon: 'mdi-tag'
+        secondaryIcon: 'mdi-tag',
       },
       {
         title: 'Followers',
@@ -53,10 +53,10 @@ export default {
         icon: 'mdi-twitter',
         value: '+245',
         secondary: 'Just Updated',
-        secondaryIcon: 'mdi-update'
-      }
-    ]
-  })
+        secondaryIcon: 'mdi-update',
+      },
+    ],
+  }),
 }
 </script>
 

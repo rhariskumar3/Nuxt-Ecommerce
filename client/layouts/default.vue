@@ -1,9 +1,9 @@
 <template>
-  <v-app dark>
+  <v-app>
     <app-header :links="links" />
-    <v-content>
-      <nuxt />
-    </v-content>
+    <v-main>
+      <nuxt keep-alive />
+    </v-main>
     <app-footer />
     <back-to-top id="back_to_bottom" visible-offset="500">
       <v-btn id="back_to_top" color="accent" class="ma-2 white--text">
@@ -24,25 +24,25 @@ export default {
       {
         icon: 'mdi-apps',
         title: 'Home',
-        to: '/'
+        to: '/',
       },
       {
         icon: 'mdi-chart-bubble',
         title: 'Collections',
-        to: '/collections'
+        to: '/collections',
       },
       {
         icon: 'mdi-chart-bubble',
         title: 'Contact US',
-        to: '/contact-us'
+        to: '/contact-us',
       },
       {
         icon: 'mdi-chart-bubble',
         title: 'About',
-        to: '/about-us'
-      }
-    ]
-  })
+        to: '/about-us',
+      },
+    ],
+  }),
 }
 </script>
 

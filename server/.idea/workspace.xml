@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e2982c0-9875-4736-a884-be8f4eda26c8" name="Default Changelist" comment="Admin Routes">
+    <list default="true" id="7e2982c0-9875-4736-a884-be8f4eda26c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/components/account/AnonymousAccount.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/components/account/AnonymousAccount.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/components/account/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/components/account/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/components/base/AdminHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/components/base/AdminHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/pages/admin/carousels/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/carousels/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/pages/admin/categories/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/categories/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/middleware/router-auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/middleware/router-auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/pages/account/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/account/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/pages/admin/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/pages/admin/products/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/products/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/pages/admin/reviews/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/reviews/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/getters.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/store/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/mutations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/store/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/state.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fd447639-6f21-4a9a-9f2d-27c2a2552391.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fd447639-6f21-4a9a-9f2d-27c2a2552391.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/carriersModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/carriersModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/customerAddressModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/customerAddressModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/ordersModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/ordersModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/paymentMethodsModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/paymentMethodsModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/approutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/approutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +47,13 @@
         <item name="ecommerce@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="ecommerce: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ecommerce@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ecommerce: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+        <item name="products: table" type="dbc44a63:MariaImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -181,7 +182,9 @@
       <workItem from="1581995973717" duration="8950000" />
       <workItem from="1582203737709" duration="4518000" />
       <workItem from="1582340443041" duration="1709000" />
-      <workItem from="1582431154075" duration="18840000" />
+      <workItem from="1582431154075" duration="19774000" />
+      <workItem from="1582731245728" duration="4686000" />
+      <workItem from="1582954865102" duration="258000" />
     </task>
     <task id="LOCAL-00001" summary="Admin Pages">
       <created>1582445487547</created>
@@ -197,7 +200,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582447885902</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="MySQL Schema Update">
+      <created>1582464285347</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582464285347</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Admin Pages">
+      <created>1582464389582</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582464389582</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,7 +225,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -216,9 +235,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Admin Pages" />
     <MESSAGE value="Admin Routes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Admin Routes" />
+    <MESSAGE value="MySQL Schema Update" />
+    <MESSAGE value="Admin Pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin Pages" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -252,38 +272,38 @@
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="556" y="310" key="#com.intellij.ws.actions.HttpClientConvertFromCurlDialog/0.0.1575.886@0.0.1575.886" timestamp="1581837591249" />
-    <state x="180" y="38" width="1301" height="811" key="CommitChangelistDialog2" timestamp="1582464284667">
+    <state x="180" y="38" width="1301" height="811" key="CommitChangelistDialog2" timestamp="1582464388779">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="180" y="38" width="1301" height="811" key="CommitChangelistDialog2/0.0.1575.886@0.0.1575.886" timestamp="1582464284667" />
+    <state x="180" y="38" width="1301" height="811" key="CommitChangelistDialog2/0.0.1575.886@0.0.1575.886" timestamp="1582464388779" />
     <state x="568" y="198" key="FileChooserDialogImpl" timestamp="1582204391436">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="568" y="198" key="FileChooserDialogImpl/0.0.1575.886@0.0.1575.886" timestamp="1582204391436" />
-    <state width="1051" height="231" key="GridCell.Tab.0.bottom" timestamp="1582463904648">
+    <state width="1532" height="231" key="GridCell.Tab.0.bottom" timestamp="1582955130973">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state width="1051" height="231" key="GridCell.Tab.0.bottom/0.0.1575.886@0.0.1575.886" timestamp="1582463904648" />
-    <state width="1051" height="231" key="GridCell.Tab.0.center" timestamp="1582463904648">
+    <state width="1532" height="231" key="GridCell.Tab.0.bottom/0.0.1575.886@0.0.1575.886" timestamp="1582955130973" />
+    <state width="1532" height="231" key="GridCell.Tab.0.center" timestamp="1582955130973">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state width="1051" height="231" key="GridCell.Tab.0.center/0.0.1575.886@0.0.1575.886" timestamp="1582463904648" />
-    <state width="1051" height="231" key="GridCell.Tab.0.left" timestamp="1582463904648">
+    <state width="1532" height="231" key="GridCell.Tab.0.center/0.0.1575.886@0.0.1575.886" timestamp="1582955130973" />
+    <state width="1532" height="231" key="GridCell.Tab.0.left" timestamp="1582955130973">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state width="1051" height="231" key="GridCell.Tab.0.left/0.0.1575.886@0.0.1575.886" timestamp="1582463904648" />
-    <state width="1051" height="231" key="GridCell.Tab.0.right" timestamp="1582463904648">
+    <state width="1532" height="231" key="GridCell.Tab.0.left/0.0.1575.886@0.0.1575.886" timestamp="1582955130973" />
+    <state width="1532" height="231" key="GridCell.Tab.0.right" timestamp="1582955130973">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state width="1051" height="231" key="GridCell.Tab.0.right/0.0.1575.886@0.0.1575.886" timestamp="1582463904648" />
+    <state width="1532" height="231" key="GridCell.Tab.0.right/0.0.1575.886@0.0.1575.886" timestamp="1582955130973" />
     <state x="297" y="35" key="SettingsEditor" timestamp="1581838905751">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="297" y="35" key="SettingsEditor/0.0.1575.886@0.0.1575.886" timestamp="1581838905751" />
-    <state x="381" y="176" key="Vcs.Push.Dialog.v2" timestamp="1582464287234">
+    <state x="381" y="176" key="Vcs.Push.Dialog.v2" timestamp="1582464401675">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="381" y="176" key="Vcs.Push.Dialog.v2/0.0.1575.886@0.0.1575.886" timestamp="1582464287234" />
+    <state x="381" y="176" key="Vcs.Push.Dialog.v2/0.0.1575.886@0.0.1575.886" timestamp="1582464401675" />
     <state x="616" y="328" width="344" height="263" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1" timestamp="1582459913089">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
@@ -304,10 +324,10 @@
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="498" y="85" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1575.886@0.0.1575.886" timestamp="1582460866796" />
-    <state x="490" y="267" key="com.intellij.ide.util.TipDialog" timestamp="1582431156199">
+    <state x="490" y="267" key="com.intellij.ide.util.TipDialog" timestamp="1582954864403">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="490" y="267" key="com.intellij.ide.util.TipDialog/0.0.1575.886@0.0.1575.886" timestamp="1582431156199" />
+    <state x="490" y="267" key="com.intellij.ide.util.TipDialog/0.0.1575.886@0.0.1575.886" timestamp="1582954864403" />
     <state x="606" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582445741297">
       <screen x="0" y="0" width="1575" height="886" />
     </state>

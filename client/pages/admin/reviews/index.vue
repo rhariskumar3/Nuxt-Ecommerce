@@ -91,20 +91,20 @@ export default {
       { text: 'Description', value: 'description', sortable: false },
       { text: 'Customer', value: 'name' },
       { text: 'Enabled', value: 'enabled' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ]
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
   computed: {
     reviews() {
       return this.$store.getters.adminReviews
-    }
+    },
   },
   methods: {
     truncate(input) {
       if (input.length > 100) return input.substring(0, 100) + '...'
       else return input
-    }
-  }
+    },
+  },
 }
 </script>
 

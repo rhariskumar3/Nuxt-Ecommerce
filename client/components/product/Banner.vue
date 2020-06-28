@@ -11,7 +11,7 @@
           class="mb-3 font-italic font-weight-black"
           :class="{
             'displat-1': $vuetify.breakpoint.smAndDown,
-            'displat-4': $vuetify.breakpoint.mdAndUp
+            'displat-4': $vuetify.breakpoint.mdAndUp,
           }"
         >
           {{ detail.title }}
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  props: ['detail']
+  props: ['detail'],
 }
 </script>
 

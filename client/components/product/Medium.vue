@@ -59,10 +59,10 @@ export default {
     updateCart(product1, operation1) {
       this.$store.dispatch('updateCarts', {
         operation: operation1,
-        product: product1
+        product: product1,
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

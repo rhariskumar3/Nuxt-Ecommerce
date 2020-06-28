@@ -288,17 +288,17 @@ export default {
     requiredRules: [(v) => !!v || 'The input is required'],
     nameRules: [
       (v) => !!v || 'Name is required',
-      (v) => (v && v.length >= 5) || 'Name must be less than 5 characters'
+      (v) => (v && v.length >= 4) || 'Name must contain more than 4 characters',
     ],
     emailRules: [
       (v) => !!v || 'E-mail is required',
-      (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
     ],
     contactInfo: {
       email: '',
       firstName: '',
       lastName: '',
-      mobile: ''
+      mobile: '',
     },
     shippingAddress: {
       firstName: '',
@@ -308,7 +308,7 @@ export default {
       city: '',
       state: '',
       country: '',
-      pinCode: ''
+      pinCode: '',
     },
     billingAddress: {
       firstName: '',
@@ -318,11 +318,11 @@ export default {
       city: '',
       state: '',
       country: '',
-      pinCode: ''
+      pinCode: '',
     },
     name: '',
     email: '',
-    isShippingAddressBillingAddressSame: false
+    isShippingAddressBillingAddressSame: false,
   }),
   computed: {
     paymentMethods() {
@@ -330,7 +330,7 @@ export default {
     },
     shippers() {
       return this.$store.state.SHIPPING_METHODS
-    }
+    },
   },
   methods: {
     contactInfoSubmit() {
@@ -363,9 +363,15 @@ export default {
     },
     paymentMethodSubmit() {
       const result = confirm('Confirm Purchase?')
-      if (result) this.$router.push('/')
-    }
-  }
+      if (result) {
+        this.$store.dispatch('updateCarts', {
+          operation: 'clean',
+          product: null,
+        })
+        this.$router.push('/')
+      }
+    },
+  },
 }
 </script>
 

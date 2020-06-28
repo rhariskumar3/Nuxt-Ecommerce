@@ -40,7 +40,7 @@ import Banner from '~/components/product/Banner'
 
 export default {
   components: {
-    Banner
+    Banner,
   },
   async fetch({ store, params }) {
     await store.dispatch('fetchCollections')
@@ -49,13 +49,13 @@ export default {
     banner: {
       title: 'Collections',
       image:
-        'https://cdn.shopify.com/s/files/1/2695/0984/collections/Ogio_Open_800px.png?v=1568487181'
-    }
+        'https://cdn.shopify.com/s/files/1/2695/0984/collections/Ogio_Open_800px.png?v=1568487181',
+    },
   }),
   computed: {
     collections() {
       return this.$store.getters.collections
-    }
+    },
   },
   head() {
     return {
@@ -64,11 +64,11 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'All ' + this.$store.getters.shopData.name + ' Collections'
-        }
-      ]
+          content: 'All ' + this.$store.getters.shopData.name + ' Collections',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 

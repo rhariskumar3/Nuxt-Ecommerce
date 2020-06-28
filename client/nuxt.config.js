@@ -2,50 +2,49 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   mode: 'universal',
-  server: {
-    port: 8080,
-    host: 'localhost'
-  },
+  target: 'server',
+
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s',
+    title: 'NUXT Commerce',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-  manifest: {
-    name: 'Somewhat ecommerce application',
-    short_name: 'ecom'
-  },
-  router: {
-    middleware: 'router-auth'
-  },
-  loading: { color: '#fff' },
+
   css: [],
-  plugins: [{ src: '@/plugins/back-to-top.js', ssr: false }, '~/plugins/axios'],
+
+  plugins: [{ src: '@/plugins/back-to-top.js', ssr: false }],
+
+  components: true,
+
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify'],
-  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxtjs/dotenv'],
-  axios: {},
+
+  modules: ['@nuxtjs/axios', '@nuxtjs/pwa'],
+
+  axios: {
+    baseURL: 'http://localhost:3030/',
+  },
+
   vuetify: {
-    customVariables: ['~/assets/styles/variables.scss'],
     theme: {
       dark: false,
       themes: {
         dark: {
-          primary: colors.blue.darken3,
+          primary: colors.blue.darken2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+          success: colors.green.accent3,
         },
         light: {
           primary: '#003b63',
@@ -54,12 +53,15 @@ export default {
           info: '#2196f3',
           warning: '#fb8c00',
           error: '#ff5252',
-          success: '#4caf50'
-        }
-      }
-    }
+          success: '#4caf50',
+        },
+      },
+    },
   },
-  build: {
-    extend(config, ctx) {}
-  }
+
+  build: {},
+
+  server: {
+    port: 8000,
+  },
 }

@@ -9,7 +9,7 @@
       <p>You are logged in as an anonymous user</p>
       <p id="register_please">
         Log in or register to manage your data on other devices. <br />
-        <span style="font-size: 12px; color: grey">
+        <span style="font-size: 12px; color: grey;">
           ( When registering via <b> mail </b>, all your current data will be
           saved. <br />
           When signing in with your Google Account - a new profile is created
@@ -17,10 +17,11 @@
         </span>
       </p>
     </v-card-text>
-    <v-card-action>
-      <v-btn>Sign up</v-btn>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn outlined>Sign up</v-btn>
       <v-btn color="primary">Login</v-btn>
-    </v-card-action>
+    </v-card-actions>
   </v-card>
 </template>
 

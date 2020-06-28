@@ -102,14 +102,14 @@ export default {
       { text: 'Live', value: 'live' },
       { text: 'Test', value: 'test' },
       { text: 'Enabled', value: 'enabled' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ]
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
   computed: {
     products() {
       return this.$store.getters.adminPaymentMethods
-    }
-  }
+    },
+  },
 }
 </script>
 

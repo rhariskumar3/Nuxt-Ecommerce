@@ -1,21 +1,20 @@
-export default function({ store, redirect, route }) {
-  // if (isAdminRoute(route)) {
-  //   if (
-  //     store.state.user &&
-  //     store.state.ADMINS.includes(store.state.user.email)
-  //   ) {
-  //     return ''
-  //   } else redirect('/admin/account/signin')
-  // } else if (isUserRouters(route)) {
-  //   if (store.state.user) {
-  //     return ''
-  //   } else redirect('/account/signin')
-  // } else return ''
+export default function ({ store, redirect, route }) {
+  if (route.name === 'admin' && store.state.auth) redirect('/admin/dashboard')
+  if (isAdminRoute(route)) {
+    if (!store.state.auth) {
+      redirect('/admin')
+    } else return ''
+  } else if (isUserRouters(route)) {
+    if (!store.state.user) {
+      redirect('/account')
+    } else return ''
+  } else return ''
 }
 
 // eslint-disable-next-line no-unused-vars
 function isAdminRoute(route) {
-  if (route.matched.some((record) => record.path.includes('admin'))) return true
+  if (route.matched.some((record) => record.path.includes('admin/')))
+    return true
 }
 
 // eslint-disable-next-line no-unused-vars

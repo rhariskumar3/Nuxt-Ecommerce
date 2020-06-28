@@ -11,18 +11,18 @@
 </template>
 
 <script>
-import AppCarousel from '~/components/home/Carousel'
-import AppHighlights from '~/components/home/Highlights'
-import AppFeaturedProducts from '~/components/home/FeaturedProducts'
-import AppReviews from '~/components/home/Reviews'
-import AppNewsletter from '~/components/home/Newsletter'
+import AppCarousel from '@/components/home/Carousel'
+import AppHighlights from '@/components/home/Highlights'
+import AppFeaturedProducts from '@/components/home/FeaturedProducts'
+import AppReviews from '@/components/home/Reviews'
+import AppNewsletter from '@/components/home/Newsletter'
 export default {
   components: {
     AppCarousel,
     AppHighlights,
     AppFeaturedProducts,
     AppReviews,
-    AppNewsletter
+    AppNewsletter,
   },
   async fetch({ store, params }) {
     await store.dispatch('fetchCarousels')
@@ -35,11 +35,11 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'E-commerce'
-        }
-      ]
+          content: 'E-commerce',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 

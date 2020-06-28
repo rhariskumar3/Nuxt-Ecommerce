@@ -50,13 +50,13 @@ exports.delete = function(req, res) {
 };
 
 exports.list_all_under_category_url = function(req, res) {
-    Product.getProductsByCategoryUrl(req.params.url,function(err, result) {
+    Product.getProductsByCategoryUrl(req.params.url, function(err, result) {
         if (err) res.send(err);
         res.send(result);
     });
 };
 
-exports.list_all_user = function(req, res) {
+exports.list_all_products = function(req, res) {
     Product.getAllProductsEnabled(function(err, result) {
         if (err) res.send(err);
         res.send(result);

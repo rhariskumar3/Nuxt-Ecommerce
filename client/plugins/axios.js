@@ -1,35 +1,32 @@
-export default function({ $axios, redirect }, inject) {
+export default function ({ $axios, redirect }, inject) {
   // Create a custom axios instance
   const api = $axios.create({
     headers: {
       common: {
-        Accept: 'text/plain, */*'
-      }
-    }
+        Accept: 'text/plain, */*',
+      },
+    },
   })
-
-  // Set baseURL to something different
-  api.setBaseURL('http://localhost:3030')
 
   // Adds header: `Authorization: Bearer 123` to only post and delete requests
   api.setToken('123', 'Bearer', ['post', 'put', 'delete'])
 
   // Add a request interceptor
   $axios.interceptors.request.use(
-    function(config) {
+    function (config) {
       return config
     },
-    function(error) {
+    function (error) {
       return Promise.reject(error)
     }
   )
 
   // Add a response interceptor
   $axios.interceptors.response.use(
-    function(response) {
+    function (response) {
       return response
     },
-    function(error) {
+    function (error) {
       return Promise.reject(error)
     }
   )

@@ -32,6 +32,7 @@
 </template>
 
 <script>
+const Cookie = process.client ? require('js-cookie') : undefined
 export default {
   name: 'LoginUser',
   data: () => ({
@@ -45,16 +46,24 @@ export default {
       email: (value) => {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         return pattern.test(value) || 'Invalid e-mail.'
-      }
-    }
+      },
+    },
   }),
   methods: {
     login() {
       if (this.$refs.loginForm.validate()) {
         if (this.email === 'admin@demo.com' && this.password === '12345678')
-          this.$router.push('/admin/dashboard')
+          setTimeout(() => {
+            // we simulate the async request with timeout.
+            const auth = {
+              accessToken: 'someStringGotFromApiServiceWithAjax',
+            }
+            this.$store.commit('setAuth', auth) // mutating to store for client rendering
+            Cookie.set('auth', auth) // saving token in cookie for server rendering
+            this.$router.push('/admin/dashboard')
+          }, 1000)
       }
-    }
-  }
+    },
+  },
 }
 </script>

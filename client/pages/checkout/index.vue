@@ -35,12 +35,12 @@ export default {
   components: {
     CartForm,
     CartFinal,
-    AppError
+    AppError,
   },
   computed: {
     carts() {
       return this.$store.getters.carts
-    }
+    },
   },
   head() {
     return {
@@ -49,11 +49,11 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'My Cart'
-        }
-      ]
+          content: 'My Cart',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 

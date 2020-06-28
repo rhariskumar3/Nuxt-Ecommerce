@@ -89,14 +89,14 @@ export default {
       { text: 'Sub Title', value: 'sub_title' },
       { text: 'Action', value: 'action' },
       { text: 'Enabled', value: 'enabled' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ]
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
   computed: {
     carousels() {
       return this.$store.getters.adminCarousels
-    }
-  }
+    },
+  },
 }
 </script>
 

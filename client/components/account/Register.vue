@@ -51,9 +51,9 @@ export default {
       email: (value) => {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         return pattern.test(value) || 'Invalid e-mail.'
-      }
+      },
     },
-    agree: false
+    agree: false,
   }),
   methods: {
     register() {
@@ -62,7 +62,7 @@ export default {
           .dispatch('register', {
             name: this.name,
             email: this.email,
-            password: this.password
+            password: this.password,
           })
           .then(() => {
             this.$router.push({ name: 'Dashboard' })
@@ -70,7 +70,7 @@ export default {
           .catch((err) => {
             console.log(err)
           })
-    }
-  }
+    },
+  },
 }
 </script>

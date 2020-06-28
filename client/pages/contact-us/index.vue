@@ -100,11 +100,11 @@
                     <v-btn
                       :href="
                         'mailto:' +
-                          this.$store.getters.shopData.email +
-                          '?subject=' +
-                          subject +
-                          ';body=' +
-                          message
+                        this.$store.getters.shopData.email +
+                        '?subject=' +
+                        subject +
+                        ';body=' +
+                        message
                       "
                       target="_blank"
                       class="v-size--x-large text-none accent"
@@ -126,7 +126,7 @@
 export default {
   data: () => ({
     subject: '',
-    message: ''
+    message: '',
   }),
   head() {
     return {
@@ -135,11 +135,11 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'Contact us'
-        }
-      ]
+          content: 'Contact us',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 

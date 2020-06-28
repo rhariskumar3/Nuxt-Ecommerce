@@ -1,8 +1,17 @@
+const cookieparser = process.server ? require('cookieparser') : undefined
+
 export default {
   nuxtServerInit({ commit, dispatch }, { req }) {
-    if (req.session && req.session.authUser) {
-      commit('SET_USER', req.session.authUser)
+    let auth = null
+    if (req.headers.cookie) {
+      const parsed = cookieparser.parse(req.headers.cookie)
+      try {
+        auth = JSON.parse(parsed.auth)
+      } catch (err) {
+        // No valid cookie found
+      }
     }
+    commit('setAuth', auth)
     return Promise.all([dispatch('fetchShopData')])
   },
   // APP
@@ -16,112 +25,48 @@ export default {
     commit('LOADING', false)
   },
   // PRODUCTS
-  async fetchCollections({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/category')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setCollections', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchCollections({ commit }) {
+    const data = await getData('/category', this.$axios, commit)
+    commit('setCollections', data)
   },
-  async fetchCollectionProducts({ commit, getters, dispatch }, payload) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/product/category_url=' + payload)
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setProducts', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchCollectionProducts({ commit }, payload) {
+    const data = await getData(
+      '/product/category_url=' + payload,
+      this.$axios,
+      commit
+    )
+    commit('setProducts', data)
   },
-  async loadSingleProduct({ commit, getters, dispatch }, payload) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/product/' + payload)
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setSingleProduct', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async loadSingleProduct({ commit }, payload) {
+    const data = await getData('/product/' + payload, this.$axios, commit)
+    commit('setSingleProduct', data)
   },
   // HOME
-  async fetchCarousels({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/carousel')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setCarousels', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchCarousels({ commit }) {
+    const data = await getData('/carousel', this.$axios, commit)
+    commit('setCarousels', data)
   },
-  async fetchReviews({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/reviews')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setReviews', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchReviews({ commit }) {
+    const data = await getData('/reviews', this.$axios, commit)
+    commit('setReviews', data)
   },
-  async fetchShopData({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/shop-data')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setShopData', response[0])
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchShopData({ commit }) {
+    const data = await getData('/shop-data', this.$axios, commit)
+    commit('setShopData', data[0])
   },
-  async fetchCountryData({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/city')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setCities', response[0])
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
-    await this.$api
-      .$get('/state')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setStates', response[0])
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
-    await this.$api
-      .$get('/country')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setCountries', response[0])
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchCountryData({ commit }) {
+    const city = await getData('/city', this.$axios, commit)
+    commit('setCities', city[0])
+
+    const state = await getData('/state', this.$axios, commit)
+    commit('setStates', state[0])
+
+    const country = await getData('/country', this.$axios, commit)
+    commit('setCountries', country[0])
   },
 
   // ORDER
-  updateCarts: ({ commit, getters, dispatch }, payload) => {
+  updateCarts: ({ commit }, payload) => {
     commit('LOADING', true)
     commit('setCarts', payload)
     commit('LOADING', false)
@@ -129,156 +74,69 @@ export default {
 
   // ADMIN
   // PRODUCTS
-  async fetchAdminCollections({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/category')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminCollections', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchAdminCollections({ commit }) {
+    const data = await getData('/admin/category', this.$axios, commit)
+    commit('setAdminCollections', data)
   },
-  async fetchAdminProducts({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/products')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminProducts', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchAdminProducts({ commit }) {
+    const data = await getData('/admin/products', this.$axios, commit)
+    commit('setAdminProducts', data)
   },
 
   // ORDERS
-  async fetchAdminOrders({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/orders')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminOrders', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchAdminOrders({ commit }) {
+    const data = await getData('/admin/orders', this.$axios, commit)
+    commit('setAdminOrders', data)
   },
-  async fetchAdminCustomers({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/customers')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminCustomers', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchAdminCustomers({ commit }) {
+    const data = await getData('/admin/customers', this.$axios, commit)
+    commit('setAdminCustomers', data)
   },
-  async fetchAdminAddresses({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/customer-addresses')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminAddresses', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchAdminAddresses({ commit }) {
+    const data = await getData('/admin/customer-addresses', this.$axios, commit)
+    commit('setAdminAddresses', data)
   },
 
   // HOME
-  async fetchAdminCarousels({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/carousel')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminCarousels', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchAdminCarousels({ commit }) {
+    const data = await getData('/admin/carousel', this.$axios, commit)
+    commit('setAdminCarousels', data)
   },
-  async fetchAdminReviews({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/reviews')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminReviews', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchAdminReviews({ commit }) {
+    const data = await getData('/admin/reviews', this.$axios, commit)
+    commit('setAdminReviews', data)
   },
 
   // DATA
-  async fetchAdminCarriers({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/carriers')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminCarriers', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchAdminCarriers({ commit }) {
+    const data = await getData('/admin/carriers', this.$axios, commit)
+    commit('setAdminCarriers', data)
   },
-  async fetchAdminPaymentMethods({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/payment-methods')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminPaymentMethods', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchAdminPaymentMethods({ commit }) {
+    const data = await getData('/admin/payment-methods', this.$axios, commit)
+    commit('setAdminPaymentMethods', data)
   },
-  async fetchAdminTax({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/tax')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminTax', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchAdminTax({ commit }) {
+    const data = await getData('/admin/tax', this.$axios, commit)
+    commit('setAdminTax', data)
   },
 
   // MAIN
-  async fetchAdminShopData({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/shop-data')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminShopData', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
+  async fetchAdminShopData({ commit }) {
+    const data = await getData('/admin/shop-data', this.$axios, commit)
+    commit('setAdminShopData', data)
   },
-  async fetchAdminEmployees({ commit, getters, dispatch }) {
-    commit('LOADING', true)
-    await this.$api
-      .$get('/admin/employees')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('=====>', response)
-        commit('setAdminEmployees', response)
-        commit('LOADING', false)
-      })
-      .catch((err) => dispatch('LOG', err))
-  }
+  async fetchAdminEmployees({ commit }) {
+    const data = await getData('/admin/employees', this.$axios, commit)
+    commit('setAdminEmployees', data)
+  },
+}
+
+const getData = async function (url, axios, commit) {
+  commit('LOADING', true)
+  const response = await axios.get(url)
+  // eslint-disable-next-line prettier/prettier
+    console.log(response)
+  commit('LOADING', false)
+  return response.data
 }

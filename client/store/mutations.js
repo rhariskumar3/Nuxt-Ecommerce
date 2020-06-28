@@ -3,6 +3,9 @@ export default {
   setAdmin(state, payload) {
     state.IS_ADMIN = payload
   },
+  setAuth(state, auth) {
+    state.auth = auth
+  },
 
   // SYSTEM
   LOADING(state, payload) {
@@ -41,16 +44,29 @@ export default {
 
   // ORDER
   setCarts(state, payload) {
-    const cart = state.carts
+    let cart = state.carts
     const operation = payload.operation
-    const pId = payload.product.id
-    const position = cart.findIndex((ele) => ele.id === pId)
-    if (position > -1) {
-      if (operation === 'add')
-        cart[position] = { id: pId, product: payload.product }
-      else if (operation === 'remove') cart.splice(position, 1)
-    } else if (operation === 'add')
-      cart.push({ id: pId, product: payload.product })
+    if (operation === 'clean') cart = []
+    else {
+      const pId = payload.product.id
+      const position = cart.findIndex((ele) => ele.id === pId)
+      if (position > -1) {
+        cart[position].product = payload.product
+        if (operation === 'add') {
+          if (cart[position].product.quantity > cart[position].count)
+            cart[position].count++
+        } else if (operation === 'remove') {
+          if (cart[position].product.minimum_quantity < cart[position].count)
+            cart[position].count--
+          else cart.splice(position, 1)
+        } else if (operation === 'delete') cart.splice(position, 1)
+      } else if (operation === 'add')
+        cart.push({
+          id: pId,
+          product: payload.product,
+          count: payload.product.minimum_quantity,
+        })
+    }
     state.carts = cart
   },
 
@@ -104,5 +120,5 @@ export default {
   },
   setAdminEmployees(state, payload) {
     state.adminEmployees = payload
-  }
+  },
 }

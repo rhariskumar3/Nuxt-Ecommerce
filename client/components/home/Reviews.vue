@@ -6,7 +6,7 @@
           class="font-weight-bold mb-6 text-center mb-12"
           :class="{
             'displat-2': $vuetify.breakpoint.smAndDown,
-            'displat-1': $vuetify.breakpoint.mdAndUp
+            'displat-1': $vuetify.breakpoint.mdAndUp,
           }"
         >
           Customer Reviews
@@ -21,7 +21,7 @@
               <div
                 :class="{
                   'mx-7': $vuetify.breakpoint.smAndDown,
-                  'mx-12': $vuetify.breakpoint.mdAndUp
+                  'mx-12': $vuetify.breakpoint.mdAndUp,
                 }"
               >
                 <v-card class="mx-12 pa-3">
@@ -51,8 +51,8 @@ export default {
   computed: {
     reviews() {
       return this.$store.getters.reviews
-    }
-  }
+    },
+  },
 }
 </script>
 

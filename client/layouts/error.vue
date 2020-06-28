@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <div id="notfound">
       <div class="notfound">
         <div class="notfound-404">
@@ -20,13 +20,13 @@ export default {
   props: {
     error: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     reason() {
       return this.error.statusCode + ' ' + this.error.message
-    }
+    },
   },
   head() {
     // eslint-disable-next-line no-console
@@ -40,9 +40,9 @@ export default {
     )
     const title = this.reason
     return {
-      title
+      title,
     }
-  }
+  },
 }
 </script>
 

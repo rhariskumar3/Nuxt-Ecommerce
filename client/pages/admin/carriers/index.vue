@@ -93,14 +93,14 @@ export default {
       { text: 'Max Weight', value: 'max_weight' },
       { text: 'Zone', value: 'zone' },
       { text: 'Enabled', value: 'enabled' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ]
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
   computed: {
     carriers() {
       return this.$store.getters.adminCarriers
-    }
-  }
+    },
+  },
 }
 </script>
 

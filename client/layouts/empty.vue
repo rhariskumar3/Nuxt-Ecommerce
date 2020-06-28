@@ -1,14 +1,14 @@
 <template>
-  <v-app dark>
-    <v-content>
+  <v-app>
+    <v-main>
       <nuxt />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
 <script>
 export default {
-  name: 'Empty'
+  name: 'Empty',
 }
 </script>
 

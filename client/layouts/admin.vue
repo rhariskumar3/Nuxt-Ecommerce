@@ -1,9 +1,9 @@
 <template>
-  <v-app dark>
+  <v-app>
     <app-header :links="links" />
-    <v-content>
+    <v-main>
       <nuxt />
-    </v-content>
+    </v-main>
     <back-to-top id="back_to_bottom" visible-offset="500">
       <v-btn id="back_to_top" color="accent" class="ma-2 white--text">
         <v-icon>mdi-chevron-double-up</v-icon>
@@ -22,70 +22,70 @@ export default {
       {
         icon: 'mdi-view-dashboard',
         title: 'Dashboard',
-        to: '/admin/dashboard'
+        to: '/admin/dashboard',
       },
       {
         icon: 'mdi-bowl',
         title: 'Products',
-        to: '/admin/products'
+        to: '/admin/products',
       },
       {
         icon: 'mdi-lamp',
         title: 'Categories',
-        to: '/admin/categories'
+        to: '/admin/categories',
       },
       {
         icon: 'mdi-react',
         title: 'Orders',
-        to: '/admin/orders'
+        to: '/admin/orders',
       },
       {
         icon: 'mdi-human-male-female',
         title: 'Customers',
-        to: '/admin/customers'
+        to: '/admin/customers',
       },
       {
         icon: 'mdi-directions',
         title: 'Customer Address',
-        to: '/admin/customer-address'
+        to: '/admin/customer-address',
       },
       {
         icon: 'mdi-coffee',
         title: 'Carousels',
-        to: '/admin/carousels'
+        to: '/admin/carousels',
       },
       {
         icon: 'mdi-comment-text',
         title: 'Reviews',
-        to: '/admin/reviews'
+        to: '/admin/reviews',
       },
       {
         icon: 'mdi-donkey',
         title: 'Tax',
-        to: '/admin/tax'
+        to: '/admin/tax',
       },
       {
         icon: 'mdi-car-pickup',
         title: 'Carriers',
-        to: '/admin/carriers'
+        to: '/admin/carriers',
       },
       {
         icon: 'mdi-credit-card-multiple',
         title: 'Payment Methods',
-        to: '/admin/payment-methods'
+        to: '/admin/payment-methods',
       },
       {
         icon: 'mdi-houzz-box',
         title: 'Shop Data',
-        to: '/admin/shop-data'
+        to: '/admin/shop-data',
       },
       {
         icon: 'mdi-linux',
         title: 'Employees',
-        to: '/admin/employees'
-      }
-    ]
-  })
+        to: '/admin/employees',
+      },
+    ],
+  }),
 }
 </script>
 

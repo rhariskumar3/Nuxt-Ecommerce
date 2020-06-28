@@ -89,14 +89,14 @@ export default {
       { text: 'Mobile', value: 'mobile' },
       { text: 'Newsletter', value: 'newsletter' },
       { text: 'Blocked', value: 'blocked' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ]
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
   computed: {
     customers() {
       return this.$store.getters.adminCustomers
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -41,8 +41,8 @@
               <v-badge
                 left
                 color="accent"
-                :value="carts.length"
-                :content="carts.length"
+                :value="cartCount"
+                :content="cartCount"
                 ><v-icon>mdi-cart</v-icon></v-badge
               >
             </v-btn>
@@ -78,18 +78,24 @@ export default {
   components: { AppDrawer, AppCart },
   props: ['links'],
   data: () => ({
-    drawer: false
+    drawer: false,
   }),
   computed: {
     carts() {
       return this.$store.getters.carts
-    }
+    },
+    cartCount() {
+      return this.$store.getters.carts.reduce(
+        (prev, current) => prev + current.count,
+        0
+      )
+    },
   },
   methods: {
     home() {
       this.$router.push('/')
-    }
-  }
+    },
+  },
 }
 </script>
 

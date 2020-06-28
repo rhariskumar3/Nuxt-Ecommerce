@@ -16,7 +16,7 @@
             class="mb-3 font-italic font-weight-black"
             :class="{
               'displat-1': $vuetify.breakpoint.smAndDown,
-              'displat-4': $vuetify.breakpoint.mdAndUp
+              'displat-4': $vuetify.breakpoint.mdAndUp,
             }"
           >
             About {{ this.$store.getters.shopData.name }}
@@ -66,11 +66,11 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'about us'
-        }
-      ]
+          content: 'about us',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 

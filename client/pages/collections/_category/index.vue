@@ -62,7 +62,7 @@ export default {
   components: {
     Banner,
     Product,
-    AppError
+    AppError,
   },
   async fetch({ store, params }) {
     await store.dispatch('fetchCollectionProducts', params.category)
@@ -83,17 +83,9 @@ export default {
       return {
         title: current.title,
         image: current.image,
-        description: current.description
+        description: current.description,
       }
-    }
-  },
-  methods: {
-    updateCart(product1, operation1) {
-      this.$store.dispatch('updateCarts', {
-        operation: operation1,
-        product: product1
-      })
-    }
+    },
   },
   head() {
     return {
@@ -102,11 +94,11 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.banner.description
-        }
-      ]
+          content: this.banner.description,
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 

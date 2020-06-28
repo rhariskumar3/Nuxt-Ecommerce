@@ -17,7 +17,7 @@
 <script>
 export default {
   name: 'Error',
-  props: ['reason']
+  props: ['reason'],
 }
 </script>
 

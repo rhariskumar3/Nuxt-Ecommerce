@@ -29,7 +29,11 @@
                 <v-col cols="12" md="9">
                   <v-card class="pa-4 mx-auto grey lighten-3" flat>
                     <v-img
-                      style="height: 500px; max-width: 100%; transform-origin: center top 0px;"
+                      style="
+                        height: 500px;
+                        max-width: 100%;
+                        transform-origin: center top 0px;
+                      "
                       :src="mainImage"
                     />
                   </v-card>
@@ -53,7 +57,9 @@
                     </div>
                     <div>
                       <div v-if="product.quantity > 0">
-                        <strong>Availability</strong> : In Stock
+                        <strong>Availability</strong> : In Stock [{{
+                          product.quantity
+                        }}]
                       </div>
                       <div v-else>
                         <strong>Availability</strong> : Out of Stock
@@ -100,10 +106,10 @@
                           :key="i"
                           :href="
                             'http://twitter.com/share?text=' +
-                              product.name +
-                              '&url=' +
-                              $route.fullPath +
-                              '&hashtags=hashtag'
+                            product.name +
+                            '&url=' +
+                            $route.fullPath +
+                            '&hashtags=hashtag'
                           "
                           target="_blank"
                           class="mx-1 primary"
@@ -154,7 +160,7 @@ export default {
   },
   data: () => ({
     mainImage:
-      'https://www.sensescotland.org.uk/wp-content/uploads/2019/04/imagenotavailable.png'
+      'https://www.sensescotland.org.uk/wp-content/uploads/2019/04/imagenotavailable.png',
   }),
   computed: {
     product() {
@@ -171,7 +177,7 @@ export default {
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       if (images[0]) this.mainImage = images[0]
       return images
-    }
+    },
   },
   methods: {
     loadMainImage(image) {
@@ -180,13 +186,13 @@ export default {
     updateCart(product1, operation1) {
       this.$store.dispatch('updateCarts', {
         operation: operation1,
-        product: product1
+        product: product1,
       })
     },
     checkout(product) {
       this.updateCart(product, 'add')
       this.$router.push('/checkout')
-    }
+    },
   },
   head() {
     return {
@@ -195,11 +201,11 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.product.description
-        }
-      ]
+          content: this.product.description,
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 

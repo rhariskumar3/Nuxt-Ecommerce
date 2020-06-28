@@ -80,14 +80,14 @@ export default {
       { text: 'Payment', value: 'payment' },
       { text: 'Status', value: 'order_state' },
       { text: 'Date', value: 'created_at' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ]
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
   computed: {
     orders() {
       return this.$store.getters.adminOrders
-    }
-  }
+    },
+  },
 }
 </script>
 

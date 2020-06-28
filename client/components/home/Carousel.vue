@@ -4,7 +4,7 @@
       <v-container id="carousel" class="px-0">
         <v-row
           :class="{
-            'px-2': $vuetify.breakpoint.smAndDown
+            'px-2': $vuetify.breakpoint.smAndDown,
           }"
         >
           <v-col cols="12" lg="8">
@@ -94,8 +94,8 @@ export default {
   computed: {
     carousels() {
       return this.$store.getters.carousels
-    }
-  }
+    },
+  },
 }
 </script>
 

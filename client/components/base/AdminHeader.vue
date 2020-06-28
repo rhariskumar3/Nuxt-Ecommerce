@@ -4,7 +4,7 @@
     <v-toolbar flat fixed>
       <v-app-bar-nav-icon />
 
-      <v-toolbar-title>{{ $nuxt.$route.name }}</v-toolbar-title>
+      <v-toolbar-title>{{ $route.name }}</v-toolbar-title>
 
       <v-spacer />
 
@@ -17,18 +17,36 @@
         <span>Open Store</span>
       </v-tooltip>
 
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn icon>
+            <v-icon v-on="on">mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item @click="logout">
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-toolbar>
   </div>
 </template>
 
 <script>
 import AdminDrawer from './AdminDrawer'
+
+const Cookie = process.client ? require('js-cookie') : undefined
 export default {
   components: { AdminDrawer },
-  props: ['links']
+  props: ['links'],
+  methods: {
+    logout() {
+      Cookie.remove('auth')
+      this.$store.commit('setAuth', null)
+      this.$router.push('/admin')
+    },
+  },
 }
 </script>
 

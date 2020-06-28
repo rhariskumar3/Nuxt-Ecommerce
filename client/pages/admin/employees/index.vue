@@ -88,14 +88,14 @@ export default {
       { text: 'E-Mail', value: 'email' },
       { text: 'Active', value: 'active' },
       { text: 'Admin', value: 'admin' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ]
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
   computed: {
     employees() {
       return this.$store.getters.adminEmployees
-    }
-  }
+    },
+  },
 }
 </script>
 

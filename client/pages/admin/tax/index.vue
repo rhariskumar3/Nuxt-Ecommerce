@@ -80,14 +80,14 @@ export default {
       { text: 'Name', value: 'name' },
       { text: 'Rate', value: 'rate' },
       { text: 'Enabled', value: 'enabled' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ]
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
   computed: {
     taxes() {
       return this.$store.getters.adminTax
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -87,20 +87,20 @@ export default {
       { text: 'City', value: 'city' },
       { text: 'State', value: 'state' },
       { text: 'Active', value: 'active' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ]
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
   computed: {
     addresses() {
       return this.$store.getters.adminAddresses
-    }
+    },
   },
   methods: {
     truncate(input) {
       if (input.length > 100) return input.substring(0, 100) + '...'
       else return input
-    }
-  }
+    },
+  },
 }
 </script>
 

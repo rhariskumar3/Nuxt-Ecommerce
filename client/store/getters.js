@@ -44,5 +44,5 @@ export default {
 
   // MAIN
   adminShopData: (state) => state.adminShopData,
-  adminEmployees: (state) => state.adminEmployees
+  adminEmployees: (state) => state.adminEmployees,
 }

@@ -1,4 +1,7 @@
 export default () => ({
+  // USER
+  auth: null,
+
   // SYSTEM
   LOADING: false,
   ERR: null,
@@ -8,11 +11,11 @@ export default () => ({
 
   PAYMENT_METHODS: {
     cash: { value: 'cash', label: 'Cash', icon: 'mdi-wifi' },
-    bank_card: { value: 'bank_card', label: 'Bank card', icon: 'mdi-wifi' }
+    bank_card: { value: 'bank_card', label: 'Bank card', icon: 'mdi-wifi' },
   },
   SHIPPING_METHODS: {
     courier: { value: 'courier', label: 'Courier', icon: 'mdi-wifi' },
-    parcel: { value: 'parcel', label: 'Parcel', icon: 'mdi-wifi' }
+    parcel: { value: 'parcel', label: 'Parcel', icon: 'mdi-wifi' },
   },
 
   // PRODUCTS
@@ -52,5 +55,5 @@ export default () => ({
 
   // MAIN
   adminEmployees: {},
-  adminShopData: {}
+  adminShopData: {},
 })

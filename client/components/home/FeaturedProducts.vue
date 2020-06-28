@@ -7,7 +7,7 @@
             class="font-weight-bold mb-6"
             :class="{
               'displat-2': $vuetify.breakpoint.smAndDown,
-              'displat-1': $vuetify.breakpoint.mdAndUp
+              'displat-1': $vuetify.breakpoint.mdAndUp,
             }"
           >
             Featured Products
@@ -35,7 +35,7 @@
 import Product from '~/components/product/Normal'
 export default {
   components: {
-    Product
-  }
+    Product,
+  },
 }
 </script>

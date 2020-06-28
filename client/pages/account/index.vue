@@ -1,6 +1,10 @@
 <template>
   <v-container fluid class="aligin-center justify-center">
-    <anonymous-account />
+    <v-row class="justify-center">
+      <v-col cols="12" md="4">
+        <anonymous-account />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -15,11 +19,11 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'My Account Details'
-        }
-      ]
+          content: 'My Account Details',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 

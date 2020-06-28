@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  props: ['links', 'drawer']
+  props: ['links', 'drawer'],
 }
 </script>
 

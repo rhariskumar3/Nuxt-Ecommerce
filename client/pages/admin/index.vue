@@ -17,9 +17,10 @@
 
 <script>
 import Login from '../../components/account/Login'
+
 export default {
   components: { Login },
-  layout: 'empty'
+  layout: 'empty',
 }
 </script>
 

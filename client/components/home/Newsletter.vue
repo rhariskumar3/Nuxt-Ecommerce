@@ -8,7 +8,7 @@
         <v-container>
           <v-row
             :class="{
-              'px-3': $vuetify.breakpoint.smAndDown
+              'px-3': $vuetify.breakpoint.smAndDown,
             }"
           >
             <v-col cols="12" md="6">

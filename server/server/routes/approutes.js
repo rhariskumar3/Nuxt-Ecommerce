@@ -16,7 +16,7 @@ const orders = require("../controller/ordersController");
 const paymentMethods = require("../controller/paymentMethodsController");
 const tax = require("../controller/taxController");
 
-module.exports = function (app) {
+module.exports = function(app) {
     // USER ROUTES
     // carousel Routes
     app
@@ -33,7 +33,7 @@ module.exports = function (app) {
     // product Routes
     app
         .route("/product")
-        .get(product.list_all_user);
+        .get(product.list_all_products);
     app
         .route("/product/category_url=:url")
         .get(product.list_all_under_category_url);

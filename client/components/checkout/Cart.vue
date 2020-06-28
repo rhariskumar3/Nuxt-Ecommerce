@@ -12,7 +12,7 @@
         <v-responsive class="grow" style="min-width: 150px; max-width: 50%;">
           <v-list-item-title>
             <Nuxt-link
-              to="/product/navy-vuetify-logo-cap"
+              :to="'/product/' + cart.product.friendly_url"
               class="font-weight-medium text--primary text-decoration-none"
               >{{ cart.product.name }}</Nuxt-link
             >
@@ -27,6 +27,7 @@
           style="max-width: 64px;"
         >
           <v-text-field
+            v-model="cart.count"
             hide-details
             dense
             single-line
@@ -36,7 +37,7 @@
             enclosed
             light
             type="number"
-            value="1"
+            disabled
             :min="cart.product.minimum_quantity"
             :max="cart.product.quantity"
             solo-inverted
@@ -48,7 +49,7 @@
             style="font-size: 16px; height: 16px; width: 16px;"
             type="button"
             aria-label="Remove Item from Cart"
-            @click="updateCart(cart.product, 'remove')"
+            @click="updateCart(cart.product, 'delete')"
             >mdi-close-circle-outline</v-icon
           >
         </v-list-item-action>
@@ -84,7 +85,7 @@
         >
       </v-col>
       <v-col cols="12">
-        <v-btn href="/checkout" block light large class="primary">
+        <v-btn to="/checkout" block light large class="primary">
           Checkout
         </v-btn>
       </v-col>
@@ -98,19 +99,21 @@ export default {
   computed: {
     totalCartValue() {
       return Object.keys(this.carts).reduce(
-        (sum, key) => sum + parseFloat(this.carts[key].product.price),
+        (sum, key) =>
+          sum +
+          parseFloat(this.carts[key].product.price * this.carts[key].count),
         0
       )
-    }
+    },
   },
   methods: {
     updateCart(product1, operation1) {
       this.$store.dispatch('updateCarts', {
         operation: operation1,
-        product: product1
+        product: product1,
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

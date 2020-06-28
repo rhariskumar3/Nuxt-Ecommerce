@@ -31,11 +31,6 @@
                       dense
                     />
                   </v-col>
-                  <v-col cols="12" md="4">
-                    <v-row align-center justify="end" class="mx-4"
-                      ><v-btn absolute class="secondary">New</v-btn></v-row
-                    >
-                  </v-col>
                 </v-row>
               </v-card>
             </div>
@@ -64,8 +59,9 @@
                     <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
                   <template v-slot:item.actions="{ item }">
-                    <v-icon @click="item">mdi-pencil</v-icon>
-                    <v-icon @click="item">mdi-delete-forever</v-icon>
+                    <NuxtLink :to="`/admin/shop-data/${item.id}`">
+                      <v-icon>mdi-pencil</v-icon>
+                    </NuxtLink>
                   </template>
                 </v-data-table>
               </div>
@@ -94,14 +90,14 @@ export default {
       { text: 'Latitude', value: 'latitude' },
       { text: 'Longitude', value: 'longtitude' },
       { text: 'Maintenance', value: 'maintanance' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ]
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
   computed: {
     shopData() {
       return this.$store.getters.adminShopData
-    }
-  }
+    },
+  },
 }
 </script>
 

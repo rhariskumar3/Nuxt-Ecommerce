@@ -33,7 +33,12 @@
                   </v-col>
                   <v-col cols="12" md="4">
                     <v-row align-center justify="end" class="mx-4"
-                      ><v-btn absolute class="secondary">New</v-btn></v-row
+                      ><v-btn
+                        absolute
+                        class="secondary"
+                        to="/admin/products/new"
+                        >New</v-btn
+                      ></v-row
                     >
                   </v-col>
                 </v-row>
@@ -94,14 +99,14 @@ export default {
       { text: 'Price', value: 'price' },
       { text: 'Tax', value: 'tax' },
       { text: 'Enabled', value: 'enabled' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ]
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
   computed: {
     products() {
       return this.$store.getters.adminProducts
-    }
-  }
+    },
+  },
 }
 </script>
 

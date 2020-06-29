@@ -2,7 +2,7 @@
   <div>
     <admin-drawer :links="links" :drawer="drawer" />
     <v-toolbar flat fixed>
-      <v-app-bar-nav-icon />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 
       <v-toolbar-title>{{ $route.name }}</v-toolbar-title>
 
@@ -36,15 +36,16 @@
 <script>
 import AdminDrawer from './AdminDrawer'
 
-const Cookie = process.client ? require('js-cookie') : undefined
 export default {
   components: { AdminDrawer },
   props: ['links'],
+  data: () => ({
+    drawer: false,
+  }),
   methods: {
     logout() {
-      Cookie.remove('auth')
-      this.$store.commit('setAuth', null)
-      this.$router.push('/admin')
+      this.$auth.logout()
+      this.$router.push('/')
     },
   },
 }

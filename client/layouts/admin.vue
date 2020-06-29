@@ -16,13 +16,14 @@
 import AppHeader from '~/components/base/AdminHeader'
 
 export default {
+  middleware: ['auth-admin'],
   components: { AppHeader },
   data: () => ({
     links: [
       {
         icon: 'mdi-view-dashboard',
         title: 'Dashboard',
-        to: '/admin/dashboard',
+        to: '/admin',
       },
       {
         icon: 'mdi-bowl',

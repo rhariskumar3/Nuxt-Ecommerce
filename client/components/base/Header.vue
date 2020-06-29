@@ -20,13 +20,40 @@
 
         <v-spacer />
 
-        <v-btn icon class="theme--dark" to="/account">
-          <v-icon>mdi-account</v-icon>
-        </v-btn>
+        <v-menu
+          content-class="elevation-18"
+          offset-y
+          :close-on-content-click="true"
+        >
+          <template v-slot:activator="{ on }">
+            <v-btn
+              icon
+              class="text-none accent"
+              fab
+              dark
+              small
+              aria-label="Account"
+              v-on="on"
+            >
+              <v-icon>mdi-account</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(item, index) in authLinks"
+              :key="index"
+              :to="item.to"
+              class="hidden-sm-and-down"
+              @click="link.click ? link.click() : null"
+            >
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
 
         <v-menu
           content-class="elevation-18 cart-popout"
-          :close-on-content-click="false"
+          :close-on-content-click="true"
         >
           <template v-slot:activator="{ on }">
             <v-btn
@@ -89,6 +116,19 @@ export default {
         (prev, current) => prev + current.count,
         0
       )
+    },
+    authLinks() {
+      if (this.$auth.loggedIn) {
+        const links = [{ text: this.$auth.user.email, to: '/account' }]
+        if (this.$auth.user.admin) links.push({ text: 'Admin', to: '/admin' })
+        links.push({
+          text: 'Logout',
+          click: () => {
+            this.$auth.logout()
+          },
+        })
+        return links
+      } else return [{ text: 'Login/Register', to: '/auth' }]
     },
   },
   methods: {

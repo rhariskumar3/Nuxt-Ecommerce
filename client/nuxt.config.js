@@ -27,7 +27,7 @@ export default {
 
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify'],
 
-  modules: ['@nuxtjs/axios', '@nuxtjs/pwa'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth', '@nuxtjs/pwa'],
 
   axios: {
     baseURL: 'http://localhost:3030/',
@@ -63,5 +63,24 @@ export default {
 
   server: {
     port: 8000,
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/sessions', method: 'post', propertyName: 'token' },
+          logout: { url: '/sessions', method: 'delete' },
+          user: { url: '/sessions/user', method: 'get', propertyName: 'data' },
+        },
+        // tokenRequired: true,
+        tokenType: '',
+      },
+    },
+    redirect: {
+      home: false,
+      callback: false,
+      logout: false,
+    },
   },
 }

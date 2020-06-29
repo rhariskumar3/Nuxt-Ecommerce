@@ -1,17 +1,12 @@
 <template>
   <v-container fluid class="aligin-center justify-center">
-    <v-row class="justify-center">
-      <v-col cols="12" md="4">
-        <anonymous-account />
-      </v-col>
-    </v-row>
+    <nuxt-child />
   </v-container>
 </template>
 
 <script>
-import AnonymousAccount from '~/components/account/AnonymousAccount'
 export default {
-  components: { AnonymousAccount },
+  middleware: 'auth-guard',
   head() {
     return {
       title: 'Account',

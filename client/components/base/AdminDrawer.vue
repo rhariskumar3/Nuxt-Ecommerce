@@ -4,7 +4,6 @@
     color="success"
     mini-variant
     expand-on-hover
-    absolute
     dark
     app
   >

@@ -1,6 +1,5 @@
 export default {
   // SYSTEM
-  IS_ADMIN: (state) => state.IS_ADMIN, // (Boolean) current user is admin?
   LOADING: (state) => state.LOADING, // (Boolean) global loading flag
   ERR: (state) => state.ERR, // (Object) global error object
 

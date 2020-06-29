@@ -95,7 +95,12 @@
 
 <script>
 export default {
-  props: ['carts'],
+  props: {
+    carts: {
+      type: Array,
+      required: true,
+    },
+  },
   computed: {
     totalCartValue() {
       return Object.keys(this.carts).reduce(

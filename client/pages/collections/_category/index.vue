@@ -68,6 +68,13 @@ export default {
     await store.dispatch('fetchCollectionProducts', params.category)
     await store.dispatch('fetchCollections')
   },
+  data: () => ({
+    banner: {
+      title: 'Collections',
+      image:
+        'https://cdn.shopify.com/s/files/1/2695/0984/collections/Ogio_Open_800px.png?v=1568487181',
+    },
+  }),
   computed: {
     products() {
       return this.$store.getters.products
@@ -75,17 +82,16 @@ export default {
     collections() {
       return this.$store.getters.collections
     },
-    banner() {
-      const current = this.collections.find(
-        // eslint-disable-next-line eqeqeq,no-undef
-        (element) => element.friendly_url === this.$route.params.category
-      )
-      return {
-        title: current.title,
-        image: current.image,
-        description: current.description,
-      }
-    },
+    // banner() {
+    //   const current = this.collections.find(
+    //     (element) => element.friendly_url === this.$route.params.category
+    //   )
+    //   return {
+    //     title: current.title,
+    //     image: current.image,
+    //     description: current.description,
+    //   }
+    // },
   },
   head() {
     return {

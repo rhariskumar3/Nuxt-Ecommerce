@@ -1,7 +1,4 @@
 export default () => ({
-  // USER
-  auth: null,
-
   // SYSTEM
   LOADING: false,
   ERR: null,

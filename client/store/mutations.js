@@ -1,12 +1,4 @@
 export default {
-  // USER
-  setAdmin(state, payload) {
-    state.IS_ADMIN = payload
-  },
-  setAuth(state, auth) {
-    state.auth = auth
-  },
-
   // SYSTEM
   LOADING(state, payload) {
     state.LOADING = payload

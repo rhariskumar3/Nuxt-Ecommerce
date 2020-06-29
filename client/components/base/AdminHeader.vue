@@ -38,7 +38,12 @@ import AdminDrawer from './AdminDrawer'
 
 export default {
   components: { AdminDrawer },
-  props: ['links'],
+  props: {
+    links: {
+      type: Array,
+      required: true,
+    },
+  },
   data: () => ({
     drawer: false,
   }),

@@ -1,17 +1,5 @@
-const cookieparser = process.server ? require('cookieparser') : undefined
-
 export default {
-  nuxtServerInit({ commit, dispatch }, { req }) {
-    let auth = null
-    if (req.headers.cookie) {
-      const parsed = cookieparser.parse(req.headers.cookie)
-      try {
-        auth = JSON.parse(parsed.auth)
-      } catch (err) {
-        // No valid cookie found
-      }
-    }
-    commit('setAuth', auth)
+  nuxtServerInit({ dispatch }) {
     return Promise.all([dispatch('fetchShopData')])
   },
   // APP

@@ -149,7 +149,12 @@
 
 <script>
 export default {
-  props: ['carts'],
+  props: {
+    carts: {
+      type: Array,
+      required: true,
+    },
+  },
   computed: {
     subTotal() {
       return Object.keys(this.carts).reduce(

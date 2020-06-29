@@ -54,7 +54,12 @@
 
 <script>
 export default {
-  props: ['product'],
+  props: {
+    product: {
+      type: Object,
+      required: true,
+    },
+  },
   methods: {
     updateCart(product1, operation1) {
       this.$store.dispatch('updateCarts', {

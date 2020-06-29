@@ -28,7 +28,7 @@
           <template v-slot:activator="{ on }">
             <v-btn
               icon
-              class="text-none accent"
+              class="text-none"
               fab
               dark
               small
@@ -52,13 +52,14 @@
         </v-menu>
 
         <v-menu
-          content-class="elevation-18 cart-popout"
+          content-class="elevation-18"
+          offset-y
           :close-on-content-click="true"
         >
           <template v-slot:activator="{ on }">
             <v-btn
               icon
-              class="text-none accent"
+              class="text-none accent ml-2"
               fab
               dark
               small
@@ -103,7 +104,12 @@ import AppCart from '~/components/checkout/Cart'
 import AppDrawer from '~/components/base/Drawer'
 export default {
   components: { AppDrawer, AppCart },
-  props: ['links'],
+  props: {
+    links: {
+      type: Array,
+      required: true,
+    },
+  },
   data: () => ({
     drawer: false,
   }),
@@ -139,26 +145,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.cart-popout {
-  max-height: 600px;
-  min-width: 340px !important;
-  max-width: 540px;
-  top: 64px !important;
-  /*left: 980px !important;*/
-  right: 98px !important;
-  transform-origin: right top !important;
-  z-index: 16 !important;
-}
-@media screen and (max-width: 960px) {
-  .cart-popout {
-    max-height: 400px;
-    min-width: 100px;
-    max-width: 300px;
-    top: 56px;
-    left: 95px;
-    transform-origin: right top;
-    z-index: 16;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

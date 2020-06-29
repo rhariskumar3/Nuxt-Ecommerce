@@ -188,6 +188,10 @@ export default {
         operation: operation1,
         product: product1,
       })
+      this.$store.dispatch('snackbar/setSnackbar', {
+        text: product1.name + ' added to cart',
+        timeout: 1000,
+      })
     },
     checkout(product) {
       this.updateCart(product, 'add')

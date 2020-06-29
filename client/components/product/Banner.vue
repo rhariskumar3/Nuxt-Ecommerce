@@ -23,7 +23,12 @@
 
 <script>
 export default {
-  props: ['detail'],
+  props: {
+    detail: {
+      type: Object,
+      required: true,
+    },
+  },
 }
 </script>
 

@@ -31,7 +31,17 @@
 
 <script>
 export default {
-  props: ['links', 'drawer'],
+  props: {
+    links: {
+      type: Array,
+      required: true,
+    },
+    drawer: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+  },
 }
 </script>
 

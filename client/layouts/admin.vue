@@ -1,14 +1,16 @@
 <template>
   <v-app>
-    <app-header :links="links" />
+    <no-ssr> <app-header :links="links" /> </no-ssr>
     <v-main>
       <nuxt />
     </v-main>
-    <back-to-top id="back_to_bottom" visible-offset="500">
-      <v-btn id="back_to_top" color="accent" class="ma-2 white--text">
-        <v-icon>mdi-chevron-double-up</v-icon>
-      </v-btn>
-    </back-to-top>
+    <no-ssr>
+      <back-to-top id="back_to_bottom" visible-offset="500">
+        <v-btn id="back_to_top" color="accent" class="ma-2 white--text">
+          <v-icon>mdi-chevron-double-up</v-icon>
+        </v-btn>
+      </back-to-top>
+    </no-ssr>
   </v-app>
 </template>
 

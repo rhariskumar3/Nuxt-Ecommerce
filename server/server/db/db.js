@@ -1,16 +1,33 @@
 `user strict`;
 
-//local mysql db connection
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'ecommerce'
+const { Sequelize } = require("sequelize");
+
+var sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, "", {
+    logging: false,
+    maxConcurrentQueries: 100,
+    dialect: "mysql",
+    define: {
+        underscored: true,
+        freezeTableName: true,
+        syncOnAssociation: true,
+        charset: "utf8",
+        collate: "utf8_general_ci",
+        timestamps: true,
+    },
+    pool: {
+        maxConnections: 100,
+        minConnections: 0,
+        maxIdleTime: 1000,
+    },
 });
 
-connection.connect(function (err) {
-    if (err) throw err;
-});
+sequelize
+    .authenticate()
+    .then(function(err) {
+        console.log("Connection has been established successfully.");
+    })
+    .catch(function(err) {
+        console.log("Unable to connect to the database:", err);
+    });
 
-module.exports = connection;
+module.exports = sequelize;

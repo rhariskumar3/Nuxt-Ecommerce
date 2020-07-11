@@ -82,7 +82,7 @@ export default {
     async registerUser(registrationInfo) {
       this.loading = true
       try {
-        await this.$axios.post('/users', registrationInfo)
+        await this.$axios.post('/sessions/user', registrationInfo)
         await this.$auth.loginWith('local', {
           data: registrationInfo,
         })

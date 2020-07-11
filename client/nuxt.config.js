@@ -70,9 +70,9 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/sessions', method: 'post', propertyName: 'token' },
-          logout: { url: '/sessions', method: 'delete' },
-          user: { url: '/sessions/user', method: 'get', propertyName: 'data' },
+          login: { url: '/sessions', method: 'POST', propertyName: 'token' },
+          logout: { url: '/sessions', method: 'DELETE' },
+          user: { url: '/sessions/user', method: 'GET', propertyName: 'data' },
         },
         // tokenRequired: true,
         tokenType: '',

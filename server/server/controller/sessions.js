@@ -15,6 +15,18 @@ exports.users = function(req, res) {
         });
 };
 
+exports.user = function(req, res) {
+    if (Util.validate(res, req.decoded.email, "Email"))
+        User.findOne({ where: { email: req.decoded.email } })
+        .then((user) => {
+            if (!user) return res.status(404).send({ message: "User Not found." });
+            else return res.json({ data: user });
+        })
+        .catch((err) => {
+            res.status(500).send({ message: err.message });
+        });
+};
+
 exports.login = function(req, res) {
     if (
         Util.validate(res, req.body.email, "Email") &&

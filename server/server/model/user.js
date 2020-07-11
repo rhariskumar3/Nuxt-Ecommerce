@@ -41,6 +41,11 @@ const User = db.define(
             allowNull: false,
             defaultValue: true,
         },
+        admin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false,
+        },
     }, {
         freezeTableName: true,
         underscored: true,

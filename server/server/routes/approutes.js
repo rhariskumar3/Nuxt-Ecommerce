@@ -202,6 +202,6 @@ module.exports = function(app) {
     app
         .route("/sessions/user")
         .get(authenticate)
-        .get(session.users)
+        .get(session.user)
         .post(session.register);
 };

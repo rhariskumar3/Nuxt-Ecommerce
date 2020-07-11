@@ -74,8 +74,6 @@ export default {
           logout: { url: '/sessions', method: 'DELETE' },
           user: { url: '/sessions/user', method: 'GET', propertyName: 'data' },
         },
-        // tokenRequired: true,
-        tokenType: '',
       },
     },
     redirect: {

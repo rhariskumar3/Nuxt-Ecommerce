@@ -55,19 +55,15 @@
                     />
                   </template>
                   <template v-slot:item.live="{ item }">
-                    <v-icon v-if="item.live === 1" color="success"
-                      >mdi-check</v-icon
-                    >
+                    <v-icon v-if="item.live" color="success">mdi-check</v-icon>
                     <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
                   <template v-slot:item.test="{ item }">
-                    <v-icon v-if="item.test === 1" color="success"
-                      >mdi-check</v-icon
-                    >
+                    <v-icon v-if="item.test" color="success">mdi-check</v-icon>
                     <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
                   <template v-slot:item.enabled="{ item }">
-                    <v-icon v-if="item.enabled === 1" color="success"
+                    <v-icon v-if="item.enabled" color="success"
                       >mdi-check</v-icon
                     >
                     <v-icon v-else color="error">mdi-close</v-icon>

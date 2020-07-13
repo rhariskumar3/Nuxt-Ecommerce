@@ -28,10 +28,10 @@
                             {{ item.title }}
                           </h2>
                           <div
-                            v-if="item.sub_title"
+                            v-if="item.subTitle"
                             class="display-3 font-weight-medium font-italic mb-12"
                           >
-                            {{ item.sub_title }}
+                            {{ item.subTitle }}
                           </div>
                           <v-btn
                             v-if="item.action"

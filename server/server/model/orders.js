@@ -3,135 +3,128 @@
 const db = require("../db/db.js");
 const { Sequelize, DataTypes } = require("sequelize");
 
-const Order = db.define(
-    "orders", {
-        id: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        reference: {
-            type: DataTypes.STRING(9),
-            allowNull: true,
-        },
-        customerId: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            references: {
-                model: {
-                    tableName: "customers",
-                },
-                key: "id",
+const Address = require("./address");
+const Carrier = require("./carriers");
+const OrderState = require("./orderStates");
+const Customers = require("./customers");
+
+const Order = db.define("orders", {
+    id: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    reference: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV1,
+        allowNull: true,
+    },
+    customerId: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        references: {
+            model: {
+                tableName: "customers",
             },
-            field: "customer_id",
+            key: "id",
         },
-        carrier: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            references: {
-                model: {
-                    tableName: "carriers",
-                },
-                key: "id",
+    },
+    carrierId: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        references: {
+            model: {
+                tableName: "carriers",
             },
+            key: "id",
         },
-        addressDelivery: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            references: {
-                model: {
-                    tableName: "address",
-                },
-                key: "id",
+    },
+    addressDelivery: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        references: {
+            model: {
+                tableName: "address",
             },
-            field: "address_delivery",
+            key: "id",
         },
-        addressInvoice: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            references: {
-                model: {
-                    tableName: "address",
-                },
-                key: "id",
+    },
+    addressInvoice: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        references: {
+            model: {
+                tableName: "address",
             },
-            field: "address_invoice",
+            key: "id",
         },
-        currentState: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            references: {
-                model: {
-                    tableName: "order_states",
-                },
-                key: "id",
+    },
+    currentState: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        references: {
+            model: {
+                tableName: "order_states",
             },
-            field: "current_state",
+            key: "id",
         },
-        payment: {
-            type: DataTypes.STRING(255),
-            allowNull: false,
-        },
-        shippingNumber: {
-            type: DataTypes.STRING(64),
-            allowNull: false,
-            field: "shipping_number",
-        },
-        totalDiscounts: {
-            type: DataTypes.DOUBLE,
-            allowNull: false,
-            defaultValue: "0",
-            field: "total_discounts",
-        },
-        totalPaid: {
-            type: DataTypes.DOUBLE,
-            allowNull: false,
-            defaultValue: "0",
-            field: "total_paid",
-        },
-        totalProducts: {
-            type: DataTypes.DOUBLE,
-            allowNull: false,
-            defaultValue: "0",
-            field: "total_products",
-        },
-        totalShipping: {
-            type: DataTypes.DOUBLE,
-            allowNull: false,
-            defaultValue: "0",
-            field: "total_shipping",
-        },
-        totalTax: {
-            type: DataTypes.DOUBLE,
-            allowNull: false,
-            defaultValue: "0",
-            field: "total_tax",
-        },
-        invoiceNumber: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            field: "invoice_number",
-        },
-        invoiceDate: {
-            type: DataTypes.DATE,
-            allowNull: true,
-            field: "invoice_date",
-        },
-        shippingDate: {
-            type: DataTypes.DATE,
-            allowNull: true,
-            field: "shipping_date",
-        },
-        paymentId: {
-            type: DataTypes.STRING(255),
-            allowNull: true,
-            field: "payment_id",
-        },
-    }, {
-        freezeTableName: true,
-        underscored: true,
-    }
-);
+    },
+    payment: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+    },
+    shippingNumber: {
+        type: DataTypes.STRING(64),
+        allowNull: false,
+    },
+    totalDiscounts: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        defaultValue: "0",
+    },
+    totalPaid: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        defaultValue: "0",
+    },
+    totalProducts: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        defaultValue: "0",
+    },
+    totalShipping: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        defaultValue: "0",
+    },
+    totalTax: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        defaultValue: "0",
+    },
+    invoiceNumber: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+    },
+    invoiceDate: {
+        type: DataTypes.DATE,
+        allowNull: true,
+    },
+    shippingDate: {
+        type: DataTypes.DATE,
+        allowNull: true,
+    },
+    paymentId: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+    },
+});
+
+Order.belongsTo(Address, { foreignKey: "addressDelivery" });
+Order.belongsTo(Address, { foreignKey: "addressInvoice" });
+Order.belongsTo(Carrier);
+Order.belongsTo(Customers);
+Order.belongsTo(OrderState, { foreignKey: "currentState" });
 
 module.exports = Order;

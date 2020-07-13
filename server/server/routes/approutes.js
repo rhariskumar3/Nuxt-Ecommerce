@@ -5,9 +5,6 @@ const review = require("../controller/reviews");
 const category = require("../controller/category");
 const product = require("../controller/products");
 const shopData = require("../controller/shopData");
-const cities = require("../controller/city");
-const states = require("../controller/state");
-const countries = require("../controller/country");
 const carriers = require("../controller/carrier");
 const customers = require("../controller/customers");
 const customerAddress = require("../controller/customersAddress");
@@ -22,17 +19,18 @@ const authenticate = require("../middleware/authenticate");
 module.exports = function(app) {
     // USER ROUTES
     // carousel Routes
-    app.route("/carousel").get(carousel.listAll);
+    app.route("/carousel").get(carousel.listAllLive);
     // reviews Routes
-    app.route("/reviews").get(review.listAll);
+    app.route("/reviews").get(review.listAllLive);
     // category Routes
-    app.route("/category").get(category.listAll);
+    app.route("/category").get(category.listAllLive);
     // product Routes
-    app.route("/product").get(product.listAll);
-    app.route("/product/category_url=:url").get(product.listAll);
-    app.route("/product/:url").get(product.read);
+    app.route("/product").get(product.listAllLive);
+    app.route("/product/category_url=:url").get(product.listAllByCategoryURL);
+    app.route("/product/:url").get(product.readByUrl);
     // shop Data Routes
-    app.route("/shop-data").get(shopData.listAll);
+    app.route("/shop-data").get(shopData.read);
+
     // ADMIN ROUTES
     // carousel Routes
     app
@@ -182,15 +180,8 @@ module.exports = function(app) {
     app
         .route("/admin/shop-data")
         .all(authenticate)
-        .get(shopData.listAll)
-        .post(shopData.create);
-
-    app
-        .route("/admin/shop-data/:id(\\d+)")
-        .all(authenticate)
         .get(shopData.read)
-        .put(shopData.update)
-        .delete(shopData.delete);
+        .put(shopData.update);
 
     //  Session
     app

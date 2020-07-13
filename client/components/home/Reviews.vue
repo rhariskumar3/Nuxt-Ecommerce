@@ -31,7 +31,8 @@
                 </v-card>
                 <div class="col col-8 offset-5">
                   <div class="subheading-1 font-weight-medium">
-                    {{ review.first_name }} {{ review.last_name }}
+                    {{ review.customer.firstName }}
+                    {{ review.customer.lastName }}
                   </div>
                   <!--                  <div class="caption grey&#45;&#45;text">-->
                   <!--                    CTO, Big Spire Networks-->

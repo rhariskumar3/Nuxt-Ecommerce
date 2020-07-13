@@ -13,8 +13,18 @@ exports.listAll = function(req, res) {
         });
 };
 
+exports.listAllLive = function(req, res) {
+    Carousel.findAll({ where: { enabled: true } })
+        .then((values) => {
+            res.send(values);
+        })
+        .catch((err) => {
+            res.status(500).send({ message: err.message });
+        });
+};
+
 exports.read = function(req, res) {
-    Carousel.findOne({ where: { id: req.body.id } })
+    Carousel.findOne({ where: { id: req.params.id } })
         .then((values) => {
             res.send(values);
         })

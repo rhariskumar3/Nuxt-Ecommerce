@@ -20,8 +20,6 @@ const OrderState = db.define(
             allowNull: false,
         },
     }, {
-        freezeTableName: true,
-        underscored: true,
         tableName: "order_states",
     }
 );

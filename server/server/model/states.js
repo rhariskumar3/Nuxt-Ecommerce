@@ -3,6 +3,9 @@
 const db = require("../db/db.js");
 const { Sequelize, DataTypes } = require("sequelize");
 
+const Country = require("../model/countries");
+const Zone = require("../model/zones");
+
 const State = db.define(
     "states", {
         id: {
@@ -25,9 +28,8 @@ const State = db.define(
                 },
                 key: "id",
             },
-            field: "country_id",
         },
-        zone: {
+        zoneId: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
             defaultValue: "0",
@@ -41,7 +43,11 @@ const State = db.define(
     }, {
         freezeTableName: true,
         underscored: true,
+        timestamps: false,
     }
 );
+
+State.belongsTo(Country);
+State.belongsTo(Zone);
 
 module.exports = State;

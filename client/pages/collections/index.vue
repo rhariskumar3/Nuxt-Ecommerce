@@ -10,7 +10,7 @@
               :key="i"
               class="col-auto primary--text"
             >
-              <v-card :to="'/collections/' + collection.friendly_url">
+              <v-card :to="'/collections/' + collection.friendlyUrl">
                 <v-img
                   :src="collection.image"
                   class="white--text align-end"

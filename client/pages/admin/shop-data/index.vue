@@ -21,16 +21,6 @@
                       </h4></span
                     >
                   </v-col>
-                  <v-col cols="12" md="5">
-                    <v-text-field
-                      v-model="search"
-                      append-icon="mdi-magnify"
-                      label="Search"
-                      single-line
-                      hide-details
-                      dense
-                    />
-                  </v-col>
                 </v-row>
               </v-card>
             </div>
@@ -39,21 +29,21 @@
                 <v-data-table
                   :headers="headers"
                   :items="shopData"
-                  :items-per-page="10"
-                  :search="search"
+                  show-expand
+                  hide-default-footer
                 >
                   <template v-slot:item.logo="{ item }">
                     <v-img
                       :src="item.logo"
-                      max-width="50px"
-                      max-height="50px"
+                      max-width="100px"
+                      max-height="100px"
                     />
                   </template>
                   <template v-slot:item.price="{ item }"
                     >₹{{ item.price }}
                   </template>
                   <template v-slot:item.maintanance="{ item }">
-                    <v-icon v-if="item.maintanance === 1" color="success"
+                    <v-icon v-if="item.maintanance" color="success"
                       >mdi-check</v-icon
                     >
                     <v-icon v-else color="error">mdi-close</v-icon>
@@ -62,6 +52,11 @@
                     <NuxtLink :to="`/admin/shop-data/${item.id}`">
                       <v-icon>mdi-pencil</v-icon>
                     </NuxtLink>
+                  </template>
+                  <template v-slot:expanded-item="{ item }">
+                    <td :colspan="headers.length">
+                      {{ item.description }}
+                    </td>
                   </template>
                 </v-data-table>
               </div>
@@ -80,9 +75,7 @@ export default {
     await store.dispatch('fetchAdminShopData')
   },
   data: () => ({
-    search: '',
     headers: [
-      { text: 'ID', value: 'id' },
       { text: 'Image', value: 'logo', sortable: false },
       { text: 'Name', value: 'name' },
       { text: 'E-Mail', value: 'email' },
@@ -95,7 +88,7 @@ export default {
   }),
   computed: {
     shopData() {
-      return this.$store.getters.adminShopData
+      return [this.$store.getters.adminShopData]
     },
   },
 }

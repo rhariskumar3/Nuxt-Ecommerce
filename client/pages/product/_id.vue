@@ -168,12 +168,12 @@ export default {
     },
     images() {
       const images = []
-      if (this.product.image_1) images.push(this.product.image_1)
-      if (this.product.image_2) images.push(this.product.image_2)
-      if (this.product.image_3) images.push(this.product.image_3)
-      if (this.product.image_4) images.push(this.product.image_4)
-      if (this.product.image_5) images.push(this.product.image_5)
-      if (this.product.video) images.push(this.product.video)
+      if (this.product.media.image1) images.push(this.product.media.image1)
+      if (this.product.media.image2) images.push(this.product.media.image2)
+      if (this.product.media.image3) images.push(this.product.media.image3)
+      if (this.product.media.image4) images.push(this.product.media.image4)
+      if (this.product.media.image5) images.push(this.product.media.image5)
+      if (this.product.media.video) images.push(this.product.media.video)
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       if (images[0]) this.mainImage = images[0]
       return images

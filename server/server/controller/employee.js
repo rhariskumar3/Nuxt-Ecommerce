@@ -15,7 +15,7 @@ exports.listAll = function(req, res) {
 };
 
 exports.read = function(req, res) {
-    Employee.findOne({ where: { id: req.body.id } })
+    Employee.findOne({ where: { id: req.params.id } })
         .then((values) => {
             res.send(values);
         })
@@ -35,10 +35,10 @@ exports.create = function(req, res) {
 };
 
 exports.update = function(req, res) {
-    Employee.update(req.body, { where: { id: req.body.id } })
+    Employee.update(req.body, { where: { id: req.params.id } })
         .then((updated) => {
             if (updated)
-                Employee.findOne({ where: { id: req.body.id } })
+                Employee.findOne({ where: { id: req.params.id } })
                 .then((values) => {
                     res.send(values);
                 })

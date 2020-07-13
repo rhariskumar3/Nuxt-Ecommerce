@@ -7,12 +7,12 @@
           class="grey lighten-3 hidden-xs-only"
           style="height: 60px; min-width: 60px; width: 60px;"
         >
-          <v-img :src="cart.product.image_1" />
+          <v-img :src="cart.product.media.image1" />
         </v-list-item-avatar>
         <v-responsive class="grow" style="min-width: 150px; max-width: 50%;">
           <v-list-item-title>
             <Nuxt-link
-              :to="'/product/' + cart.product.friendly_url"
+              :to="'/product/' + cart.product.friendlyUrl"
               class="font-weight-medium text--primary text-decoration-none"
               >{{ cart.product.name }}</Nuxt-link
             >
@@ -38,7 +38,7 @@
             light
             type="number"
             disabled
-            :min="cart.product.minimum_quantity"
+            :min="cart.product.minimumQuantity"
             :max="cart.product.quantity"
             solo-inverted
           />

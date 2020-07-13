@@ -40,7 +40,7 @@ export default {
   },
   async fetchShopData({ commit }) {
     const data = await getData('/shop-data', this.$axios, commit)
-    commit('setShopData', data[0])
+    commit('setShopData', data)
   },
   async fetchCountryData({ commit }) {
     const city = await getData('/city', this.$axios, commit)
@@ -69,6 +69,9 @@ export default {
   async fetchAdminProducts({ commit }) {
     const data = await getData('/admin/products', this.$axios, commit)
     commit('setAdminProducts', data)
+  },
+  async setAdminProducts({ commit, product }) {
+    await setData('/admin/products', product, this.$axios, commit)
   },
 
   // ORDERS
@@ -123,6 +126,19 @@ export default {
 const getData = async function (url, axios, commit) {
   commit('LOADING', true)
   const response = await axios.get(url)
+  // eslint-disable-next-line no-console
+  console.log(
+    response.status + ' ' + response.config.method + ' ' + response.config.url
+  )
+  // eslint-disable-next-line no-console
+  console.log(response.data)
+  commit('LOADING', false)
+  return response.data
+}
+
+const setData = async function (url, data, axios, commit) {
+  commit('LOADING', true)
+  const response = await axios.post(url, data)
   // eslint-disable-next-line no-console
   console.log(
     response.status + ' ' + response.config.method + ' ' + response.config.url

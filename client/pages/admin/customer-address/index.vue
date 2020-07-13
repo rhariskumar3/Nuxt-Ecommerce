@@ -51,7 +51,7 @@
                     {{ truncate(item.address) }}
                   </template>
                   <template v-slot:item.active="{ item }">
-                    <v-icon v-if="item.active === 1" color="success"
+                    <v-icon v-if="item.active" color="success"
                       >mdi-check</v-icon
                     >
                     <v-icon v-else color="error">mdi-close</v-icon>

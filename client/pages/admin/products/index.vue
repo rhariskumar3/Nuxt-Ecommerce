@@ -54,16 +54,22 @@
                 >
                   <template v-slot:item.image="{ item }">
                     <v-img
-                      :src="item.image"
+                      :src="item.media.image1"
                       max-width="50px"
                       max-height="50px"
                     />
                   </template>
+                  <template v-slot:item.category="{ item }"
+                    >{{ item.category.title }}
+                  </template>
                   <template v-slot:item.price="{ item }"
                     >₹{{ item.price }}
                   </template>
+                  <template v-slot:item.tax="{ item }"
+                    >{{ item.tax.name }}
+                  </template>
                   <template v-slot:item.enabled="{ item }">
-                    <v-icon v-if="item.enabled === 1" color="success"
+                    <v-icon v-if="item.enabled" color="success"
                       >mdi-check</v-icon
                     >
                     <v-icon v-else color="error">mdi-close</v-icon>

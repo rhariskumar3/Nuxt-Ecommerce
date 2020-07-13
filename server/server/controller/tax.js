@@ -15,7 +15,7 @@ exports.listAll = function(req, res) {
 };
 
 exports.read = function(req, res) {
-    Tax.findOne({ where: { id: req.body.id } })
+    Tax.findOne({ where: { id: req.params.id } })
         .then((values) => {
             res.send(values);
         })
@@ -35,7 +35,7 @@ exports.create = function(req, res) {
 };
 
 exports.update = function(req, res) {
-    Tax.update(req.body, { where: { id: req.body.id } })
+    Tax.update(req.body, { where: { id: req.params.id } })
         .then((updated) => {
             if (updated)
                 Tax.findOne({ where: { id: req.body.id } })

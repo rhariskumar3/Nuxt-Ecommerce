@@ -35,6 +35,17 @@ const User = db.define(
             type: DataTypes.STRING(64),
             is: /^[0-9a-f]{64}$/i,
             allowNull: false,
+            set(value) {
+                this.setDataValue(
+                    "password",
+                    bcrypt.hashSync(value, bcrypt.genSaltSync(10))
+                );
+            },
+            validate: {
+                isLongEnough: function(val) {
+                    if (val.length < 7) throw new Error("Password must be 8 digits");
+                },
+            },
         },
         enabled: {
             type: DataTypes.BOOLEAN,
@@ -59,10 +70,6 @@ User.prototype.toJSON = function() {
     return values;
 };
 
-User.prototype.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
-
 User.prototype.validPassword = async function(password) {
     return await bcrypt.compare(password, this.password);
 };
@@ -82,13 +89,5 @@ User.prototype.generateToken = function() {
         expiresIn: parseInt(expirationDate.getTime() / 1000, 10),
     });
 };
-
-User.beforeSave(async(user, options) => {
-    if (user.password) {
-        const salt = bcrypt.genSaltSync(10);
-        const hashedPwd = bcrypt.hashSync(user.password, salt);
-        user.password = hashedPwd;
-    }
-});
 
 module.exports = User;

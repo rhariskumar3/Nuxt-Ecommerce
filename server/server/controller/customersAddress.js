@@ -15,7 +15,7 @@ exports.listAll = function(req, res) {
 };
 
 exports.read = function(req, res) {
-    CustomerAddress.findOne({ where: { id: req.body.id } })
+    CustomerAddress.findOne({ where: { id: req.params.id } })
         .then((values) => {
             res.send(values);
         })

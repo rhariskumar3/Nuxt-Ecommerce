@@ -3,6 +3,10 @@
 const db = require("../db/db.js");
 const { Sequelize, DataTypes } = require("sequelize");
 
+const City = require("./cities");
+const Country = require("./countries");
+const State = require("./states");
+
 const ShopData = db.define(
     "shopData", {
         id: {
@@ -105,11 +109,13 @@ const ShopData = db.define(
             defaultValue: false,
         },
     }, {
-        freezeTableName: true,
-        underscored: true,
         tableName: "shop_data",
         timestamps: false,
     }
 );
+
+ShopData.belongsTo(City);
+ShopData.belongsTo(State);
+ShopData.belongsTo(Country);
 
 module.exports = ShopData;

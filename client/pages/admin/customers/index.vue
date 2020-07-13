@@ -54,9 +54,9 @@
                     <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
                   <template v-slot:item.blocked="{ item }">
-                    <v-icon v-if="item.blocked === 1" color="success"
-                      >mdi-check
-                    </v-icon>
+                    <v-icon v-if="item.blocked" color="success"
+                      >mdi-check</v-icon
+                    >
                     <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
                   <template v-slot:item.actions="{ item }">

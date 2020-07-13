@@ -3,6 +3,9 @@
 const db = require("../db/db.js");
 const { Sequelize, DataTypes } = require("sequelize");
 
+const Order = require("./orders");
+const Product = require("./products");
+
 const OrderDetail = db.define(
     "orderDetails", {
         id: {
@@ -20,7 +23,6 @@ const OrderDetail = db.define(
                 },
                 key: "id",
             },
-            field: "order_id",
         },
         productId: {
             type: DataTypes.INTEGER(11),
@@ -31,7 +33,6 @@ const OrderDetail = db.define(
                 },
                 key: "id",
             },
-            field: "product_id",
         },
         productName: {
             type: DataTypes.STRING(255),
@@ -42,13 +43,11 @@ const OrderDetail = db.define(
                 },
                 key: "name",
             },
-            field: "product_name",
         },
         productQuantity: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
             defaultValue: "0",
-            field: "product_quantity",
         },
         productPrice: {
             type: DataTypes.DOUBLE,
@@ -60,42 +59,37 @@ const OrderDetail = db.define(
                 },
                 key: "price",
             },
-            field: "product_price",
         },
         productWeight: {
             type: DataTypes.DOUBLE,
             allowNull: false,
             defaultValue: "0",
-            field: "product_weight",
         },
         taxName: {
             type: DataTypes.STRING(16),
             allowNull: false,
-            field: "tax_name",
         },
         taxRate: {
             type: DataTypes.DOUBLE,
             allowNull: false,
             defaultValue: "0",
-            field: "tax_rate",
         },
         shippingPrice: {
             type: DataTypes.DOUBLE,
             allowNull: false,
             defaultValue: "0",
-            field: "shipping_price",
         },
         totalPrice: {
             type: DataTypes.DOUBLE,
             allowNull: false,
             defaultValue: "0",
-            field: "total_price",
         },
     }, {
-        freezeTableName: true,
-        underscored: true,
         tableName: "order_details",
     }
 );
+
+OrderDetail.belongsTo(Order);
+OrderDetail.belongsTo(Product);
 
 module.exports = OrderDetail;

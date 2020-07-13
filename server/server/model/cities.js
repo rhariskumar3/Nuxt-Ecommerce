@@ -3,6 +3,8 @@
 const db = require("../db/db.js");
 const { Sequelize, DataTypes } = require("sequelize");
 
+const State = require("../model/states");
+
 const Cities = db.define(
     "cities", {
         id: {
@@ -18,12 +20,12 @@ const Cities = db.define(
         stateId: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
-            field: "state_id",
         },
     }, {
-        freezeTableName: true,
-        underscored: true,
+        timestamps: false,
     }
 );
+
+Cities.belongsTo(State);
 
 module.exports = Cities;

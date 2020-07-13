@@ -26,6 +26,7 @@ const Countries = db.define(
     }, {
         freezeTableName: true,
         underscored: true,
+        timestamps: false,
     }
 );
 

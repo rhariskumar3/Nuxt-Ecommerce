@@ -14,8 +14,18 @@ exports.listAll = function(req, res) {
         });
 };
 
+exports.listAllLive = function(req, res) {
+    Category.findAll({ where: { enabled: true } })
+        .then((values) => {
+            res.send(values);
+        })
+        .catch((err) => {
+            res.status(500).send({ message: err.message });
+        });
+};
+
 exports.read = function(req, res) {
-    Category.findOne({ where: { id: req.body.id } })
+    Category.findOne({ where: { id: req.params.id } })
         .then((values) => {
             res.send(values);
         })

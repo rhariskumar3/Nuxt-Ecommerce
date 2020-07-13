@@ -28,13 +28,16 @@
               <v-container class="py-0">
                 <v-layout wrap>
                   <v-flex class="xs12" md="4">
-                    <v-text-field label="Name" />
+                    <v-text-field v-model="product.name" label="Name" />
                   </v-flex>
                   <v-flex class="xs12" md="4">
-                    <v-textarea label="Summary" />
+                    <v-textarea v-model="product.summary" label="Summary" />
                   </v-flex>
                   <v-flex class="xs12" md="4">
-                    <v-textarea label="Description" />
+                    <v-textarea
+                      v-model="product.description"
+                      label="Description"
+                    />
                   </v-flex>
                   <v-flex class="xs4" md="4">
                     <v-file-input
@@ -82,42 +85,101 @@
                     <v-select label="Category" />
                   </v-flex>
                   <v-flex class="xs4" md="4">
-                    <v-text-field label="Quantity" type="number" />
+                    <v-text-field
+                      v-model="product.quantity"
+                      label="Quantity"
+                      type="number"
+                    />
                   </v-flex>
                   <v-flex class="xs4" md="4">
-                    <v-text-field label="Minimum Quantity" type="number" />
+                    <v-text-field
+                      v-model="product.minimumQuantity"
+                      label="Minimum Quantity"
+                      type="number"
+                    />
                   </v-flex>
-                  <v-flex class="xs4" md="4">
-                    <v-text-field label="Price" type="number" />
+                  <v-flex class="xs3" md="4">
+                    <v-text-field
+                      v-model="product.price"
+                      label="Price"
+                      type="number"
+                      suffix="₹"
+                    />
                   </v-flex>
-                  <v-flex class="xs4" md="4">
+                  <v-flex class="xs3" md="4">
                     <v-select label="Tax" />
                   </v-flex>
-                  <v-flex class="xs4" md="4">
-                    <v-text-field label="Shipping Price" type="number" />
+                  <v-flex class="xs3" md="4">
+                    <v-text-field
+                      v-model="product.shippingFee"
+                      label="Shipping Price"
+                      type="number"
+                      suffix="₹"
+                    />
                   </v-flex>
                   <v-flex class="xs3" md="4">
-                    <v-text-field label="Length" type="number" />
+                    <v-text-field
+                      v-model="product.weight"
+                      label="Weight"
+                      type="number"
+                      suffix="Kg"
+                    />
                   </v-flex>
                   <v-flex class="xs3" md="4">
-                    <v-text-field label="Breadth" type="number" />
+                    <v-text-field
+                      v-model="product.length"
+                      label="Length"
+                      type="number"
+                      suffix="In"
+                    />
                   </v-flex>
                   <v-flex class="xs3" md="4">
-                    <v-text-field label="Height" type="number" />
+                    <v-text-field
+                      v-model="product.breadth"
+                      label="Breadth"
+                      type="number"
+                      suffix="In"
+                    />
                   </v-flex>
                   <v-flex class="xs3" md="4">
-                    <v-text-field label="Weight" type="number" />
+                    <v-text-field
+                      v-model="product.height"
+                      label="Height"
+                      type="number"
+                      suffix="In"
+                    />
+                  </v-flex>
+                  <v-flex class="xs3" md="4">
+                    <v-text-field
+                      v-model="product.dia"
+                      label="Dia"
+                      type="number"
+                      suffix="In"
+                    />
                   </v-flex>
                   <v-flex class="xs12" md="4">
-                    <v-text-field label="Meta Title" />
+                    <v-text-field
+                      v-model="product.metaTitle"
+                      label="Meta Title"
+                    />
                   </v-flex>
                   <v-flex class="xs12" md="4">
-                    <v-textarea label="Meta Description" />
+                    <v-textarea
+                      v-model="product.metaDescription"
+                      label="Meta Description"
+                      rows="2"
+                    />
                   </v-flex>
                   <v-flex class="xs12" md="4">
-                    <v-text-field disabled label="Friendly URL" />
+                    <v-text-field
+                      v-model="friendlyUrl"
+                      disabled
+                      label="Friendly URL"
+                    />
                   </v-flex>
-                  <v-flex class="xs12"><v-btn>Create</v-btn></v-flex>
+                  <v-flex class="xs12"
+                    ><v-btn @click="save">Create</v-btn></v-flex
+                  >
                 </v-layout>
               </v-container>
             </v-form>
@@ -131,6 +193,45 @@
 <script>
 export default {
   layout: 'admin',
+  data: () => ({
+    product: {
+      name: '',
+      summary: '',
+      description: '',
+      categoryId: '',
+      mediaId: '',
+      quantity: '',
+      price: '',
+      taxId: '',
+      minimumQuantity: '',
+      length: '',
+      breadth: '',
+      width: '',
+      dia: '',
+      weight: '',
+      shippingFee: '',
+      metaTitle: '',
+      metaDescription: '',
+    },
+    friendlyUrl: '',
+  }),
+  methods: {
+    async save() {
+      this.friendlyUrl = this.product.name
+        .toString() // Convert to string
+        .normalize('NFD') // Change diacritics
+        .replace(/[\u0300-\u036F]/g, '') // Remove illegal characters
+        .replace(/\s+/g, '-') // Change whitespace to dashes
+        .toLowerCase() // Change to lowercase
+        .replace(/&/g, '-and-') // Replace ampersand
+        // eslint-disable-next-line no-useless-escape
+        .replace(/[^a-z0-9\-]/g, '') // Remove anything that is not a letter, number or dash
+        .replace(/-+/g, '-') // Remove duplicate dashes
+        .replace(/^-*/, '') // Remove starting dashes
+        .replace(/-*$/, '') // Remove trailing dashes
+      await this.$store.dispatch('setAdminProducts', this.product)
+    },
+  },
 }
 </script>
 

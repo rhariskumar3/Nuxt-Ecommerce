@@ -26,7 +26,6 @@ const Categories = db.define(
         friendlyUrl: {
             type: DataTypes.STRING(255),
             allowNull: false,
-            field: "friendly_url",
         },
         enabled: {
             type: DataTypes.BOOLEAN,

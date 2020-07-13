@@ -30,7 +30,8 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/auth', '@nuxtjs/pwa'],
 
   axios: {
-    baseURL: 'http://localhost:3030/',
+    baseURL:
+      'http://' + process.env.API_HOST + ':' + process.env.API_PORT + '/',
   },
 
   vuetify: {

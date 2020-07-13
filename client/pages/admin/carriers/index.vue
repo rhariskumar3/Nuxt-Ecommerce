@@ -58,7 +58,7 @@
                     >{{ item.max_weight }}Kg
                   </template>
                   <template v-slot:item.enabled="{ item }">
-                    <v-icon v-if="item.enabled === 1" color="success"
+                    <v-icon v-if="item.enabled" color="success"
                       >mdi-check</v-icon
                     >
                     <v-icon v-else color="error">mdi-close</v-icon>

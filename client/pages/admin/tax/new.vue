@@ -82,9 +82,9 @@ export default {
       this.loading = false
     },
     snack(message, state) {
-      this.$store.dispatch('snackbar/setSnackbar', {
-        color: state === 0 ? 'red' : 'green',
+      this.$notifier.showMessage({
         text: message,
+        color: state === 0 ? 'red' : 'green',
       })
     },
   },

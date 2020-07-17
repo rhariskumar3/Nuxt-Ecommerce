@@ -167,7 +167,8 @@ export default {
     tax() {
       return Object.keys(this.carts).reduce(
         (sum, key) =>
-          sum + parseFloat(this.carts[key].product.tax * this.carts[key].count),
+          sum +
+          parseFloat(this.carts[key].product.tax.rate * this.carts[key].count),
         0
       )
     },

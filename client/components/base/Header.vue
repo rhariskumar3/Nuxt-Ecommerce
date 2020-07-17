@@ -42,9 +42,10 @@
             <v-list-item
               v-for="(item, index) in authLinks"
               :key="index"
+              nav
               :to="item.to"
               class="hidden-sm-and-down"
-              @click="link.click ? link.click() : null"
+              @click="authClick(item)"
             >
               <v-list-item-title>{{ item.text }}</v-list-item-title>
             </v-list-item>
@@ -127,12 +128,7 @@ export default {
       if (this.$auth.loggedIn) {
         const links = [{ text: this.$auth.user.email, to: '/account' }]
         if (this.$auth.user.admin) links.push({ text: 'Admin', to: '/admin' })
-        links.push({
-          text: 'Logout',
-          click: () => {
-            this.$auth.logout()
-          },
-        })
+        links.push({ text: 'Logout' })
         return links
       } else return [{ text: 'Login/Register', to: '/auth' }]
     },
@@ -140,6 +136,11 @@ export default {
   methods: {
     home() {
       this.$router.push('/')
+    },
+    authClick(item) {
+      if (item.text === 'Logout') {
+        this.$auth.logout()
+      }
     },
   },
 }

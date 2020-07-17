@@ -32,6 +32,7 @@ export default {
   },
   setShopData(state, payload) {
     state.shopData = payload
+    state.maintananace = payload.maintananace ? payload.maintananace : false
   },
 
   // ORDER
@@ -48,7 +49,7 @@ export default {
           if (cart[position].product.quantity > cart[position].count)
             cart[position].count++
         } else if (operation === 'remove') {
-          if (cart[position].product.minimum_quantity < cart[position].count)
+          if (cart[position].product.minimumQuantity < cart[position].count)
             cart[position].count--
           else cart.splice(position, 1)
         } else if (operation === 'delete') cart.splice(position, 1)
@@ -56,7 +57,7 @@ export default {
         cart.push({
           id: pId,
           product: payload.product,
-          count: payload.product.minimum_quantity,
+          count: payload.product.minimumQuantity,
         })
     }
     state.carts = cart

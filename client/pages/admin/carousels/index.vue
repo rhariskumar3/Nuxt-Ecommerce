@@ -33,7 +33,12 @@
                   </v-col>
                   <v-col cols="12" md="4">
                     <v-row align-center justify="end" class="mx-4"
-                      ><v-btn absolute class="secondary">New</v-btn></v-row
+                      ><v-btn
+                        absolute
+                        class="secondary"
+                        to="/admin/carousels/new"
+                        >New</v-btn
+                      ></v-row
                     >
                   </v-col>
                 </v-row>

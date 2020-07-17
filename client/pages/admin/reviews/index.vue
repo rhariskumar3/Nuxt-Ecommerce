@@ -57,6 +57,9 @@
                   <template v-slot:item.description="{ item }"
                     >{{ truncate(item.description) }}
                   </template>
+                  <template v-slot:item.name="{ item }"
+                    >{{ item.name ? item.name : 'Unknown' }}
+                  </template>
                   <template v-slot:item.enabled="{ item }">
                     <v-icon v-if="item.enabled" color="success"
                       >mdi-check</v-icon

@@ -24,6 +24,7 @@ export default () => ({
   carousels: {},
   reviews: {},
   shopData: {},
+  maintananace: false,
 
   // ORDER
   carts: [],

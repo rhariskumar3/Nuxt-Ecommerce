@@ -188,7 +188,7 @@ export default {
         operation: operation1,
         product: product1,
       })
-      this.$store.dispatch('snackbar/setSnackbar', {
+      this.$notifier.showMessage({
         text: product1.name + ' added to cart',
         timeout: 1000,
       })

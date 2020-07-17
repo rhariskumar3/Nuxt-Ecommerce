@@ -70,15 +70,10 @@ export default {
         await this.$auth.loginWith('local', {
           data: loginInfo,
         })
-        this.$store.dispatch('snackbar/setSnackbar', {
-          text: `Thanks for signing in, ${this.$auth.user.name}`,
-        })
+        this.snack(`Thanks for signing in, ${this.$auth.user.name}`, 'green')
         this.postLoginAction()
       } catch {
-        this.$store.dispatch('snackbar/setSnackbar', {
-          color: 'red',
-          text: 'There was an issue signing in.  Please try again.',
-        })
+        this.snack('There was an issue signing in.  Please try again.', 'red')
       }
       this.loading = false
     },
@@ -89,15 +84,10 @@ export default {
         await this.$auth.loginWith('local', {
           data: registrationInfo,
         })
-        this.$store.dispatch('snackbar/setSnackbar', {
-          text: `Thanks for signing up, ${this.$auth.user.name}`,
-        })
+        this.snack(`Thanks for signing up, ${this.$auth.user.name}`, 'green')
         this.postRegisterAction()
       } catch {
-        this.$store.dispatch('snackbar/setSnackbar', {
-          color: 'red',
-          text: 'There was an issue signing up.  Please try again.',
-        })
+        this.snack('There was an issue signing up.  Please try again.', 'red')
       }
       this.loading = false
     },
@@ -109,6 +99,11 @@ export default {
           authScreen: newScreen,
         },
       })
+    },
+    snack(text, color) {
+      try {
+        this.$notifier.showMessage({ text, color })
+      } catch (error) {}
     },
   },
 }

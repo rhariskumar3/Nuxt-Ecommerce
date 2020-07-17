@@ -3,15 +3,16 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_SNACKBAR(state, snackbar) {
+  showMessage(state, snackbar) {
+    snackbar.showing = true
+    snackbar.color = snackbar.color || 'success'
+    snackbar.timeout = snackbar.timeout || 2000
     state.snackbars = state.snackbars.concat(snackbar)
   },
 }
 
 export const actions = {
   setSnackbar({ commit }, snackbar) {
-    snackbar.showing = true
-    snackbar.color = snackbar.color || 'success'
-    commit('SET_SNACKBAR', snackbar)
+    commit('showMessage', snackbar)
   },
 }

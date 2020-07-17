@@ -21,7 +21,10 @@ export default {
 
   css: [],
 
-  plugins: [{ src: '@/plugins/back-to-top.js', ssr: false }],
+  plugins: [
+    { src: '@/plugins/back-to-top.js', ssr: false },
+    '~/plugins/notifier.js',
+  ],
 
   components: true,
 

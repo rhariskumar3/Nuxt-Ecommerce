@@ -17,7 +17,7 @@
                 <v-col cols="12" md="3">
                   <span
                     ><h4 class="title font-weight-light">
-                      New Category
+                      New Carousel
                     </h4></span
                   >
                 </v-col>
@@ -29,27 +29,23 @@
               <v-container class="py-0">
                 <v-layout wrap>
                   <v-flex class="xs12" md="4">
-                    <v-text-field v-model="category.title" label="Title" />
+                    <v-text-field v-model="method.title" label="Title" />
                   </v-flex>
                   <v-flex class="xs12" md="4">
-                    <v-textarea
-                      v-model="category.description"
-                      label="Description"
-                    />
+                    <v-text-field v-model="method.subTitle" label="SubTitle" />
                   </v-flex>
-                  <v-flex class="xs4" md="4">
+                  <v-flex class="xs12" md="4">
                     <v-file-input
-                      label="Main Image"
+                      label="Image"
                       accept="image/png, image/jpeg"
                       prepend-icon="mdi-camera"
                     />
                   </v-flex>
-                  <v-flex class="xs12" md="4">
-                    <v-text-field
-                      v-model="friendlyUrl"
-                      disabled
-                      label="Friendly URL"
-                    />
+                  <v-flex class="xs4" md="4">
+                    <v-text-field v-model="method.action" label="Action" />
+                  </v-flex>
+                  <v-flex class="xs8" md="4">
+                    <v-text-field v-model="method.url" label="Action URL" />
                   </v-flex>
                   <v-flex class="xs12"
                     ><v-btn @click="save">Create</v-btn></v-flex
@@ -68,36 +64,24 @@
 export default {
   layout: 'admin',
   data: () => ({
-    category: {
+    method: {
       title: '',
-      description: '',
+      subTitle: '',
+      action: '',
+      url: '',
     },
-    friendlyUrl: '',
     loading: false,
   }),
   methods: {
     save() {
-      this.friendlyUrl = this.category.title
-        .toString() // Convert to string
-        .normalize('NFD') // Change diacritics
-        .replace(/[\u0300-\u036F]/g, '') // Remove illegal characters
-        .replace(/\s+/g, '-') // Change whitespace to dashes
-        .toLowerCase() // Change to lowercase
-        .replace(/&/g, '-and-') // Replace ampersand
-        // eslint-disable-next-line no-useless-escape
-        .replace(/[^a-z0-9\-]/g, '') // Remove anything that is not a letter, number or dash
-        .replace(/-+/g, '-') // Remove duplicate dashes
-        .replace(/^-*/, '') // Remove starting dashes
-        .replace(/-*$/, '') // Remove trailing dashes
-
       this.loading = true
       try {
         this.$axios
-          .post('admin/category', this.category)
+          .post('admin/carousel', this.method)
           .then((values) => {
             if (values.data.message) this.snack(values.data.message, 0)
             else {
-              this.snack(this.category.title + ' created', 1)
+              this.snack(this.method.title + ' created', 1)
               this.$router.back()
             }
           })

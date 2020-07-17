@@ -69,10 +69,18 @@
                     >{{ item.tax.name }}
                   </template>
                   <template v-slot:item.enabled="{ item }">
-                    <v-icon v-if="item.enabled" color="success"
+                    <v-icon
+                      v-if="item.enabled"
+                      color="success"
+                      @click="updateState(item.id, item.enabled)"
                       >mdi-check</v-icon
                     >
-                    <v-icon v-else color="error">mdi-close</v-icon>
+                    <v-icon
+                      v-else
+                      color="error"
+                      @click="updateState(item.id, item.enabled)"
+                      >mdi-close</v-icon
+                    >
                   </template>
                   <template v-slot:item.actions="{ item }">
                     <v-icon @click="item">mdi-pencil</v-icon>
@@ -111,6 +119,28 @@ export default {
   computed: {
     products() {
       return this.$store.getters.adminProducts
+    },
+  },
+  methods: {
+    async updateState(id, state) {
+      try {
+        await this.$axios
+          .put('admin/products/' + id + '/state', { enabled: !state })
+          .then((result) => {
+            if (result.success) this.snack('updated', 1)
+            else this.snack('try again', 0)
+          })
+          .catch((err) => {
+            this.snack(err, 0)
+          })
+        await this.$store.dispatch('fetchAdminProducts')
+      } catch (error) {}
+    },
+    snack(message, state) {
+      this.$notifier.showMessage({
+        text: message,
+        color: state === 0 ? 'red' : 'green',
+      })
     },
   },
 }

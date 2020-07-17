@@ -119,3 +119,19 @@ exports.delete = function(req, res) {
             res.status(500).send({ message: err.message });
         });
 };
+
+exports.changeState = function(req, res) {
+    if (
+        Util.validate(res, req.params.id, "Product ID") &&
+        Util.validate(res, req.body.enabled.toString(), "Product state")
+    ) {
+        Product.update({ enabled: req.body.enabled }, { where: { id: req.params.id } })
+            .then((updated) => {
+                if (updated) res.json({ success: true, state: req.body.enabled });
+                else res.json({ success: false, state: !req.body.enabled });
+            })
+            .catch((err) => {
+                res.status(500).send({ message: err.message });
+            });
+    }
+};

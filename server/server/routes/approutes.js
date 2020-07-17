@@ -89,6 +89,11 @@ module.exports = function(app) {
         .put(product.update)
         .delete(product.delete);
 
+    app
+        .route("/admin/products/:id(\\d+)/state")
+        .all(authenticate)
+        .put(product.changeState);
+
     // orders Routes
     app
         .route("/admin/orders")

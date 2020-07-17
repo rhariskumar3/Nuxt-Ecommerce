@@ -33,7 +33,12 @@
                   </v-col>
                   <v-col cols="12" md="4">
                     <v-row align-center justify="end" class="mx-4"
-                      ><v-btn absolute class="secondary">New</v-btn></v-row
+                      ><v-btn
+                        absolute
+                        class="secondary"
+                        to="/admin/payment-methods/new"
+                        >New</v-btn
+                      ></v-row
                     >
                   </v-col>
                 </v-row>
@@ -54,12 +59,16 @@
                       max-height="50px"
                     />
                   </template>
-                  <template v-slot:item.live="{ item }">
-                    <v-icon v-if="item.live" color="success">mdi-check</v-icon>
+                  <template v-slot:item.liveKey="{ item }">
+                    <v-icon v-if="item.liveKey" color="success"
+                      >mdi-check</v-icon
+                    >
                     <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
-                  <template v-slot:item.test="{ item }">
-                    <v-icon v-if="item.test" color="success">mdi-check</v-icon>
+                  <template v-slot:item.testKey="{ item }">
+                    <v-icon v-if="item.testKey" color="success"
+                      >mdi-check</v-icon
+                    >
                     <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
                   <template v-slot:item.enabled="{ item }">
@@ -94,9 +103,9 @@ export default {
       { text: 'ID', value: 'id' },
       { text: 'Image', value: 'logo', sortable: false },
       { text: 'Name', value: 'name' },
-      { text: 'Merchant ID', value: 'merchant_id' },
-      { text: 'Live', value: 'live' },
-      { text: 'Test', value: 'test' },
+      { text: 'Merchant ID', value: 'merchantId' },
+      { text: 'Live', value: 'liveKey' },
+      { text: 'Test', value: 'testKey' },
       { text: 'Enabled', value: 'enabled' },
       { text: 'Actions', value: 'actions', sortable: false },
     ],

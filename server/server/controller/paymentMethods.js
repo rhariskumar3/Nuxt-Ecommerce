@@ -25,13 +25,18 @@ exports.read = function(req, res) {
 };
 
 exports.create = function(req, res) {
-    PaymentMethods.create(req.body)
-        .then((values) => {
-            res.send(values);
-        })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+    if (
+        Util.validate(res, req.body.name, "Payment method name") &&
+        Util.validate(res, req.body.merchantId, "Payment method merchant ID")
+    ) {
+        PaymentMethods.create(req.body)
+            .then((values) => {
+                res.send(values);
+            })
+            .catch((err) => {
+                res.status(500).send({ message: err.message });
+            });
+    }
 };
 
 exports.update = function(req, res) {

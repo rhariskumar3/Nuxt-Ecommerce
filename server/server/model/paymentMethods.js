@@ -17,7 +17,7 @@ const PaymentMethod = db.define(
         },
         logo: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            allowNull: true,
         },
         merchantId: {
             type: DataTypes.STRING(255),
@@ -25,44 +25,43 @@ const PaymentMethod = db.define(
         },
         liveKey: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            allowNull: true,
         },
         liveSalt: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            allowNull: true,
         },
         liveAuthHeader: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            alalowNull: true,
         },
         liveActionUrl: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            allowNull: true,
         },
         liveHookUrl: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            allowNull: true,
         },
         testKey: {
             type: DataTypes.STRING(255),
-            allowNull: false,
-            field: "test_key",
+            allowNull: true,
         },
         testSalt: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            allowNull: true,
         },
         testAuthHeader: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            allowNull: true,
         },
         testActionUrl: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            allowNull: true,
         },
         testHookUrl: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            allowNull: true,
         },
         enabled: {
             type: DataTypes.BOOLEAN,

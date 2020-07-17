@@ -70,9 +70,6 @@ export default {
     const data = await getData('/admin/products', this.$axios, commit)
     commit('setAdminProducts', data)
   },
-  async setAdminProducts({ commit, product }) {
-    await setData('/admin/products', product, this.$axios, commit)
-  },
 
   // ORDERS
   async fetchAdminOrders({ commit }) {
@@ -136,15 +133,15 @@ const getData = async function (url, axios, commit) {
   return response.data
 }
 
-const setData = async function (url, data, axios, commit) {
-  commit('LOADING', true)
-  const response = await axios.post(url, data)
-  // eslint-disable-next-line no-console
-  console.log(
-    response.status + ' ' + response.config.method + ' ' + response.config.url
-  )
-  // eslint-disable-next-line no-console
-  console.log(response.data)
-  commit('LOADING', false)
-  return response.data
-}
+// const setData = async function (url, data, axios, commit) {
+//   commit('LOADING', true)
+//   const response = await axios.post(url, data)
+//   // eslint-disable-next-line no-console
+//   console.log(
+//     response.status + ' ' + response.config.method + ' ' + response.config.url
+//   )
+//   // eslint-disable-next-line no-console
+//   console.log(response.data)
+//   commit('LOADING', false)
+//   return response.data
+// }

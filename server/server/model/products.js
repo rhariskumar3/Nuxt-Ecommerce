@@ -115,7 +115,7 @@ const Product = db.define("products", {
     },
     friendlyUrl: {
         type: DataTypes.STRING(255),
-        allowNull: false,
+        allowNull: true,
     },
     viewedTimes: {
         type: DataTypes.INTEGER(11),
@@ -137,8 +137,28 @@ const Product = db.define("products", {
     },
 });
 
+Product.afterCreate(async(product, options) => {
+    return product.update({
+        friendlyUrl: toSeoUrl(product.id + "-" + product.name),
+    });
+});
+
 Product.belongsTo(Categories);
 Product.belongsTo(ProductMedia, { as: "media" });
 Product.belongsTo(Tax);
+
+function toSeoUrl(url) {
+    return url
+        .toString() // Convert to string
+        .normalize("NFD") // Change diacritics
+        .replace(/[\u0300-\u036f]/g, "") // Remove illegal characters
+        .replace(/\s+/g, "-") // Change whitespace to dashes
+        .toLowerCase() // Change to lowercase
+        .replace(/&/g, "-and-") // Replace ampersand
+        .replace(/[^a-z0-9\-]/g, "") // Remove anything that is not a letter, number or dash
+        .replace(/-+/g, "-") // Remove duplicate dashes
+        .replace(/^-*/, "") // Remove starting dashes
+        .replace(/-*$/, ""); // Remove trailing dashes
+}
 
 module.exports = Product;

@@ -6,6 +6,7 @@
           light
           class="elevation-2"
           style="margin-bottom: 24px; margin-top: 48px;"
+          :loading="loading"
         >
           <div class="v-offset" style="top: -24px; margin-bottom: -24px;">
             <v-card
@@ -31,7 +32,11 @@
                     <v-text-field v-model="product.name" label="Name" />
                   </v-flex>
                   <v-flex class="xs12" md="4">
-                    <v-textarea v-model="product.summary" label="Summary" />
+                    <v-textarea
+                      v-model="product.summary"
+                      label="Summary"
+                      rows="2"
+                    />
                   </v-flex>
                   <v-flex class="xs12" md="4">
                     <v-textarea
@@ -82,7 +87,13 @@
                     />
                   </v-flex>
                   <v-flex class="xs4" md="4">
-                    <v-select label="Category" />
+                    <v-select
+                      v-model="product.categoryId"
+                      label="Category"
+                      :items="categories"
+                      item-text="title"
+                      item-value="id"
+                    />
                   </v-flex>
                   <v-flex class="xs4" md="4">
                     <v-text-field
@@ -107,7 +118,13 @@
                     />
                   </v-flex>
                   <v-flex class="xs3" md="4">
-                    <v-select label="Tax" />
+                    <v-select
+                      v-model="product.taxId"
+                      label="Tax"
+                      :items="taxes"
+                      item-text="name"
+                      item-value="id"
+                    />
                   </v-flex>
                   <v-flex class="xs3" md="4">
                     <v-text-field
@@ -192,6 +209,10 @@
 
 <script>
 export default {
+  async fetch({ store, params }) {
+    await store.dispatch('fetchAdminCollections')
+    await store.dispatch('fetchAdminTax')
+  },
   layout: 'admin',
   data: () => ({
     product: {
@@ -203,7 +224,7 @@ export default {
       quantity: '',
       price: '',
       taxId: '',
-      minimumQuantity: '',
+      minimumQuantity: '1',
       length: '',
       breadth: '',
       width: '',
@@ -214,9 +235,18 @@ export default {
       metaDescription: '',
     },
     friendlyUrl: '',
+    loading: false,
   }),
+  computed: {
+    categories() {
+      return this.$store.getters.adminCollections
+    },
+    taxes() {
+      return this.$store.getters.adminTax
+    },
+  },
   methods: {
-    async save() {
+    save() {
       this.friendlyUrl = this.product.name
         .toString() // Convert to string
         .normalize('NFD') // Change diacritics
@@ -229,7 +259,29 @@ export default {
         .replace(/-+/g, '-') // Remove duplicate dashes
         .replace(/^-*/, '') // Remove starting dashes
         .replace(/-*$/, '') // Remove trailing dashes
-      await this.$store.dispatch('setAdminProducts', this.product)
+
+      this.loading = true
+      try {
+        this.$axios
+          .post('admin/products', this.product)
+          .then((values) => {
+            if (values.data.message) this.snack(values.data.me, 0)
+            else {
+              this.snack(this.product.name + ' created', 1)
+              this.$router.back()
+            }
+          })
+          .catch((err) => {
+            this.snack(err, 0)
+          })
+      } catch {}
+      this.loading = false
+    },
+    snack(message, state) {
+      this.$store.dispatch('snackbar/setSnackbar', {
+        color: state === 0 ? 'red' : 'green',
+        text: message,
+      })
     },
   },
 }

@@ -52,12 +52,15 @@ export default {
       type: String,
       default: 'login',
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     const authScreen = this.$route.query.authScreen || this.startingScreen
     return {
       authScreen,
-      loading: false,
     }
   },
   methods: {

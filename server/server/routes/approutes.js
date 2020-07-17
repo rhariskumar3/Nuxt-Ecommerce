@@ -16,6 +16,9 @@ const session = require("../controller/sessions");
 
 const authenticate = require("../middleware/authenticate");
 
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
 module.exports = function(app) {
     // USER ROUTES
     // carousel Routes
@@ -91,7 +94,7 @@ module.exports = function(app) {
         .route("/admin/orders")
         .all(authenticate)
         .get(orders.listAll)
-        .post(orders.create);
+        .post(orders.create, upload.single("image1"));
 
     app
         .route("/admin/orders/:id(\\d+)")

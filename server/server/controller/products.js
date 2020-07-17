@@ -1,5 +1,7 @@
 "use strict";
 
+const storage = require("../util/multer");
+
 const Util = require("../util/index.js");
 
 const db = require("../db/db.js");
@@ -65,14 +67,21 @@ exports.read = function(req, res) {
 };
 
 exports.create = function(req, res) {
+    // storage.single("image1");
+    // storage(req, res, function(err) {
+    //     if (err instanceof multer.MulterError) {
+    //         console.log(err);
+    //     } else if (err) {
+    //         console.log(err);
+    //     }
+    // });
+
     if (
         Util.validate(res, req.body.name, "Product name") &&
         Util.validate(res, req.body.price, "Product price") &&
         Util.validate(res, req.body.categoryId, "Product category")
     ) {
-        var product = req.body;
-        product.friendlyUrl = toSeoUrl(product.name);
-        Product.create(product)
+        Product.create(req.body)
             .then((values) => {
                 res.send(values);
             })
@@ -110,17 +119,3 @@ exports.delete = function(req, res) {
             res.status(500).send({ message: err.message });
         });
 };
-
-function toSeoUrl(url) {
-    return url
-        .toString() // Convert to string
-        .normalize("NFD") // Change diacritics
-        .replace(/[\u0300-\u036f]/g, "") // Remove illegal characters
-        .replace(/\s+/g, "-") // Change whitespace to dashes
-        .toLowerCase() // Change to lowercase
-        .replace(/&/g, "-and-") // Replace ampersand
-        .replace(/[^a-z0-9\-]/g, "") // Remove anything that is not a letter, number or dash
-        .replace(/-+/g, "-") // Remove duplicate dashes
-        .replace(/^-*/, "") // Remove starting dashes
-        .replace(/-*$/, ""); // Remove trailing dashes
-}

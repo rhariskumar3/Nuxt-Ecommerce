@@ -3,6 +3,7 @@ const cors = require("cors");
 bodyParser = require("body-parser");
 const morgan = require("morgan");
 require("dotenv").config();
+const path = require("path");
 
 const app = express();
 
@@ -11,10 +12,12 @@ app.set("port", port);
 
 app.use(cors());
 
-app.use(morgan("tiny"));
+app.use(morgan("dev"));
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.get("/", (req, res) => res.send("Server not found!"));
 

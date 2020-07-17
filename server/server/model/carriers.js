@@ -22,16 +22,16 @@ const Carriers = db.define("carriers", {
     },
     logo: {
         type: DataTypes.STRING(255),
-        allowNull: false,
+        allowNull: true,
     },
     trackingUrl: {
         type: DataTypes.STRING(255),
-        allowNull: false,
+        allowNull: true,
     },
     maxWeight: {
         type: DataTypes.DOUBLE,
         allowNull: false,
-        defaultValue: "0",
+        defaultValue: 0,
     },
     enabled: {
         type: DataTypes.BOOLEAN,
@@ -40,7 +40,7 @@ const Carriers = db.define("carriers", {
     },
     zoneId: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
+        allowNull: true,
         references: {
             model: {
                 tableName: "zones",

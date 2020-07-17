@@ -17,7 +17,7 @@
                 <v-col cols="12" md="3">
                   <span
                     ><h4 class="title font-weight-light">
-                      New Carousel
+                      New Carrier
                     </h4></span
                   >
                 </v-col>
@@ -29,27 +29,38 @@
               <v-container class="py-0">
                 <v-layout wrap>
                   <v-flex class="xs12" md="4">
-                    <v-text-field v-model="method.title" label="Title" />
+                    <v-text-field v-model="carrier.name" label="Name" />
                   </v-flex>
-                  <v-flex class="xs12" md="4">
-                    <v-text-field v-model="method.subTitle" label="SubTitle" />
+                  <v-flex class="xs8" md="4">
+                    <v-text-field
+                      v-model="carrier.transitTime"
+                      label="Transit time"
+                    />
                   </v-flex>
-                  <v-flex class="xs12" md="4">
+                  <v-flex class="xs4" md="4">
                     <v-file-input
-                      label="Image"
+                      label="Logo"
                       accept="image/png, image/jpeg"
                       prepend-icon="mdi-camera"
                     />
                   </v-flex>
-                  <v-flex class="xs4" md="4">
-                    <v-text-field v-model="method.action" label="Action" />
-                  </v-flex>
-                  <v-flex class="xs8" md="4">
+                  <v-flex class="xs12" md="4">
                     <v-text-field
-                      v-model="method.url"
-                      hint="*Add URL without hostname"
-                      label="Action URL"
+                      v-model="carrier.trackingUrl"
+                      hint="For example: 'http://example.com/track.php?num=@' with '@' where the tracking number should appear."
+                      label="Tracking URL"
                     />
+                  </v-flex>
+                  <v-flex class="xs3" md="4">
+                    <v-text-field
+                      v-model="carrier.maxWeight"
+                      label="Max Weight"
+                      suffix="Kg"
+                      hint="Maximum weight managed by this carrier. Set the value to '0', or leave this field blank to ignore."
+                    />
+                  </v-flex>
+                  <v-flex class="xs3" md="4">
+                    <v-select v-model="carrier.zoneId" label="Zone" />
                   </v-flex>
                   <v-flex class="xs12"
                     ><v-btn @click="save">Create</v-btn></v-flex
@@ -68,11 +79,12 @@
 export default {
   layout: 'admin',
   data: () => ({
-    method: {
-      title: '',
-      subTitle: '',
-      action: '',
-      url: '',
+    carrier: {
+      name: '',
+      transitTime: '',
+      trackingUrl: '',
+      maxWeight: '',
+      zoneId: '1',
     },
     loading: false,
   }),
@@ -81,11 +93,11 @@ export default {
       this.loading = true
       try {
         this.$axios
-          .post('admin/carousel', this.method)
+          .post('admin/carriers', this.carrier)
           .then((values) => {
             if (values.data.message) this.snack(values.data.message, 0)
             else {
-              this.snack(this.method.title + ' created', 1)
+              this.snack(this.carrier.name + ' created', 1)
               this.$router.back()
             }
           })

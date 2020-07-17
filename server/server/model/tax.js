@@ -18,7 +18,8 @@ const Tax = db.define("tax", {
     rate: {
         type: DataTypes.DOUBLE,
         allowNull: false,
-        defaultValue: "0",
+        min: 0,
+        defaultValue: 0,
     },
     enabled: {
         type: DataTypes.BOOLEAN,

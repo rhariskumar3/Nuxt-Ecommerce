@@ -25,13 +25,18 @@ exports.read = function(req, res) {
 };
 
 exports.create = function(req, res) {
-    Tax.create(req.body)
-        .then((values) => {
-            res.send(values);
-        })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+    if (
+        Util.validate(res, req.body.name, "Tax name") &&
+        Util.validate(res, req.body.rate, "Tax rate")
+    ) {
+        Tax.create(req.body)
+            .then((values) => {
+                res.send(values);
+            })
+            .catch((err) => {
+                res.status(500).send({ message: err.message });
+            });
+    }
 };
 
 exports.update = function(req, res) {

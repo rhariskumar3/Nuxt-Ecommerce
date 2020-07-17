@@ -34,14 +34,19 @@
                   <v-flex class="xs12" md="4">
                     <v-textarea
                       v-model="product.summary"
+                      persistent-hint
                       label="Summary"
+                      hint="Fill in a striking short description of the product"
                       rows="2"
+                      maxlength="255"
                     />
                   </v-flex>
                   <v-flex class="xs12" md="4">
                     <v-textarea
                       v-model="product.description"
                       label="Description"
+                      counter
+                      maxlength="500"
                     />
                   </v-flex>
                   <v-flex class="xs4" md="4">
@@ -106,6 +111,7 @@
                     <v-text-field
                       v-model="product.minimumQuantity"
                       label="Minimum Quantity"
+                      hint="The minimum quantity required to buy this product (set to 1 to disable this feature)"
                       type="number"
                     />
                   </v-flex>
@@ -131,6 +137,7 @@
                       v-model="product.shippingFee"
                       label="Shipping Price"
                       type="number"
+                      hint="Does this product incur additional shipping costs?"
                       suffix="₹"
                     />
                   </v-flex>
@@ -177,13 +184,17 @@
                   <v-flex class="xs12" md="4">
                     <v-text-field
                       v-model="product.metaTitle"
+                      persistent-hint
+                      hint="Public title for the product page and for search engines."
                       label="Meta Title"
                     />
                   </v-flex>
                   <v-flex class="xs12" md="4">
                     <v-textarea
                       v-model="product.metaDescription"
+                      persistent-hint
                       label="Meta Description"
+                      hint="This description will appear in search engines."
                       rows="2"
                     />
                   </v-flex>
@@ -191,6 +202,8 @@
                     <v-text-field
                       v-model="friendlyUrl"
                       disabled
+                      persistent-hint
+                      hint="This is the human-readable URL, as generated from the product's name."
                       label="Friendly URL"
                     />
                   </v-flex>

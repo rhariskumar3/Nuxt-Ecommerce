@@ -265,7 +265,7 @@ export default {
         this.$axios
           .post('admin/products', this.product)
           .then((values) => {
-            if (values.data.message) this.snack(values.data.me, 0)
+            if (values.data.message) this.snack(values.data.message, 0)
             else {
               this.snack(this.product.name + ' created', 1)
               this.$router.back()

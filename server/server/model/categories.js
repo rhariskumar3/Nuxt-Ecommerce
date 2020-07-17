@@ -20,7 +20,7 @@ const Categories = db.define("categories", {
     },
     image: {
         type: DataTypes.STRING(100),
-        allowNull: false,
+        allowNull: true,
     },
     friendlyUrl: {
         type: DataTypes.STRING(255),
@@ -35,7 +35,7 @@ const Categories = db.define("categories", {
 
 Categories.afterCreate(async(category, options) => {
     return category.update({
-        friendlyUrl: toSeoUrl(category.id + "-" + category.name),
+        friendlyUrl: toSeoUrl(category.id + "-" + category.title),
     });
 });
 

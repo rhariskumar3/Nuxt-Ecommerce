@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 18, 2020 at 08:19 PM
+-- Generation Time: Jul 18, 2020 at 08:34 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `ecommerce`
 --
+CREATE DATABASE IF NOT EXISTS `ecommerce` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `ecommerce`;
 
 -- --------------------------------------------------------
 
@@ -28,36 +30,30 @@ SET time_zone = "+00:00";
 -- Table structure for table `address`
 --
 
-CREATE TABLE `address` (
-  `id` int(11) NOT NULL,
-  `customer` int(11) NOT NULL,
+DROP TABLE IF EXISTS `address`;
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) NOT NULL,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
   `address_1` varchar(50) NOT NULL,
   `address_2` varchar(50) NOT NULL,
-  `city` int(11) NOT NULL,
-  `state` int(11) NOT NULL,
-  `country` int(11) NOT NULL,
+  `city_id` int(11) NOT NULL,
+  `state_id` int(11) NOT NULL,
+  `country_id` int(11) NOT NULL,
   `pin_code` varchar(8) NOT NULL,
   `mobile` varchar(15) NOT NULL,
   `company` varchar(50) NOT NULL,
   `gst_no` varchar(20) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `state` (`state_id`),
+  KEY `city` (`city_id`),
+  KEY `countries` (`country_id`),
+  KEY `customer` (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `address`:
---   `city`
---       `cities` -> `id`
---   `country`
---       `countries` -> `id`
---   `customer`
---       `customers` -> `id`
---   `state`
---       `states` -> `id`
---
 
 -- --------------------------------------------------------
 
@@ -65,8 +61,9 @@ CREATE TABLE `address` (
 -- Table structure for table `carousel`
 --
 
-CREATE TABLE `carousel` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `carousel`;
+CREATE TABLE IF NOT EXISTS `carousel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(100) NOT NULL,
   `title` varchar(50) DEFAULT NULL,
   `sub_title` varchar(50) DEFAULT NULL,
@@ -74,12 +71,9 @@ CREATE TABLE `carousel` (
   `url` varchar(100) DEFAULT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `carousel`:
---
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -87,24 +81,21 @@ CREATE TABLE `carousel` (
 -- Table structure for table `carriers`
 --
 
-CREATE TABLE `carriers` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `carriers`;
+CREATE TABLE IF NOT EXISTS `carriers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `transit_time` varchar(255) NOT NULL,
   `logo` varchar(255) NOT NULL,
   `tracking_url` varchar(255) NOT NULL,
   `max_weight` double NOT NULL DEFAULT 0,
   `enabled` tinyint(1) NOT NULL DEFAULT 0,
-  `zone` int(11) NOT NULL,
+  `zone_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `carriers`:
---   `zone`
---       `zones` -> `id`
---
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `zone_id` (`zone_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -112,20 +103,18 @@ CREATE TABLE `carriers` (
 -- Table structure for table `categories`
 --
 
-CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text NOT NULL,
   `description` text NOT NULL,
   `image` varchar(100) NOT NULL,
   `friendly_url` varchar(255) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `categories`:
---
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -133,16 +122,20 @@ CREATE TABLE `categories` (
 -- Table structure for table `cities`
 --
 
-CREATE TABLE `cities` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `cities`;
+CREATE TABLE IF NOT EXISTS `cities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
-  `state_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `state_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=48357 DEFAULT CHARSET=latin1;
 
 --
--- RELATIONSHIPS FOR TABLE `cities`:
+-- Truncate table before insert `cities`
 --
 
+TRUNCATE TABLE `cities`;
 --
 -- Dumping data for table `cities`
 --
@@ -48119,17 +48112,20 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 -- Table structure for table `countries`
 --
 
-CREATE TABLE `countries` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `countries`;
+CREATE TABLE IF NOT EXISTS `countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sortname` varchar(3) NOT NULL,
   `name` varchar(150) NOT NULL,
-  `phonecode` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `phonecode` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=249 DEFAULT CHARSET=utf8;
 
 --
--- RELATIONSHIPS FOR TABLE `countries`:
+-- Truncate table before insert `countries`
 --
 
+TRUNCATE TABLE `countries`;
 --
 -- Dumping data for table `countries`
 --
@@ -48388,21 +48384,22 @@ INSERT INTO `countries` (`id`, `sortname`, `name`, `phonecode`) VALUES
 -- Table structure for table `customers`
 --
 
-CREATE TABLE `customers` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `customers`;
+CREATE TABLE IF NOT EXISTS `customers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `mobile` varchar(20) NOT NULL,
   `newsletter` tinyint(1) NOT NULL DEFAULT 0,
   `blocked` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `customers`:
---
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_2` (`email`),
+  KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -48410,8 +48407,9 @@ CREATE TABLE `customers` (
 -- Table structure for table `employee`
 --
 
-CREATE TABLE `employee` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `employee`;
+CREATE TABLE IF NOT EXISTS `employee` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -48419,12 +48417,9 @@ CREATE TABLE `employee` (
   `active` tinyint(1) NOT NULL DEFAULT 1,
   `admin` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `employee`:
---
 
 -- --------------------------------------------------------
 
@@ -48432,11 +48427,12 @@ CREATE TABLE `employee` (
 -- Table structure for table `orders`
 --
 
-CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
-  `reference` varchar(9) CHARACTER SET utf8 DEFAULT NULL,
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `reference` varchar(64) CHARACTER SET utf8 DEFAULT NULL,
   `customer_id` int(11) NOT NULL,
-  `carrier` int(11) NOT NULL,
+  `carrier_id` int(11) NOT NULL,
   `address_delivery` int(11) NOT NULL,
   `address_invoice` int(11) NOT NULL,
   `current_state` int(11) NOT NULL,
@@ -48451,22 +48447,15 @@ CREATE TABLE `orders` (
   `invoice_date` timestamp NULL DEFAULT NULL,
   `shipping_date` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `payment_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `current_state` (`current_state`),
+  KEY `customer_id` (`customer_id`),
+  KEY `address_delivery` (`address_delivery`),
+  KEY `address_invoice` (`address_invoice`),
+  KEY `carrier` (`carrier_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `orders`:
---   `address_delivery`
---       `address` -> `id`
---   `address_invoice`
---       `address` -> `id`
---   `carrier`
---       `carriers` -> `id`
---   `current_state`
---       `order_states` -> `id`
---   `customer_id`
---       `customers` -> `id`
---
 
 -- --------------------------------------------------------
 
@@ -48474,8 +48463,9 @@ CREATE TABLE `orders` (
 -- Table structure for table `order_details`
 --
 
-CREATE TABLE `order_details` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `order_details`;
+CREATE TABLE IF NOT EXISTS `order_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
@@ -48487,20 +48477,11 @@ CREATE TABLE `order_details` (
   `shipping_price` double NOT NULL DEFAULT 0,
   `total_price` double NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`),
+  KEY `product_details` (`product_id`,`product_name`,`product_price`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `order_details`:
---   `order_id`
---       `orders` -> `id`
---   `product_id`
---       `products` -> `id`
---   `product_name`
---       `products` -> `name`
---   `product_price`
---       `products` -> `price`
---
 
 -- --------------------------------------------------------
 
@@ -48508,15 +48489,13 @@ CREATE TABLE `order_details` (
 -- Table structure for table `order_states`
 --
 
-CREATE TABLE `order_states` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `order_states`;
+CREATE TABLE IF NOT EXISTS `order_states` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `template` varchar(255) NOT NULL
+  `template` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `order_states`:
---
 
 -- --------------------------------------------------------
 
@@ -48524,8 +48503,9 @@ CREATE TABLE `order_states` (
 -- Table structure for table `payment_methods`
 --
 
-CREATE TABLE `payment_methods` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `payment_methods`;
+CREATE TABLE IF NOT EXISTS `payment_methods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `logo` varchar(255) NOT NULL,
   `merchant_id` varchar(255) NOT NULL,
@@ -48541,12 +48521,9 @@ CREATE TABLE `payment_methods` (
   `test_hook_url` varchar(255) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `payment_methods`:
---
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -48554,20 +48531,22 @@ CREATE TABLE `payment_methods` (
 -- Table structure for table `products`
 --
 
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `summary` text NOT NULL,
   `description` text NOT NULL,
-  `category` int(11) NOT NULL,
-  `media` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `media_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT 0,
   `price` double NOT NULL DEFAULT 0,
-  `tax` int(11) NOT NULL,
+  `tax_id` int(11) NOT NULL,
   `minimum_quantity` int(11) NOT NULL DEFAULT 1,
-  `width` double NOT NULL DEFAULT 0,
+  `length` double NOT NULL DEFAULT 0,
+  `breadth` double NOT NULL DEFAULT 0,
   `height` double NOT NULL DEFAULT 0,
-  `depth` double NOT NULL DEFAULT 0,
+  `dia` double NOT NULL DEFAULT 0,
   `weight` double NOT NULL DEFAULT 0,
   `shipping_fee` double NOT NULL DEFAULT 0,
   `meta_title` varchar(100) NOT NULL,
@@ -48577,18 +48556,16 @@ CREATE TABLE `products` (
   `purchased_times` int(11) NOT NULL DEFAULT 0,
   `enabled` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `products`:
---   `category`
---       `categories` -> `id`
---   `media`
---       `product_media` -> `id`
---   `tax`
---       `tax` -> `id`
---
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `category` (`category_id`),
+  KEY `tax` (`tax_id`),
+  KEY `media` (`media_id`),
+  KEY `name` (`name`),
+  KEY `price` (`price`),
+  KEY `weight` (`weight`),
+  KEY `id` (`id`,`name`,`price`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -48596,8 +48573,9 @@ CREATE TABLE `products` (
 -- Table structure for table `product_media`
 --
 
-CREATE TABLE `product_media` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `product_media`;
+CREATE TABLE IF NOT EXISTS `product_media` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `image_1` varchar(255) NOT NULL,
   `image_2` varchar(255) NOT NULL,
   `image_3` varchar(255) NOT NULL,
@@ -48605,12 +48583,9 @@ CREATE TABLE `product_media` (
   `image_5` varchar(255) NOT NULL,
   `video` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `product_media`:
---
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -48618,21 +48593,18 @@ CREATE TABLE `product_media` (
 -- Table structure for table `reviews`
 --
 
-CREATE TABLE `reviews` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `reviews`;
+CREATE TABLE IF NOT EXISTS `reviews` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `reviews`:
---   `customer_id`
---       `customers` -> `id`
---
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `customer_detail` (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -48640,13 +48612,14 @@ CREATE TABLE `reviews` (
 -- Table structure for table `shop_data`
 --
 
-CREATE TABLE `shop_data` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `shop_data`;
+CREATE TABLE IF NOT EXISTS `shop_data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `logo` varchar(255) NOT NULL,
-  `address_1` varchar(255) NOT NULL,
-  `address_2` varchar(255) NOT NULL,
+  `address1` varchar(255) NOT NULL,
+  `address2` varchar(255) NOT NULL,
   `city_id` int(11) NOT NULL,
   `state_id` int(11) NOT NULL,
   `country_id` int(11) NOT NULL,
@@ -48659,18 +48632,13 @@ CREATE TABLE `shop_data` (
   `google` varchar(255) NOT NULL,
   `facebook` varchar(255) NOT NULL,
   `youtube` varchar(255) NOT NULL,
-  `maintanance` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `shop_data`:
---   `city_id`
---       `cities` -> `id`
---   `country_id`
---       `countries` -> `id`
---   `state_id`
---       `states` -> `id`
---
+  `maintanance` tinyint(1) NOT NULL DEFAULT 0,
+  `customer_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `state_deatils` (`state_id`),
+  KEY `city_details` (`city_id`),
+  KEY `country_details` (`country_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -48678,26 +48646,27 @@ CREATE TABLE `shop_data` (
 -- Table structure for table `states`
 --
 
-CREATE TABLE `states` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `states`;
+CREATE TABLE IF NOT EXISTS `states` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `country_id` int(11) NOT NULL DEFAULT 1,
-  `zone` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `zone_id` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `country` (`country_id`),
+  KEY `zones` (`zone_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4122 DEFAULT CHARSET=latin1;
 
 --
--- RELATIONSHIPS FOR TABLE `states`:
---   `country_id`
---       `countries` -> `id`
---   `zone`
---       `zones` -> `id`
+-- Truncate table before insert `states`
 --
 
+TRUNCATE TABLE `states`;
 --
 -- Dumping data for table `states`
 --
 
-INSERT INTO `states` (`id`, `name`, `country_id`, `zone`) VALUES
+INSERT INTO `states` (`id`, `name`, `country_id`, `zone_id`) VALUES
 (1, 'Andaman and Nicobar Islands', 101, 1),
 (2, 'Andhra Pradesh', 101, 1),
 (3, 'Arunachal Pradesh', 101, 1),
@@ -50635,7 +50604,7 @@ INSERT INTO `states` (`id`, `name`, `country_id`, `zone`) VALUES
 (1944, 'Nagano', 109, 1),
 (1945, 'Nagasaki', 109, 1),
 (1946, 'Nara', 109, 1);
-INSERT INTO `states` (`id`, `name`, `country_id`, `zone`) VALUES
+INSERT INTO `states` (`id`, `name`, `country_id`, `zone_id`) VALUES
 (1947, 'Niigata', 109, 1),
 (1948, 'Oita', 109, 1),
 (1949, 'Okayama', 109, 1),
@@ -52492,7 +52461,7 @@ INSERT INTO `states` (`id`, `name`, `country_id`, `zone`) VALUES
 (3821, 'Cleveland', 230, 1),
 (3822, 'Co Fermanagh', 230, 1),
 (3823, 'Conwy', 230, 1);
-INSERT INTO `states` (`id`, `name`, `country_id`, `zone`) VALUES
+INSERT INTO `states` (`id`, `name`, `country_id`, `zone_id`) VALUES
 (3824, 'Cornwall', 230, 1),
 (3825, 'Coventry', 230, 1),
 (3826, 'Craven Arms', 230, 1),
@@ -52798,18 +52767,39 @@ INSERT INTO `states` (`id`, `name`, `country_id`, `zone`) VALUES
 -- Table structure for table `tax`
 --
 
-CREATE TABLE `tax` (
-  `id` int(16) NOT NULL,
+DROP TABLE IF EXISTS `tax`;
+CREATE TABLE IF NOT EXISTS `tax` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL,
   `rate` double NOT NULL DEFAULT 0,
   `enabled` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  KEY `rate` (`rate`),
+  KEY `name_2` (`name`,`rate`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
 
 --
--- RELATIONSHIPS FOR TABLE `tax`:
+-- Table structure for table `user`
 --
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL DEFAULT '',
+  `email` varchar(50) NOT NULL,
+  `password` text DEFAULT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT 1,
+  `admin` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -52817,290 +52807,14 @@ CREATE TABLE `tax` (
 -- Table structure for table `zones`
 --
 
-CREATE TABLE `zones` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `zones`;
+CREATE TABLE IF NOT EXISTS `zones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `zones`:
---
-
---
--- Dumping data for table `zones`
---
-
-INSERT INTO `zones` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'All', '2020-02-15 18:44:16', '2020-02-15 18:44:16');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `address`
---
-ALTER TABLE `address`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `state` (`state`),
-  ADD KEY `city` (`city`),
-  ADD KEY `countries` (`country`),
-  ADD KEY `customer` (`customer`);
-
---
--- Indexes for table `carousel`
---
-ALTER TABLE `carousel`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `carriers`
---
-ALTER TABLE `carriers`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `zone_id` (`zone`);
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `cities`
---
-ALTER TABLE `cities`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `name` (`name`);
-
---
--- Indexes for table `countries`
---
-ALTER TABLE `countries`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `customers`
---
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email_2` (`email`),
-  ADD KEY `email` (`email`);
-
---
--- Indexes for table `employee`
---
-ALTER TABLE `employee`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `current_state` (`current_state`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `address_delivery` (`address_delivery`),
-  ADD KEY `address_invoice` (`address_invoice`),
-  ADD KEY `carrier` (`carrier`);
-
---
--- Indexes for table `order_details`
---
-ALTER TABLE `order_details`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_details` (`product_id`,`product_name`,`product_price`);
-
---
--- Indexes for table `order_states`
---
-ALTER TABLE `order_states`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `payment_methods`
---
-ALTER TABLE `payment_methods`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `category` (`category`),
-  ADD KEY `tax` (`tax`),
-  ADD KEY `media` (`media`),
-  ADD KEY `name` (`name`),
-  ADD KEY `price` (`price`),
-  ADD KEY `weight` (`weight`),
-  ADD KEY `id` (`id`,`name`,`price`);
-
---
--- Indexes for table `product_media`
---
-ALTER TABLE `product_media`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `customer_detail` (`customer_id`);
-
---
--- Indexes for table `shop_data`
---
-ALTER TABLE `shop_data`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `state_deatils` (`state_id`),
-  ADD KEY `city_details` (`city_id`),
-  ADD KEY `country_details` (`country_id`);
-
---
--- Indexes for table `states`
---
-ALTER TABLE `states`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `country` (`country_id`),
-  ADD KEY `zones` (`zone`);
-
---
--- Indexes for table `tax`
---
-ALTER TABLE `tax`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `rate` (`rate`),
-  ADD KEY `name_2` (`name`,`rate`);
-
---
--- Indexes for table `zones`
---
-ALTER TABLE `zones`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `address`
---
-ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `carousel`
---
-ALTER TABLE `carousel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `carriers`
---
-ALTER TABLE `carriers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `cities`
---
-ALTER TABLE `cities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48357;
-
---
--- AUTO_INCREMENT for table `countries`
---
-ALTER TABLE `countries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
-
---
--- AUTO_INCREMENT for table `customers`
---
-ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `employee`
---
-ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order_details`
---
-ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order_states`
---
-ALTER TABLE `order_states`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payment_methods`
---
-ALTER TABLE `payment_methods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `product_media`
---
-ALTER TABLE `product_media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `reviews`
---
-ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `shop_data`
---
-ALTER TABLE `shop_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `states`
---
-ALTER TABLE `states`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4122;
-
---
--- AUTO_INCREMENT for table `tax`
---
-ALTER TABLE `tax`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `zones`
---
-ALTER TABLE `zones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Constraints for dumped tables
@@ -53110,16 +52824,16 @@ ALTER TABLE `zones`
 -- Constraints for table `address`
 --
 ALTER TABLE `address`
-  ADD CONSTRAINT `city` FOREIGN KEY (`city`) REFERENCES `cities` (`id`),
-  ADD CONSTRAINT `countries` FOREIGN KEY (`country`) REFERENCES `countries` (`id`),
-  ADD CONSTRAINT `customer` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`),
-  ADD CONSTRAINT `state` FOREIGN KEY (`state`) REFERENCES `states` (`id`);
+  ADD CONSTRAINT `city` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`),
+  ADD CONSTRAINT `countries` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`),
+  ADD CONSTRAINT `customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
+  ADD CONSTRAINT `state` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`);
 
 --
 -- Constraints for table `carriers`
 --
 ALTER TABLE `carriers`
-  ADD CONSTRAINT `zone_id` FOREIGN KEY (`zone`) REFERENCES `zones` (`id`);
+  ADD CONSTRAINT `zone_id` FOREIGN KEY (`zone_id`) REFERENCES `zones` (`id`);
 
 --
 -- Constraints for table `orders`
@@ -53127,7 +52841,7 @@ ALTER TABLE `carriers`
 ALTER TABLE `orders`
   ADD CONSTRAINT `address_delivery` FOREIGN KEY (`address_delivery`) REFERENCES `address` (`id`),
   ADD CONSTRAINT `address_invoice` FOREIGN KEY (`address_invoice`) REFERENCES `address` (`id`),
-  ADD CONSTRAINT `carrier` FOREIGN KEY (`carrier`) REFERENCES `carriers` (`id`),
+  ADD CONSTRAINT `carrier` FOREIGN KEY (`carrier_id`) REFERENCES `carriers` (`id`),
   ADD CONSTRAINT `current_state` FOREIGN KEY (`current_state`) REFERENCES `order_states` (`id`),
   ADD CONSTRAINT `customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
 
@@ -53142,9 +52856,9 @@ ALTER TABLE `order_details`
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `category` FOREIGN KEY (`category`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `media` FOREIGN KEY (`media`) REFERENCES `product_media` (`id`),
-  ADD CONSTRAINT `tax` FOREIGN KEY (`tax`) REFERENCES `tax` (`id`);
+  ADD CONSTRAINT `category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  ADD CONSTRAINT `media` FOREIGN KEY (`media_id`) REFERENCES `product_media` (`id`),
+  ADD CONSTRAINT `tax` FOREIGN KEY (`tax_id`) REFERENCES `tax` (`id`);
 
 --
 -- Constraints for table `reviews`
@@ -53165,7 +52879,7 @@ ALTER TABLE `shop_data`
 --
 ALTER TABLE `states`
   ADD CONSTRAINT `country` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`),
-  ADD CONSTRAINT `zones` FOREIGN KEY (`zone`) REFERENCES `zones` (`id`);
+  ADD CONSTRAINT `zones` FOREIGN KEY (`zone_id`) REFERENCES `zones` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

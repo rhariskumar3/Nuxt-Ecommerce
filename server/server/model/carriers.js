@@ -23,6 +23,9 @@ const Carriers = db.define("carriers", {
     logo: {
         type: DataTypes.STRING(255),
         allowNull: true,
+        get() {
+            return fileToUrl(this.getDataValue("logo"));
+        },
     },
     trackingUrl: {
         type: DataTypes.STRING(255),
@@ -51,5 +54,7 @@ const Carriers = db.define("carriers", {
 });
 
 Carriers.belongsTo(Zone);
+
+const fileToUrl = (url) => url ? (url.toString().includes("http") ? url : "http://" + process.env.API_HOST + ":" + process.env.API_PORT + "/" + url) : url;
 
 module.exports = Carriers;

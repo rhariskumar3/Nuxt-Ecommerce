@@ -6,32 +6,20 @@ const State = require("../model/states");
 
 exports.listAll = function(req, res) {
     State.findAll()
-        .then((values) => {
-            res.send(values);
-        })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+        .then((values) => res.send(values))
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.read = function(req, res) {
     State.findOne({ where: { id: req.body.id } })
-        .then((values) => {
-            res.send(values);
-        })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+        .then((values) => res.send(values))
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.create = function(req, res) {
     State.create(req.body)
-        .then((values) => {
-            res.send(values);
-        })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+        .then((values) => res.send(values))
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.update = function(req, res) {
@@ -42,13 +30,9 @@ exports.update = function(req, res) {
                 .then((values) => {
                     res.send(values);
                 })
-                .catch((err) => {
-                    res.status(500).send({ message: err.message });
-                });
+                .catch((err) => res.status(500).send({ message: err.message }));
         })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.delete = function(req, res) {
@@ -58,7 +42,5 @@ exports.delete = function(req, res) {
         .then((deleted) => {
             if (deleted) res.json({ message: "State successfully deleted" });
         })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+        .catch((err) => res.status(500).send({ message: err.message }));
 };

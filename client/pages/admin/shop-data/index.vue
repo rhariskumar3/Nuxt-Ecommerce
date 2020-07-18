@@ -43,10 +43,18 @@
                     >₹{{ item.price }}
                   </template>
                   <template v-slot:item.maintanance="{ item }">
-                    <v-icon v-if="item.maintanance" color="success"
+                    <v-icon
+                      v-if="item.maintanance"
+                      color="success"
+                      @click="updateState(item.id, item.maintanance)"
                       >mdi-check</v-icon
                     >
-                    <v-icon v-else color="error">mdi-close</v-icon>
+                    <v-icon
+                      v-else
+                      color="error"
+                      @click="updateState(item.id, item.maintanance)"
+                      >mdi-close</v-icon
+                    >
                   </template>
                   <template v-slot:item.actions="{ item }">
                     <NuxtLink :to="`/admin/shop-data/${item.id}`">
@@ -89,6 +97,28 @@ export default {
   computed: {
     shopData() {
       return [this.$store.getters.adminShopData]
+    },
+  },
+  methods: {
+    async updateState(id, state) {
+      try {
+        await this.$axios
+          .put('admin/shop-data/state', { maintanance: !state })
+          .then((result) => {
+            if (result.success) this.snack('updated', 1)
+            else this.snack('try again', 0)
+          })
+          .catch((err) => {
+            this.snack(err, 0)
+          })
+        await this.$store.dispatch('fetchAdminShopData')
+      } catch (error) {}
+    },
+    snack(message, state) {
+      this.$notifier.showMessage({
+        text: message,
+        color: state === 0 ? 'red' : 'green',
+      })
     },
   },
 }

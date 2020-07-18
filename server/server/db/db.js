@@ -2,7 +2,7 @@
 
 const { Sequelize } = require("sequelize");
 
-var sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, "", {
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, "", {
     logging: false,
     maxConcurrentQueries: 100,
     dialect: "mysql",

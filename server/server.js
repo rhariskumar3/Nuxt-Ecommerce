@@ -24,5 +24,5 @@ app.get("/", (req, res) => res.send("Server not found!"));
 require("./server/routes/approutes")(app);
 
 app.listen(port, () =>
-    console.log(`'Server running on http://localhost:${port}!`)
+    console.log(`'Server running on http://${process.env.API_HOST}:${port}!`)
 );

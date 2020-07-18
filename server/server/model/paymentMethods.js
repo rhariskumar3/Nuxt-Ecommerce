@@ -18,6 +18,9 @@ const PaymentMethod = db.define(
         logo: {
             type: DataTypes.STRING(255),
             allowNull: true,
+            get() {
+                return fileToUrl(this.getDataValue("logo"));
+            },
         },
         merchantId: {
             type: DataTypes.STRING(255),
@@ -72,5 +75,7 @@ const PaymentMethod = db.define(
         tableName: "payment_methods",
     }
 );
+
+const fileToUrl = (url) => url ? (url.toString().includes("http") ? url : "http://" + process.env.API_HOST + ":" + process.env.API_PORT + "/" + url) : url;
 
 module.exports = PaymentMethod;

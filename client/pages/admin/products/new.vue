@@ -51,6 +51,8 @@
                   </v-flex>
                   <v-flex class="xs4" md="4">
                     <v-file-input
+                      v-model="product.image1"
+                      :rules="rules"
                       label="Main Image"
                       accept="image/png, image/jpeg"
                       prepend-icon="mdi-camera"
@@ -58,6 +60,8 @@
                   </v-flex>
                   <v-flex class="xs4" md="4">
                     <v-file-input
+                      v-model="product.image2"
+                      :rules="rules"
                       label="Image 1"
                       accept="image/png, image/jpeg"
                       prepend-icon="mdi-camera"
@@ -65,6 +69,8 @@
                   </v-flex>
                   <v-flex class="xs4" md="4">
                     <v-file-input
+                      v-model="product.image3"
+                      :rules="rules"
                       label="Image 2"
                       accept="image/png, image/jpeg"
                       prepend-icon="mdi-camera"
@@ -72,6 +78,7 @@
                   </v-flex>
                   <v-flex class="xs4" md="4">
                     <v-file-input
+                      v-model="product.image4"
                       label="Image 3"
                       accept="image/png, image/jpeg"
                       prepend-icon="mdi-camera"
@@ -79,6 +86,7 @@
                   </v-flex>
                   <v-flex class="xs4" md="4">
                     <v-file-input
+                      v-model="product.image5"
                       label="Image 4"
                       accept="image/png, image/jpeg"
                       prepend-icon="mdi-camera"
@@ -86,6 +94,7 @@
                   </v-flex>
                   <v-flex class="xs4" md="4">
                     <v-file-input
+                      v-model="product.video"
                       label="Video"
                       accept="video/mp4"
                       prepend-icon="mdi-video"
@@ -233,7 +242,6 @@ export default {
       summary: '',
       description: '',
       categoryId: '',
-      mediaId: '',
       quantity: '',
       price: '',
       taxId: '',
@@ -246,9 +254,21 @@ export default {
       shippingFee: '',
       metaTitle: '',
       metaDescription: '',
+      image1: undefined,
+      image2: undefined,
+      image3: undefined,
+      image4: undefined,
+      image5: undefined,
+      video: undefined,
     },
     friendlyUrl: '',
     loading: false,
+    rules: [
+      (value) =>
+        !value ||
+        value.size < 2000000 ||
+        'Image size should be less than 2 MB!',
+    ],
   }),
   computed: {
     categories() {
@@ -275,8 +295,16 @@ export default {
 
       this.loading = true
       try {
+        const formData = new FormData()
+        for (const [key, value] of Object.entries(this.product))
+          formData.append(key, value)
+
         this.$axios
-          .post('admin/products', this.product)
+          .post('admin/products', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
           .then((values) => {
             if (values.data.message) this.snack(values.data.message, 0)
             else {

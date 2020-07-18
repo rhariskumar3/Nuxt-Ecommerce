@@ -39,7 +39,7 @@ const Product = db.define("products", {
     },
     mediaId: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
+        allowNull: true,
         references: {
             model: {
                 tableName: "productMedia",
@@ -147,7 +147,7 @@ Product.belongsTo(Categories);
 Product.belongsTo(ProductMedia, { as: "media" });
 Product.belongsTo(Tax);
 
-function toSeoUrl(url) {
+const toSeoUrl = url => {
     return url
         .toString() // Convert to string
         .normalize("NFD") // Change diacritics
@@ -159,6 +159,6 @@ function toSeoUrl(url) {
         .replace(/-+/g, "-") // Remove duplicate dashes
         .replace(/^-*/, "") // Remove starting dashes
         .replace(/-*$/, ""); // Remove trailing dashes
-}
+};
 
 module.exports = Product;

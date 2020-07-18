@@ -16,8 +16,7 @@ const session = require("../controller/sessions");
 
 const authenticate = require("../middleware/authenticate");
 
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+const upload = require("../config/multer");
 
 module.exports = function(app) {
     // USER ROUTES
@@ -40,14 +39,20 @@ module.exports = function(app) {
         .route("/admin/carousel")
         .all(authenticate)
         .get(carousel.listAll)
-        .post(carousel.create);
+        .post(upload.image.single("image"), carousel.create);
 
     app
         .route("/admin/carousel/:id(\\d+)")
         .all(authenticate)
         .get(carousel.read)
-        .put(carousel.update)
+        .put(upload.image.single("image"), carousel.update)
         .delete(carousel.delete);
+
+    app
+        .route("/admin/carousel/:id(\\d+)/state")
+        .all(authenticate)
+        .put(carousel.changeState);
+
     // reviews Routes
     app
         .route("/admin/reviews")
@@ -61,32 +66,51 @@ module.exports = function(app) {
         .get(review.read)
         .put(review.update)
         .delete(review.delete);
+
+    app
+        .route("/admin/review/:id(\\d+)/state")
+        .all(authenticate)
+        .put(review.changeState);
+
     // category Routes
     app
         .route("/admin/category")
         .all(authenticate)
         .get(category.listAll)
-        .post(category.create);
+        .post(upload.image.single("image"), category.create);
 
     app
         .route("/admin/category/:id(\\d+)")
         .all(authenticate)
         .get(category.read)
-        .put(category.update)
+        .put(upload.image.single("image"), category.update)
         .delete(category.delete);
 
+    app
+        .route("/admin/category/:id(\\d+)/state")
+        .all(authenticate)
+        .put(category.changeState);
+
+    const productUpload = upload.image.fields([
+        { name: "image1" },
+        { name: "image2" },
+        { name: "image3" },
+        { name: "image4" },
+        { name: "image5" },
+        { name: "video" },
+    ]);
     // product Routes
     app
         .route("/admin/products")
         .all(authenticate)
         .get(product.listAll)
-        .post(product.create);
+        .post(productUpload, product.create);
 
     app
         .route("/admin/products/:id(\\d+)")
         .all(authenticate)
         .get(product.read)
-        .put(product.update)
+        .put(productUpload, product.update)
         .delete(product.delete);
 
     app
@@ -99,7 +123,7 @@ module.exports = function(app) {
         .route("/admin/orders")
         .all(authenticate)
         .get(orders.listAll)
-        .post(orders.create, upload.single("image1"));
+        .post(orders.create);
 
     app
         .route("/admin/orders/:id(\\d+)")
@@ -137,28 +161,41 @@ module.exports = function(app) {
         .delete(customerAddress.delete);
 
     // carrier Routes
-    app.route("/admin/carriers").get(carriers.listAll).post(carriers.create);
+    app
+        .route("/admin/carriers")
+        .get(carriers.listAll)
+        .post(upload.image.single("image"), carriers.create);
 
     app
         .route("/admin/carriers/:id(\\d+)")
         .all(authenticate)
         .get(carriers.read)
-        .put(carriers.update)
+        .put(upload.image.single("image"), carriers.update)
         .delete(carriers.delete);
+
+    app
+        .route("/admin/carriers/:id(\\d+)/state")
+        .all(authenticate)
+        .put(carriers.changeState);
 
     // payment methods Routes
     app
         .route("/admin/payment-methods")
         .all(authenticate)
         .get(paymentMethods.listAll)
-        .post(paymentMethods.create);
+        .post(upload.image.single("image"), paymentMethods.create);
 
     app
         .route("/admin/payment-methods/:id(\\d+)")
         .all(authenticate)
         .get(paymentMethods.read)
-        .put(paymentMethods.update)
+        .put(upload.image.single("image"), paymentMethods.update)
         .delete(paymentMethods.delete);
+
+    app
+        .route("/admin/payment-methods/:id(\\d+)/state")
+        .all(authenticate)
+        .put(paymentMethods.changeState);
 
     // tax Routes
     app.route("/admin/tax").all(authenticate).get(tax.listAll).post(tax.create);
@@ -169,6 +206,11 @@ module.exports = function(app) {
         .get(tax.read)
         .put(tax.update)
         .delete(tax.delete);
+
+    app
+        .route("/admin/tax/:id(\\d+)/state")
+        .all(authenticate)
+        .put(tax.changeState);
 
     // employees Routes
     app
@@ -189,7 +231,12 @@ module.exports = function(app) {
         .route("/admin/shop-data")
         .all(authenticate)
         .get(shopData.read)
-        .put(shopData.update);
+        .put(upload.image.single("image"), shopData.update);
+
+    app
+        .route("/admin/shop-data/state")
+        .all(authenticate)
+        .put(shopData.changeState);
 
     //  Session
     app

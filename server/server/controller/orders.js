@@ -6,32 +6,20 @@ const Orders = require("../model/orders");
 
 exports.listAll = function(req, res) {
     Orders.findAll()
-        .then((values) => {
-            res.send(values);
-        })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+        .then((values) => res.send(values))
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.read = function(req, res) {
     Orders.findOne({ where: { id: req.params.id } })
-        .then((values) => {
-            res.send(values);
-        })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+        .then((values) => res.send(values))
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.create = function(req, res) {
     Orders.create(req.body)
-        .then((values) => {
-            res.send(values);
-        })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+        .then((values) => res.send(values))
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.update = function(req, res) {
@@ -42,13 +30,9 @@ exports.update = function(req, res) {
                 .then((values) => {
                     res.send(values);
                 })
-                .catch((err) => {
-                    res.status(500).send({ message: err.message });
-                });
+                .catch((err) => res.status(500).send({ message: err.message }));
         })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.delete = function(req, res) {
@@ -58,7 +42,5 @@ exports.delete = function(req, res) {
         .then((deleted) => {
             if (deleted) res.json({ message: "Orders successfully deleted" });
         })
-        .catch((err) => {
-            res.status(500).send({ message: err.message });
-        });
+        .catch((err) => res.status(500).send({ message: err.message }));
 };

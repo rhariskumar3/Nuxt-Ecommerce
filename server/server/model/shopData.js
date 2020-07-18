@@ -25,7 +25,10 @@ const ShopData = db.define(
         },
         logo: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            allowNull: true,
+            get() {
+                return fileToUrl(this.getDataValue("logo"));
+            },
         },
         address1: {
             type: DataTypes.STRING(255),
@@ -117,5 +120,7 @@ const ShopData = db.define(
 ShopData.belongsTo(City);
 ShopData.belongsTo(State);
 ShopData.belongsTo(Country);
+
+const fileToUrl = (url) => url ? (url.toString().includes("http") ? url : "http://" + process.env.API_HOST + ":" + process.env.API_PORT + "/" + url) : url;
 
 module.exports = ShopData;

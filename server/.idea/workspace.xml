@@ -2,19 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e2982c0-9875-4736-a884-be8f4eda26c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/components/account/AnonymousAccount.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/components/account/AnonymousAccount.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/components/account/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/components/account/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/components/base/AdminHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/components/base/AdminHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/middleware/router-auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/middleware/router-auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/pages/account/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/account/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/pages/admin/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/pages/admin/products/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/products/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/store/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/mutations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/store/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/store/state.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/CSS.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/pages/admin/categories/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/categories/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/carosuel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/carosuel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/carrier.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/carrier.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/category.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/city.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/city.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/country.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/country.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/customers.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/customers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/customersAddress.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/customersAddress.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/employee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/orders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/paymentMethods.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/paymentMethods.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/reviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/reviews.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/sessions.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/sessions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/shopData.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/shopData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/state.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/tax.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/tax.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/db/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/middleware/authenticate.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/authenticate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/middleware/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/validate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/carousel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/carriers.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/carriers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/categories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/paymentMethods.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/paymentMethods.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/productMedia.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/productMedia.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/shopData.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/shopData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/approutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/approutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/util/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/util/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/util/multer.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,13 +70,6 @@
         <item name="ecommerce@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="ecommerce: schema" type="ebfa3cd1:MariaImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="ecommerce@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="ecommerce: schema" type="ebfa3cd1:MariaImplModel$Schema" />
-        <item name="products: table" type="dbc44a63:MariaImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -104,7 +120,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.12.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/controller" />
+    <property name="js.buildTools.grunt.grunt-cli.package" value="" />
+    <property name="js.buildTools.gulp.gulp_package_dir" value="" />
+    <property name="last.edited.regexp" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../client" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.jscs" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -117,11 +136,13 @@
     <property name="node.js.selected.package.jscs" value="" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.jest.jest_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="database.main" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -130,6 +151,20 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="js.build_tools.grunt">
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -159,7 +194,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:ecommerce@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@56959d2a" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@1bdc9a9a" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -167,6 +202,9 @@
         </serviceView>
       </list>
     </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -185,6 +223,8 @@
       <workItem from="1582431154075" duration="19774000" />
       <workItem from="1582731245728" duration="4686000" />
       <workItem from="1582954865102" duration="258000" />
+      <workItem from="1595086258586" duration="5062000" />
+      <workItem from="1595091890901" duration="1018000" />
     </task>
     <task id="LOCAL-00001" summary="Admin Pages">
       <created>1582445487547</created>
@@ -244,101 +284,41 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="423" y="102" key="#Deployment" timestamp="1582464212853">
+    <state x="381" y="102" key="#SQL_Dialects" timestamp="1595086837245">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="423" y="102" key="#Deployment/0.0.1575.886@0.0.1575.886" timestamp="1582464212853" />
-    <state x="381" y="102" key="#JSLint" timestamp="1581838079558">
+    <state x="381" y="102" key="#SQL_Dialects/0.0.1575.886@0.0.1575.886" timestamp="1595086837245" />
+    <state x="243" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595088837914">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="381" y="102" key="#JSLint/0.0.1575.886@0.0.1575.886" timestamp="1581838079558" />
-    <state x="381" y="102" key="#Project_Structure" timestamp="1581837276504">
+    <state x="243" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1575.886@0.0.1575.886" timestamp="1595088837914" />
+    <state x="569" y="185" key="FileChooserDialogImpl" timestamp="1595090109425">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="381" y="102" key="#Project_Structure/0.0.1575.886@0.0.1575.886" timestamp="1581837276504" />
-    <state x="522" y="130" key="#addressModel.js" timestamp="1581837787561">
+    <state x="569" y="185" key="FileChooserDialogImpl/0.0.1575.886@0.0.1575.886" timestamp="1595090109425" />
+    <state width="1051" height="231" key="GridCell.Tab.0.bottom" timestamp="1595088789702">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="522" y="130" key="#addressModel.js/0.0.1575.886@0.0.1575.886" timestamp="1581837787561" />
-    <state x="243" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582459892581">
+    <state width="1051" height="231" key="GridCell.Tab.0.bottom/0.0.1575.886@0.0.1575.886" timestamp="1595088789702" />
+    <state width="1051" height="231" key="GridCell.Tab.0.center" timestamp="1595088789702">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="243" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1575.886@0.0.1575.886" timestamp="1582459892581" />
-    <state x="469" y="171" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1582203747384">
+    <state width="1051" height="231" key="GridCell.Tab.0.center/0.0.1575.886@0.0.1575.886" timestamp="1595088789702" />
+    <state width="1051" height="231" key="GridCell.Tab.0.left" timestamp="1595088789702">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="469" y="171" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1575.886@0.0.1575.886" timestamp="1582203747384" />
-    <state x="556" y="310" key="#com.intellij.ws.actions.HttpClientConvertFromCurlDialog" timestamp="1581837591249">
+    <state width="1051" height="231" key="GridCell.Tab.0.left/0.0.1575.886@0.0.1575.886" timestamp="1595088789702" />
+    <state width="1051" height="231" key="GridCell.Tab.0.right" timestamp="1595088789702">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="556" y="310" key="#com.intellij.ws.actions.HttpClientConvertFromCurlDialog/0.0.1575.886@0.0.1575.886" timestamp="1581837591249" />
-    <state x="180" y="38" width="1301" height="811" key="CommitChangelistDialog2" timestamp="1582464388779">
+    <state width="1051" height="231" key="GridCell.Tab.0.right/0.0.1575.886@0.0.1575.886" timestamp="1595088789702" />
+    <state x="269" y="18" key="SettingsEditor" timestamp="1595088077512">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="180" y="38" width="1301" height="811" key="CommitChangelistDialog2/0.0.1575.886@0.0.1575.886" timestamp="1582464388779" />
-    <state x="568" y="198" key="FileChooserDialogImpl" timestamp="1582204391436">
+    <state x="269" y="18" key="SettingsEditor/0.0.1575.886@0.0.1575.886" timestamp="1595088077512" />
+    <state x="490" y="267" key="com.intellij.ide.util.TipDialog" timestamp="1595091891176">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="568" y="198" key="FileChooserDialogImpl/0.0.1575.886@0.0.1575.886" timestamp="1582204391436" />
-    <state width="1532" height="231" key="GridCell.Tab.0.bottom" timestamp="1582955130973">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state width="1532" height="231" key="GridCell.Tab.0.bottom/0.0.1575.886@0.0.1575.886" timestamp="1582955130973" />
-    <state width="1532" height="231" key="GridCell.Tab.0.center" timestamp="1582955130973">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state width="1532" height="231" key="GridCell.Tab.0.center/0.0.1575.886@0.0.1575.886" timestamp="1582955130973" />
-    <state width="1532" height="231" key="GridCell.Tab.0.left" timestamp="1582955130973">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state width="1532" height="231" key="GridCell.Tab.0.left/0.0.1575.886@0.0.1575.886" timestamp="1582955130973" />
-    <state width="1532" height="231" key="GridCell.Tab.0.right" timestamp="1582955130973">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state width="1532" height="231" key="GridCell.Tab.0.right/0.0.1575.886@0.0.1575.886" timestamp="1582955130973" />
-    <state x="297" y="35" key="SettingsEditor" timestamp="1581838905751">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state x="297" y="35" key="SettingsEditor/0.0.1575.886@0.0.1575.886" timestamp="1581838905751" />
-    <state x="381" y="176" key="Vcs.Push.Dialog.v2" timestamp="1582464401675">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state x="381" y="176" key="Vcs.Push.Dialog.v2/0.0.1575.886@0.0.1575.886" timestamp="1582464401675" />
-    <state x="616" y="328" width="344" height="263" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1" timestamp="1582459913089">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state x="616" y="328" width="344" height="263" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1/0.0.1575.886@0.0.1575.886" timestamp="1582459913089" />
-    <state x="674" y="323" width="312" height="240" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1582460870383">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state x="674" y="323" width="312" height="240" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1575.886@0.0.1575.886" timestamp="1582460870383" />
-    <state x="369" y="98" key="com.intellij.database.dbimport.ImportDialog" timestamp="1582050904281">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state x="369" y="98" key="com.intellij.database.dbimport.ImportDialog/0.0.1575.886@0.0.1575.886" timestamp="1582050904281" />
-    <state x="1008" y="174" key="com.intellij.database.run.ParametersPanel.Standalone" timestamp="1581838978111">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state x="1008" y="174" key="com.intellij.database.run.ParametersPanel.Standalone/0.0.1575.886@0.0.1575.886" timestamp="1581838978111" />
-    <state x="498" y="85" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1582460866796">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state x="498" y="85" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1575.886@0.0.1575.886" timestamp="1582460866796" />
-    <state x="490" y="267" key="com.intellij.ide.util.TipDialog" timestamp="1582954864403">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state x="490" y="267" key="com.intellij.ide.util.TipDialog/0.0.1575.886@0.0.1575.886" timestamp="1582954864403" />
-    <state x="606" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582445741297">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state x="606" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1575.886@0.0.1575.886" timestamp="1582445741297" />
-    <state x="505" y="200" key="jetbrains.nodejs.interpreters-dialog" timestamp="1581837484281">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state x="505" y="200" key="jetbrains.nodejs.interpreters-dialog/0.0.1575.886@0.0.1575.886" timestamp="1581837484281" />
-    <state x="451" y="187" width="672" height="678" key="search.everywhere.popup" timestamp="1581837238341">
-      <screen x="0" y="0" width="1575" height="886" />
-    </state>
-    <state x="451" y="187" width="672" height="678" key="search.everywhere.popup/0.0.1575.886@0.0.1575.886" timestamp="1581837238341" />
+    <state x="490" y="267" key="com.intellij.ide.util.TipDialog/0.0.1575.886@0.0.1575.886" timestamp="1595091891176" />
   </component>
 </project>

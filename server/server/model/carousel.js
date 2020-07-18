@@ -13,6 +13,9 @@ const Carousel = db.define("carousel", {
     image: {
         type: DataTypes.STRING(100),
         allowNull: false,
+        get() {
+            return fileToUrl(this.getDataValue("image"));
+        },
     },
     title: {
         type: DataTypes.STRING(50),
@@ -36,5 +39,7 @@ const Carousel = db.define("carousel", {
         defaultValue: true,
     },
 });
+
+const fileToUrl = (url) => url ? (url.toString().includes("http") ? url : "http://" + process.env.API_HOST + ":" + process.env.API_PORT + "/" + url) : url;
 
 module.exports = Carousel;

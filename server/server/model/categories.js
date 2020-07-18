@@ -21,6 +21,9 @@ const Categories = db.define("categories", {
     image: {
         type: DataTypes.STRING(100),
         allowNull: true,
+        get() {
+            return fileToUrl(this.getDataValue("image"));
+        },
     },
     friendlyUrl: {
         type: DataTypes.STRING(255),
@@ -39,7 +42,7 @@ Categories.afterCreate(async(category, options) => {
     });
 });
 
-function toSeoUrl(url) {
+const toSeoUrl = (url) => {
     return url
         .toString() // Convert to string
         .normalize("NFD") // Change diacritics
@@ -51,6 +54,8 @@ function toSeoUrl(url) {
         .replace(/-+/g, "-") // Remove duplicate dashes
         .replace(/^-*/, "") // Remove starting dashes
         .replace(/-*$/, ""); // Remove trailing dashes
-}
+};
+
+const fileToUrl = (url) => url ? (url.toString().includes("http") ? url : "http://" + process.env.API_HOST + ":" + process.env.API_PORT + "/" + url) : url;
 
 module.exports = Categories;

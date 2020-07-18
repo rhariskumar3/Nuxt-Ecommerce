@@ -64,7 +64,7 @@ const User = db.define(
 );
 
 User.prototype.toJSON = function() {
-    var values = Object.assign({}, this.get());
+    let values = Object.assign({}, this.get());
 
     delete values.password;
     return values;

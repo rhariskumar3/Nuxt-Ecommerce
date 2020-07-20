@@ -44,9 +44,11 @@
               :key="index"
               nav
               :to="item.to"
-              class="hidden-sm-and-down"
               @click="authClick(item)"
             >
+              <v-list-item-icon v-if="item.icon">
+                <v-icon v-text="item.icon"></v-icon>
+              </v-list-item-icon>
               <v-list-item-title>{{ item.text }}</v-list-item-title>
             </v-list-item>
           </v-list>
@@ -126,11 +128,21 @@ export default {
     },
     authLinks() {
       if (this.$auth.loggedIn) {
-        const links = [{ text: this.$auth.user.email, to: '/account' }]
-        if (this.$auth.user.admin) links.push({ text: 'Admin', to: '/admin' })
-        links.push({ text: 'Logout' })
+        const links = [
+          { text: this.$auth.user.name },
+          { text: 'Account', to: '/identity', icon: 'mdi-account' },
+          { text: 'Addresses', to: '/addresses', icon: 'mdi-nature-people' },
+          { text: 'Orders', to: '/orders', icon: 'mdi-cart-outline' },
+        ]
+        if (this.$auth.user.admin)
+          links.push({
+            text: 'Admin',
+            to: '/admin',
+            icon: 'mdi-view-dashboard',
+          })
+        links.push({ text: 'Logout', icon: 'mdi-logout' })
         return links
-      } else return [{ text: 'Login/Register', to: '/auth' }]
+      } else return [{ text: 'Login/Register', to: '/auth', icon: 'mdi-login' }]
     },
   },
   methods: {

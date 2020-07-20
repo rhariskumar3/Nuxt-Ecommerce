@@ -6,9 +6,7 @@ const category = require("../controller/category");
 const product = require("../controller/products");
 const shopData = require("../controller/shopData");
 const carriers = require("../controller/carrier");
-const customers = require("../controller/customers");
 const customerAddress = require("../controller/customersAddress");
-const employees = require("../controller/employee");
 const orders = require("../controller/orders");
 const paymentMethods = require("../controller/paymentMethods");
 const tax = require("../controller/tax");
@@ -132,20 +130,6 @@ module.exports = function(app) {
         .put(orders.update)
         .delete(orders.delete);
 
-    // customers Routes
-    app
-        .route("/admin/customers")
-        .all(authenticate)
-        .get(customers.listAll)
-        .post(customers.create);
-
-    app
-        .route("/admin/customers/:id(\\d+)")
-        .all(authenticate)
-        .get(customers.read)
-        .put(customers.update)
-        .delete(customers.delete);
-
     // customer Address Routes
     app
         .route("/admin/customer-addresses")
@@ -212,20 +196,6 @@ module.exports = function(app) {
         .all(authenticate)
         .put(tax.changeState);
 
-    // employees Routes
-    app
-        .route("/admin/employees")
-        .all(authenticate)
-        .get(employees.listAll)
-        .post(employees.create);
-
-    app
-        .route("/admin/employees/:id(\\d+)")
-        .all(authenticate)
-        .get(employees.read)
-        .put(employees.update)
-        .delete(employees.delete);
-
     // shop Data Routes
     app
         .route("/admin/shop-data")
@@ -250,4 +220,6 @@ module.exports = function(app) {
         .get(authenticate)
         .get(session.user)
         .post(session.register);
+
+    app.route("/admin/users").get(authenticate).get(session.users);
 };

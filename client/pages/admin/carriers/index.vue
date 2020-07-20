@@ -52,15 +52,15 @@
                   :items-per-page="10"
                   :search="search"
                 >
-                  <template v-slot:item.image="{ item }">
+                  <template v-slot:item.logo="{ item }">
                     <v-img
                       :src="item.logo"
                       max-width="50px"
                       max-height="50px"
                     />
                   </template>
-                  <template v-slot:item.max_weight="{ item }"
-                    >{{ item.max_weight }}Kg
+                  <template v-slot:item.maxWeight="{ item }"
+                    >{{ item.maxWeight }} Kg
                   </template>
                   <template v-slot:item.enabled="{ item }">
                     <v-icon
@@ -102,8 +102,8 @@ export default {
       { text: 'ID', value: 'id' },
       { text: 'Image', value: 'logo', sortable: false },
       { text: 'Name', value: 'name' },
-      { text: 'Transit Time', value: 'transit_time', sortable: false },
-      { text: 'Max Weight', value: 'max_weight' },
+      { text: 'Transit Time', value: 'transitTime', sortable: false },
+      { text: 'Max Weight', value: 'maxWeight' },
       { text: 'Zone', value: 'zone' },
       { text: 'Enabled', value: 'enabled' },
       { text: 'Actions', value: 'actions', sortable: false },

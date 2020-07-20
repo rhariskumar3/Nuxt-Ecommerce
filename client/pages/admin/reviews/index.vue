@@ -100,7 +100,7 @@ export default {
       { text: 'ID', value: 'id' },
       { text: 'Title', value: 'title', sortable: false },
       { text: 'Description', value: 'description', sortable: false },
-      { text: 'Customer', value: 'name' },
+      { text: 'User', value: 'user.name' },
       { text: 'Enabled', value: 'enabled' },
       { text: 'Actions', value: 'actions', sortable: false },
     ],

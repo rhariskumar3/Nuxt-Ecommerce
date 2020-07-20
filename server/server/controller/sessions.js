@@ -6,18 +6,18 @@ const User = require("../model/user");
 
 exports.users = function(req, res) {
     User.findAll()
-        .then(values => res.send(values))
-        .catch(err => res.status(500).send({message: err.message}));
+        .then((values) => res.send(values))
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.user = function(req, res) {
     if (Util.validate(res, req.decoded.email, "Email"))
         User.findOne({ where: { email: req.decoded.email } })
-        .then(user => {
+        .then((user) => {
             if (!user) return res.status(404).send({ message: "User Not found." });
             else return res.json({ data: user });
         })
-            .catch(err => res.status(500).send({message: err.message}));
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.login = function(req, res) {
@@ -26,20 +26,21 @@ exports.login = function(req, res) {
         Util.validate(res, req.body.password, "Password")
     )
         User.findOne({ where: { email: req.body.email } })
-        .then(user => {
+        .then((user) => {
             if (!user) return res.status(404).send({ message: "User Not found." });
-            user.validPassword(req.body.password).then((result, error) => {
-                if (result) {
-                    const result = user.generateToken();
-                    return res.json({ token: result });
-                } else {
-                    return res.status(401).json({
-                        message: "Invalid Password!",
-                    });
-                }
-            });
+            if (user.enabled)
+                user.validPassword(req.body.password).then((result, error) => {
+                    if (result) {
+                        const result = user.generateToken();
+                        return res.json({ token: result });
+                    } else
+                        return res.status(401).json({
+                            message: "Invalid Password!",
+                        });
+                });
+            else res.json({ message: "User suspended. Please contact admin!" });
         })
-            .catch(err => res.status(500).send({message: err.message}));
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.register = function(req, res) {
@@ -53,8 +54,10 @@ exports.register = function(req, res) {
             email: req.body.email,
             password: req.body.password,
         })
-        .then(user => res.json({message: user.name + " registered successfully"}))
-            .catch(err => res.status(500).send({message: err.message}));
+        .then((user) =>
+            res.json({ message: user.name + " registered successfully" })
+        )
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.logout = function(req, res) {

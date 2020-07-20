@@ -36,6 +36,7 @@
                   </v-flex>
                   <v-flex class="xs12" md="4">
                     <v-file-input
+                      v-model="method.image"
                       label="Image"
                       accept="image/png, image/jpeg"
                       prepend-icon="mdi-camera"
@@ -73,6 +74,7 @@ export default {
       subTitle: '',
       action: '',
       url: '',
+      image: undefined,
     },
     loading: false,
   }),
@@ -80,8 +82,15 @@ export default {
     save() {
       this.loading = true
       try {
+        const formData = new FormData()
+        for (const [key, value] of Object.entries(this.method))
+          formData.append(key, value)
         this.$axios
-          .post('admin/carousel', this.method)
+          .post('admin/carousel', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
           .then((values) => {
             if (values.data.message) this.snack(values.data.message, 0)
             else {

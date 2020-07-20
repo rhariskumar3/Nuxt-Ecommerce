@@ -5,7 +5,7 @@ const Util = require("../util/index.js");
 const Reviews = require("../model/reviews");
 
 exports.listAll = function(req, res) {
-    Reviews.findAll()
+    Reviews.findAll({ include: { all: true } })
         .then((values) => res.send(values))
         .catch((err) => res.status(500).send({ message: err.message }));
 };

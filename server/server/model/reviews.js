@@ -3,7 +3,7 @@
 const db = require("../db/db.js");
 const { Sequelize, DataTypes } = require("sequelize");
 
-const Customer = require("./customers");
+const User = require("./user");
 
 const Review = db.define("reviews", {
     id: {
@@ -20,12 +20,12 @@ const Review = db.define("reviews", {
         type: DataTypes.STRING(255),
         allowNull: false,
     },
-    customerId: {
+    userId: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
         references: {
             model: {
-                tableName: "customers",
+                tableName: "user",
             },
             key: "id",
         },
@@ -37,6 +37,6 @@ const Review = db.define("reviews", {
     },
 });
 
-Review.belongsTo(Customer);
+Review.belongsTo(User);
 
 module.exports = Review;

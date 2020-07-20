@@ -2,7 +2,7 @@
 
 const Util = require("../util/index.js");
 
-const CustomerAddress = require("../model/customers");
+const CustomerAddress = require("../model/address");
 
 exports.listAll = function(req, res) {
     CustomerAddress.findAll()
@@ -40,8 +40,7 @@ exports.delete = function(req, res) {
             where: { id: req.params.id },
         })
         .then((deleted) => {
-            if (deleted)
-                res.json({ message: "CustomerAddress successfully deleted" });
+            if (deleted) res.json({ message: "Address successfully deleted" });
         })
         .catch((err) => res.status(500).send({ message: err.message }));
 };

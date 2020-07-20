@@ -6,7 +6,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const Address = require("./address");
 const Carrier = require("./carriers");
 const OrderState = require("./orderStates");
-const Customers = require("./customers");
+const User = require("./user");
 
 const Order = db.define("orders", {
     id: {
@@ -20,12 +20,12 @@ const Order = db.define("orders", {
         defaultValue: DataTypes.UUIDV1,
         allowNull: true,
     },
-    customerId: {
+    userId: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
         references: {
             model: {
-                tableName: "customers",
+                tableName: "user",
             },
             key: "id",
         },
@@ -124,7 +124,7 @@ const Order = db.define("orders", {
 Order.belongsTo(Address, { foreignKey: "addressDelivery" });
 Order.belongsTo(Address, { foreignKey: "addressInvoice" });
 Order.belongsTo(Carrier);
-Order.belongsTo(Customers);
+Order.belongsTo(User);
 Order.belongsTo(OrderState, { foreignKey: "currentState" });
 
 module.exports = Order;

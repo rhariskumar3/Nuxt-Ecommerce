@@ -47,19 +47,11 @@
                   :items-per-page="10"
                   :search="search"
                 >
-                  <template v-slot:item.active="{ item }">
-                    <v-icon v-if="item.active === 1" color="success"
+                  <template v-slot:item.enabled="{ item }">
+                    <v-icon v-if="item.enabled" color="success"
                       >mdi-check</v-icon
                     >
                     <v-icon v-else color="error">mdi-close</v-icon>
-                  </template>
-                  <template v-slot:item.admin="{ item }">
-                    <v-icon v-if="item.admin" color="success">mdi-check</v-icon>
-                    <v-icon v-else color="error">mdi-close</v-icon>
-                  </template>
-                  <template v-slot:item.actions="{ item }">
-                    <v-icon @click="item">mdi-pencil</v-icon>
-                    <v-icon @click="item">mdi-delete-forever</v-icon>
                   </template>
                 </v-data-table>
               </div>
@@ -75,18 +67,15 @@
 export default {
   layout: 'admin',
   async fetch({ store, params }) {
-    await store.dispatch('fetchAdminEmployees')
+    await store.dispatch('fetchAdminCustomers')
   },
   data: () => ({
     search: '',
     headers: [
       { text: 'ID', value: 'id' },
-      { text: 'First Name', value: 'first_name' },
-      { text: 'Last Name', value: 'last_name' },
+      { text: 'Name', value: 'name' },
       { text: 'E-Mail', value: 'email' },
-      { text: 'Active', value: 'active' },
-      { text: 'Admin', value: 'admin' },
-      { text: 'Actions', value: 'actions', sortable: false },
+      { text: 'Active', value: 'enabled' },
     ],
   }),
   computed: {

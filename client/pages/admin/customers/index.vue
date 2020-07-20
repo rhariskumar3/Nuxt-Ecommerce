@@ -53,8 +53,8 @@
                     </v-icon>
                     <v-icon v-else color="error">mdi-close</v-icon>
                   </template>
-                  <template v-slot:item.blocked="{ item }">
-                    <v-icon v-if="item.blocked" color="success"
+                  <template v-slot:item.enabled="{ item }">
+                    <v-icon v-if="!item.enabled" color="success"
                       >mdi-check</v-icon
                     >
                     <v-icon v-else color="error">mdi-close</v-icon>
@@ -83,12 +83,10 @@ export default {
     search: '',
     headers: [
       { text: 'ID', value: 'id' },
-      { text: 'First Name', value: 'first_name' },
-      { text: 'Last Name', value: 'last_name' },
-      { text: 'E-Mail', value: 'email' },
+      { text: 'Name', value: 'name' },
       { text: 'Mobile', value: 'mobile' },
       { text: 'Newsletter', value: 'newsletter' },
-      { text: 'Blocked', value: 'blocked' },
+      { text: 'Blocked', value: 'enabled' },
       { text: 'Actions', value: 'actions', sortable: false },
     ],
   }),

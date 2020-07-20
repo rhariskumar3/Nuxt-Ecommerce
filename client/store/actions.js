@@ -77,8 +77,15 @@ export default {
     commit('setAdminOrders', data)
   },
   async fetchAdminCustomers({ commit }) {
-    const data = await getData('/admin/customers', this.$axios, commit)
-    commit('setAdminCustomers', data)
+    const data = await getData('/admin/users', this.$axios, commit)
+    commit(
+      'setAdminCustomers',
+      data.filter((list) => list.admin === false)
+    )
+    commit(
+      'setAdminEmployees',
+      data.filter((list) => list.admin === true)
+    )
   },
   async fetchAdminAddresses({ commit }) {
     const data = await getData('/admin/customer-addresses', this.$axios, commit)
@@ -113,10 +120,6 @@ export default {
   async fetchAdminShopData({ commit }) {
     const data = await getData('/admin/shop-data', this.$axios, commit)
     commit('setAdminShopData', data)
-  },
-  async fetchAdminEmployees({ commit }) {
-    const data = await getData('/admin/employees', this.$axios, commit)
-    commit('setAdminEmployees', data)
   },
 }
 

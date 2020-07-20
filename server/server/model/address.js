@@ -6,7 +6,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const City = require("./cities");
 const Country = require("./countries");
 const State = require("./states");
-const Customers = require("./customers");
+const User = require("./user");
 const ShopData = require("./shopData.js");
 
 const Address = db.define("address", {
@@ -16,12 +16,12 @@ const Address = db.define("address", {
         primaryKey: true,
         autoIncrement: true,
     },
-    customerId: {
+    userId: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
         references: {
             model: {
-                tableName: "customers",
+                tableName: "user",
             },
             key: "id",
         },
@@ -100,6 +100,6 @@ const Address = db.define("address", {
 ShopData.belongsTo(City);
 ShopData.belongsTo(State);
 ShopData.belongsTo(Country);
-ShopData.belongsTo(Customers);
+ShopData.belongsTo(User);
 
 module.exports = Address;

@@ -52,7 +52,7 @@
                   :items-per-page="10"
                   :search="search"
                 >
-                  <template v-slot:item.image="{ item }">
+                  <template v-slot:item.logo="{ item }">
                     <v-img
                       :src="item.logo"
                       max-width="50px"

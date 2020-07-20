@@ -39,6 +39,7 @@
                   </v-flex>
                   <v-flex class="xs4" md="4">
                     <v-file-input
+                      v-model="category.image"
                       label="Main Image"
                       accept="image/png, image/jpeg"
                       prepend-icon="mdi-camera"
@@ -71,6 +72,7 @@ export default {
     category: {
       title: '',
       description: '',
+      image: undefined,
     },
     friendlyUrl: '',
     loading: false,
@@ -92,8 +94,15 @@ export default {
 
       this.loading = true
       try {
+        const formData = new FormData()
+        for (const [key, value] of Object.entries(this.category))
+          formData.append(key, value)
         this.$axios
-          .post('admin/category', this.category)
+          .post('admin/category', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
           .then((values) => {
             if (values.data.message) this.snack(values.data.message, 0)
             else {

@@ -39,6 +39,7 @@
                   </v-flex>
                   <v-flex class="xs4" md="4">
                     <v-file-input
+                      v-model="carrier.image"
                       label="Logo"
                       accept="image/png, image/jpeg"
                       prepend-icon="mdi-camera"
@@ -85,6 +86,7 @@ export default {
       trackingUrl: '',
       maxWeight: '',
       zoneId: '1',
+      image: undefined,
     },
     loading: false,
   }),
@@ -92,8 +94,15 @@ export default {
     save() {
       this.loading = true
       try {
+        const formData = new FormData()
+        for (const [key, value] of Object.entries(this.carrier))
+          formData.append(key, value)
         this.$axios
-          .post('admin/carriers', this.carrier)
+          .post('admin/carriers', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
           .then((values) => {
             if (values.data.message) this.snack(values.data.message, 0)
             else {

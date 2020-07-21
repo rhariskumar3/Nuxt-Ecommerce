@@ -10,6 +10,12 @@ exports.listAll = function(req, res) {
         .catch((err) => res.status(500).send({ message: err.message }));
 };
 
+exports.listAllLive = function(req, res) {
+    PaymentMethods.findAll({ where: { enabled: true } })
+        .then((values) => res.send(values))
+        .catch((err) => res.status(500).send({ message: err.message }));
+};
+
 exports.read = function(req, res) {
     PaymentMethods.findOne({ where: { id: req.params.id } })
         .then((values) => res.send(values))

@@ -5,7 +5,16 @@ const Util = require("../util/index.js");
 const CustomerAddress = require("../model/address");
 
 exports.listAll = function(req, res) {
-    CustomerAddress.findAll()
+    CustomerAddress.findAll({ include: { all: true } })
+        .then((values) => res.send(values))
+        .catch((err) => res.status(500).send({ message: err.message }));
+};
+
+exports.listAllById = function(req, res) {
+    CustomerAddress.findAll({
+            where: { userId: req.params.id },
+            include: { all: true },
+        })
         .then((values) => res.send(values))
         .catch((err) => res.status(500).send({ message: err.message }));
 };

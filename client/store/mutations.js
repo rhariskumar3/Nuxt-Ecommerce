@@ -7,11 +7,6 @@ export default {
     state.ERR = payload
   },
 
-  // DICTIONARIES
-  setDictionary(state, payload) {
-    state.dictionaries[payload.name] = payload.data
-  },
-
   // PRODUCT
   setCollections(state, payload) {
     state.collections = payload
@@ -61,6 +56,12 @@ export default {
         })
     }
     state.carts = cart
+  },
+  setCarriers(state, payload) {
+    state.carriers = payload
+  },
+  setPaymentMethods(state, payload) {
+    state.paymentMethods = payload
   },
 
   // ADMIN

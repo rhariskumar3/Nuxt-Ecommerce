@@ -10,7 +10,7 @@
         <v-container>
           <v-row>
             <v-col cols="12" md="7">
-              <cart-form />
+              <cart-form :addresses="addresses" />
             </v-col>
             <v-col cols="12" md="5">
               <v-container class="pa-0">
@@ -36,6 +36,20 @@ export default {
     CartForm,
     CartFinal,
     AppError,
+  },
+  async fetch({ store, params }) {
+    await store.dispatch('fetchCarriers')
+    await store.dispatch('fetchPaymentMethods')
+  },
+  asyncData({ app: { $axios, $auth }, params, error }) {
+    return $axios
+      .get(`/address/` + $auth.user.id)
+      .then((res) => {
+        return { addresses: res.data }
+      })
+      .catch((e) => {
+        error({ statusCode: 404, message: 'Addresses not found' })
+      })
   },
   computed: {
     carts() {

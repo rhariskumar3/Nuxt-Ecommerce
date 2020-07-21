@@ -30,6 +30,15 @@ module.exports = function(app) {
     app.route("/product/:url").get(product.readByUrl);
     // shop Data Routes
     app.route("/shop-data").get(shopData.read);
+    // Addresses
+    app.route("/address/:id").get(customerAddress.listAllById);
+    // carrier Routes
+    app.route("/carriers").get(carriers.listAllLive);
+    // payment methods Routes
+    app
+        .route("/payment-methods")
+        .all(authenticate)
+        .get(paymentMethods.listAllLive);
 
     // ADMIN ROUTES
     // carousel Routes

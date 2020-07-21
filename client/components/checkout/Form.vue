@@ -1,132 +1,118 @@
 <template>
-  <v-stepper v-model="e6" vertical>
-    <v-stepper-step :complete="e6 > 1" step="1">
+  <v-card v-if="!this.$auth.loggedIn" to="/auth"
+    ><v-card-title> Please login/register to checkout </v-card-title>
+  </v-card>
+  <!-- <v-card v-else-if="shippers.length == 0"
+    ><v-card-title>
+      No Shipping mathods found. Please try again later
+    </v-card-title>
+  </v-card>
+  <v-card v-else-if="paymentMethods.length == 0" ]
+    ><v-card-title>
+      No Payment mathods found. Please try again later
+    </v-card-title>
+  </v-card> -->
+  <v-stepper v-else v-model="e6" vertical>
+    <v-stepper-step complete step="1">
       Contact information
     </v-stepper-step>
-    <v-stepper-content step="1">
-      <v-form ref="contactInfoForm" lazy-validation>
-        <v-container>
-          <v-row>
-            <v-col cols="12">
-              <v-text-field
-                v-model="contactInfo.email"
-                :rules="emailRules"
-                label="E-mail"
-                dense
-                required
-              />
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                v-model="contactInfo.firstName"
-                :rules="nameRules"
-                label="First Name"
-                dense
-                required
-              />
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                v-model="contactInfo.lastName"
-                :rules="requiredRules"
-                label="Last Name"
-                dense
-                required
-              />
-            </v-col>
-            <v-col cols="12" col>
-              <v-text-field
-                v-model="contactInfo.mobile"
-                :rules="requiredRules"
-                label="Mobile"
-                dense
-                required
-              />
-            </v-col>
-          </v-row>
-          <v-btn color="primary" class="mr-4" @click="contactInfoSubmit">
-            Continue
-          </v-btn>
-        </v-container>
-      </v-form>
-    </v-stepper-content>
 
     <v-stepper-step :complete="e6 > 2" step="2"
-      >Shipping Address</v-stepper-step
+      >Delivery Address</v-stepper-step
     >
     <v-stepper-content step="2">
-      <v-form ref="shippingAddressForm">
+      <v-card v-if="addresses.length == 0" to="/addresses"
+        ><v-card-title> Please add address to checkout </v-card-title>
+      </v-card>
+      <v-form v-else ref="shippingAddressForm">
         <v-container>
           <v-row>
-            <v-col cols="12" md="6">
-              <v-text-field
-                v-model="shippingAddress.firstName"
-                :rules="nameRules"
-                label="First Name"
-                dense
-                required
-              />
+            <v-col cols="12" sm="12">
+              <v-select
+                v-model="deliveryAddress"
+                :items="addresses"
+                item-text="name"
+                label="Shipping Address"
+                return-object
+                solo
+              >
+                <template slot="selection" slot-scope="{ item }">
+                  {{ item.name }} - {{ item.city.name }} -
+                  {{ item.state.name }} - {{ item.pinCode }}
+                </template>
+                <template slot="item" slot-scope="{ item }">
+                  {{ item.name }} - {{ item.city.name }} -
+                  {{ item.state.name }} - {{ item.pinCode }}
+                </template>
+              </v-select>
             </v-col>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="12">
               <v-text-field
-                v-model="shippingAddress.lastName"
-                :rules="requiredRules"
-                label="Last Name"
+                v-model="deliveryAddress.name"
+                :rules="nameRules"
+                label="Name"
                 dense
+                disabled
                 required
               />
             </v-col>
             <v-col cols="12">
               <v-text-field
-                v-model="shippingAddress.address"
+                v-model="deliveryAddress.address1"
                 :rules="requiredRules"
                 label="Address"
                 dense
+                disabled
                 required
               />
             </v-col>
             <v-col cols="12">
               <v-text-field
-                v-model="shippingAddress.address2"
+                v-model="deliveryAddress.address2"
+                disabled
                 label="Apartment, suite, etc. (optional)"
                 dense
               />
             </v-col>
             <v-col cols="12">
               <v-text-field
-                v-model="shippingAddress.city"
+                v-model="deliveryAddress.city.name"
                 :rules="requiredRules"
                 label="City"
                 dense
+                disabled
                 required
               />
             </v-col>
             <v-col cols="12" md="4">
               <v-text-field
-                v-model="shippingAddress.state"
+                v-model="deliveryAddress.state.name"
                 :rules="requiredRules"
                 label="State"
                 dense
+                disabled
                 required
               />
             </v-col>
             <v-col cols="12" md="4">
               <v-text-field
-                v-model="shippingAddress.country"
+                v-model="deliveryAddress.country.name"
                 :rules="requiredRules"
                 label="Country"
                 dense
+                disabled
                 required
               />
             </v-col>
             <v-col cols="12" md="4">
               <v-text-field
-                v-model="shippingAddress.pinCode"
+                v-model="deliveryAddress.pinCode"
                 :rules="requiredRules"
                 label="PIN code"
                 type="number"
                 counter="6"
                 dense
+                disabled
                 required
               />
             </v-col>
@@ -141,85 +127,104 @@
           <v-btn color="primary" class="mr-4" @click="shippingAddressSubmit">
             Continue
           </v-btn>
-          <v-btn text @click="e6 = 1">Back</v-btn>
         </v-container>
       </v-form>
     </v-stepper-content>
 
     <v-stepper-step :complete="e6 > 3" step="3">Billing Address</v-stepper-step>
     <v-stepper-content step="3">
-      <v-form ref="billingAddressForm">
+      <v-card v-if="addresses.length == 0" to="/addresses"
+        ><v-card-title> Please add address to checkout </v-card-title>
+      </v-card>
+      <v-form v-else ref="billingAddressForm">
         <v-container>
           <v-row>
-            <v-col cols="12" md="6">
-              <v-text-field
-                v-model="billingAddress.firstName"
-                :rules="nameRules"
-                label="First Name"
-                dense
-                required
-              />
+            <v-col cols="12" sm="12">
+              <v-select
+                v-model="invoiceAddress"
+                :items="addresses"
+                item-text="name"
+                label="Billing Address"
+                return-object
+                solo
+              >
+                <template slot="selection" slot-scope="{ item }">
+                  {{ item.name }} - {{ item.city.name }} -
+                  {{ item.state.name }} - {{ item.pinCode }}
+                </template>
+                <template slot="item" slot-scope="{ item }">
+                  {{ item.name }} - {{ item.city.name }} -
+                  {{ item.state.name }} - {{ item.pinCode }}
+                </template>
+              </v-select>
             </v-col>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="12">
               <v-text-field
-                v-model="billingAddress.lastName"
-                :rules="requiredRules"
-                label="Last Name"
+                v-model="invoiceAddress.name"
+                :rules="nameRules"
+                label="Name"
                 dense
+                disabled
                 required
               />
             </v-col>
             <v-col cols="12">
               <v-text-field
-                v-model="billingAddress.address"
+                v-model="invoiceAddress.address1"
                 :rules="requiredRules"
                 label="Address"
                 dense
+                disabled
                 required
               />
             </v-col>
             <v-col cols="12">
               <v-text-field
-                v-model="billingAddress.address2"
+                v-model="invoiceAddress.address2"
                 label="Apartment, suite, etc. (optional)"
                 dense
+                disabled
               />
             </v-col>
             <v-col cols="12">
               <v-text-field
-                v-model="billingAddress.city"
+                v-model="invoiceAddress.city.name"
                 :rules="requiredRules"
                 label="City"
                 dense
+                disabled
                 required
               />
             </v-col>
             <v-col cols="12" md="4">
               <v-text-field
-                v-model="billingAddress.state"
+                v-model="invoiceAddress.state.name"
                 :rules="requiredRules"
                 label="State"
                 dense
+                disabled
                 required
               />
             </v-col>
             <v-col cols="12" md="4">
               <v-text-field
-                v-model="billingAddress.country"
+                v-model="invoiceAddress.country.name"
                 :rules="requiredRules"
                 label="Country"
                 dense
+                disabled
                 required
               />
             </v-col>
             <v-col cols="12" md="4">
               <v-text-field
-                v-model="billingAddress.pinCode"
+                v-model="invoiceAddress.pinCode"
                 :rules="requiredRules"
                 label="PIN code"
                 type="number"
                 counter="6"
                 dense
+                disabled
                 required
               />
             </v-col>
@@ -237,13 +242,20 @@
       <v-card flat>
         <v-list>
           <v-list-item-group mandatory>
-            <v-list-item v-for="(item, i) in shippers" :key="i">
+            <v-list-item
+              v-for="(item, i) in shippers"
+              :key="i"
+              @click="shippingMethod(item)"
+            >
               <v-list-item-icon>
-                <v-icon v-text="item.icon" />
+                <v-avatar size="36px">
+                  <img v-if="item.logo" :src="item.logo" alt="Logo" />
+                  <v-icon v-else>mdi-truck-fast</v-icon>
+                </v-avatar>
               </v-list-item-icon>
 
               <v-list-item-content>
-                <v-list-item-title v-text="item.label" />
+                <v-list-item-title v-text="item.name" />
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
@@ -258,13 +270,20 @@
       <v-card flat>
         <v-list>
           <v-list-item-group mandatory>
-            <v-list-item v-for="(item, i) in paymentMethods" :key="i">
+            <v-list-item
+              v-for="(item, i) in paymentMethods"
+              :key="i"
+              @click="paymentMethod(item)"
+            >
               <v-list-item-icon>
-                <v-icon v-text="item.icon" />
+                <v-avatar size="36px">
+                  <img v-if="item.logo" :src="item.logo" alt="Logo" />
+                  <v-icon v-else>mdi-credit-card-multiple</v-icon>
+                </v-avatar>
               </v-list-item-icon>
 
               <v-list-item-content>
-                <v-list-item-title v-text="item.label" />
+                <v-list-item-title v-text="item.name" />
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
@@ -283,8 +302,15 @@
 
 <script>
 export default {
+  props: {
+    addresses: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+  },
   data: () => ({
-    e6: 1,
+    e6: 2,
     requiredRules: [(v) => !!v || 'The input is required'],
     nameRules: [
       (v) => !!v || 'Name is required',
@@ -294,61 +320,61 @@ export default {
       (v) => !!v || 'E-mail is required',
       (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
     ],
-    contactInfo: {
-      email: '',
-      firstName: '',
-      lastName: '',
-      mobile: '',
-    },
-    shippingAddress: {
-      firstName: '',
-      lastName: '',
-      address: '',
-      address2: '',
-      city: '',
-      state: '',
-      country: '',
-      pinCode: '',
-    },
-    billingAddress: {
-      firstName: '',
-      lastName: '',
-      address: '',
-      address2: '',
-      city: '',
-      state: '',
-      country: '',
-      pinCode: '',
-    },
     name: '',
     email: '',
     isShippingAddressBillingAddressSame: false,
+    deliveryAddress: {
+      city: {
+        name: '',
+      },
+      state: {
+        name: '',
+      },
+      country: {
+        name: '',
+      },
+    },
+    invoiceAddress: {
+      city: {
+        name: '',
+      },
+      state: {
+        name: '',
+      },
+      country: {
+        name: '',
+      },
+    },
+    order: {
+      carrierId: '',
+      addressDelivery: '',
+      addressInvoice: '',
+      currentState: '',
+      payment: '',
+      paymentId: '',
+    },
   }),
   computed: {
     paymentMethods() {
-      return this.$store.state.PAYMENT_METHODS
+      return this.$store.state.paymentMethods
     },
     shippers() {
-      return this.$store.state.SHIPPING_METHODS
+      return this.$store.state.carriers
+    },
+  },
+  watch: {
+    deliveryAddress(val) {
+      this.order.addressDelivery = val.id
+    },
+    invoiceAddress(val) {
+      this.order.addressInvoice = val.id
     },
   },
   methods: {
-    contactInfoSubmit() {
-      if (this.$refs.contactInfoForm.validate()) {
-        this.e6 = 2
-      }
-    },
     shippingAddressSubmit() {
       if (this.$refs.shippingAddressForm.validate()) {
         if (this.isShippingAddressBillingAddressSame) {
-          this.billingAddress.firstName = this.shippingAddress.firstName
-          this.billingAddress.lastName = this.shippingAddress.lastName
-          this.billingAddress.address = this.shippingAddress.address
-          this.billingAddress.address2 = this.shippingAddress.address2
-          this.billingAddress.city = this.shippingAddress.city
-          this.billingAddress.state = this.shippingAddress.state
-          this.billingAddress.country = this.shippingAddress.country
-          this.billingAddress.pinCode = this.shippingAddress.pinCode
+          this.invoiceAddress = this.deliveryAddress
           this.e6 = 4
         } else this.e6 = 3
       }
@@ -362,14 +388,23 @@ export default {
       this.e6 = 5
     },
     paymentMethodSubmit() {
+      console.log(this.order)
+
       const result = confirm('Confirm Purchase?')
       if (result) {
+        this.order = {}
         this.$store.dispatch('updateCarts', {
           operation: 'clean',
           product: null,
         })
         this.$router.push('/')
       }
+    },
+    shippingMethod(val) {
+      this.order.carrierId = val.id
+    },
+    paymentMethod(val) {
+      this.order.payment = val.name
     },
   },
 }

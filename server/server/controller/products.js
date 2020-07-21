@@ -41,13 +41,19 @@ exports.readByUrl = function(req, res) {
             where: { enabled: true, friendlyUrl: req.params.url },
             include: { all: true },
         })
-        .then((values) => res.send(values))
+        .then((values) => {
+            res.send(values);
+            values.increment("viewedTimes");
+        })
         .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 exports.read = function(req, res) {
     Product.findOne({ where: { id: req.params.id } })
-        .then((values) => res.send(values))
+        .then((values) => {
+            res.send(values);
+            values.increment("viewedTimes");
+        })
         .catch((err) => res.status(500).send({ message: err.message }));
 };
 

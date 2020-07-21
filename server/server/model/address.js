@@ -26,12 +26,8 @@ const Address = db.define("address", {
             key: "id",
         },
     },
-    firstName: {
-        type: DataTypes.STRING(20),
-        allowNull: false,
-    },
-    lastName: {
-        type: DataTypes.STRING(20),
+    name: {
+        type: DataTypes.STRING(55),
         allowNull: false,
     },
     address1: {
@@ -97,9 +93,9 @@ const Address = db.define("address", {
     },
 });
 
-ShopData.belongsTo(City);
-ShopData.belongsTo(State);
-ShopData.belongsTo(Country);
-ShopData.belongsTo(User);
+Address.belongsTo(City);
+Address.belongsTo(State);
+Address.belongsTo(Country);
+Address.belongsTo(User);
 
 module.exports = Address;

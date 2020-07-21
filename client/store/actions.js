@@ -59,6 +59,14 @@ export default {
     commit('setCarts', payload)
     commit('LOADING', false)
   },
+  async fetchCarriers({ commit }) {
+    const data = await getData('/carriers', this.$axios, commit)
+    commit('setCarriers', data)
+  },
+  async fetchPaymentMethods({ commit }) {
+    const data = await getData('/payment-methods', this.$axios, commit)
+    commit('setPaymentMethods', data)
+  },
 
   // ADMIN
   // PRODUCTS

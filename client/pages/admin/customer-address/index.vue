@@ -47,8 +47,14 @@
                   :items-per-page="10"
                   :search="search"
                 >
-                  <template v-slot:item.address="{ item }">
-                    {{ truncate(item.address) }}
+                  <template v-slot:item.address1="{ item }">
+                    {{ truncate(item.address1) }}
+                  </template>
+                  <template v-slot:item.city="{ item }"
+                    >{{ item.city.name }}
+                  </template>
+                  <template v-slot:item.state="{ item }"
+                    >{{ item.state.name }}
                   </template>
                   <template v-slot:item.active="{ item }">
                     <v-icon v-if="item.active" color="success"
@@ -80,10 +86,9 @@ export default {
     search: '',
     headers: [
       { text: 'ID', value: 'id' },
-      { text: 'First Name', value: 'first_name' },
-      { text: 'Last Name', value: 'last_name' },
-      { text: 'Address', value: 'address' },
-      { text: 'PIN Code', value: 'pin_code' },
+      { text: 'Name', value: 'name' },
+      { text: 'Address', value: 'address1' },
+      { text: 'PIN Code', value: 'pinCode' },
       { text: 'City', value: 'city' },
       { text: 'State', value: 'state' },
       { text: 'Active', value: 'active' },
@@ -97,7 +102,7 @@ export default {
   },
   methods: {
     truncate(input) {
-      if (input.length > 100) return input.substring(0, 100) + '...'
+      if (input && input.length > 100) return input.substring(0, 100) + '...'
       else return input
     },
   },

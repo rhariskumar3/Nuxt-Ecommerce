@@ -76,36 +76,36 @@ const Order = db.define("orders", {
     },
     shippingNumber: {
         type: DataTypes.STRING(64),
-        allowNull: false,
+        allowNull: true,
     },
     totalDiscounts: {
         type: DataTypes.DOUBLE,
         allowNull: false,
-        defaultValue: "0",
+        defaultValue: 0,
     },
     totalPaid: {
         type: DataTypes.DOUBLE,
         allowNull: false,
-        defaultValue: "0",
+        defaultValue: 0,
     },
     totalProducts: {
         type: DataTypes.DOUBLE,
         allowNull: false,
-        defaultValue: "0",
+        defaultValue: 0,
     },
     totalShipping: {
         type: DataTypes.DOUBLE,
         allowNull: false,
-        defaultValue: "0",
+        defaultValue: 0,
     },
     totalTax: {
         type: DataTypes.DOUBLE,
         allowNull: false,
-        defaultValue: "0",
+        defaultValue: 0,
     },
     invoiceNumber: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
+        allowNull: true,
     },
     invoiceDate: {
         type: DataTypes.DATE,

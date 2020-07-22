@@ -74,6 +74,7 @@
             solo
             solo-inverted
             flat
+            disabled
             is-booted
             enclosed
             label="Discount Code"

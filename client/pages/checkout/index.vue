@@ -10,7 +10,7 @@
         <v-container>
           <v-row>
             <v-col cols="12" md="7">
-              <cart-form :addresses="addresses" />
+              <cart-form :addresses="addresses" :carts="carts" />
             </v-col>
             <v-col cols="12" md="5">
               <v-container class="pa-0">

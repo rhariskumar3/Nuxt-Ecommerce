@@ -79,7 +79,7 @@
                       style="min-width: 160px;"
                       block
                       :disabled="product.quantity < 1"
-                      @click="updateCart($store.getters.singleProduct, 'add')"
+                      @click="updateCart('add')"
                     >
                       Add To Cart
                     </v-btn>
@@ -90,7 +90,7 @@
                       style="min-width: 160px;"
                       block
                       :disabled="product.quantity < 1"
-                      @click="checkout($store.getters.singleProduct)"
+                      @click="checkout"
                     >
                       Buy It Now
                     </v-btn>
@@ -155,17 +155,21 @@ import AppError from '~/components/base/Error'
 
 export default {
   components: { AppError },
-  async fetch({ store, params }) {
-    await store.dispatch('loadSingleProduct', params.id)
+  asyncData({ app: { $axios, $auth }, params, error }) {
+    return $axios
+      .get(`/product/` + params.id)
+      .then((res) => {
+        return { product: res.data }
+      })
+      .catch((e) => {
+        error({ statusCode: 404, message: 'Product not found' })
+      })
   },
   data: () => ({
     mainImage:
       'https://www.sensescotland.org.uk/wp-content/uploads/2019/04/imagenotavailable.png',
   }),
   computed: {
-    product() {
-      return this.$store.getters.singleProduct
-    },
     images() {
       const images = []
       if (this.product.media.image1) images.push(this.product.media.image1)
@@ -183,18 +187,18 @@ export default {
     loadMainImage(image) {
       this.mainImage = image
     },
-    updateCart(product1, operation1) {
+    updateCart(operation1) {
       this.$store.dispatch('updateCarts', {
         operation: operation1,
-        product: product1,
+        product: this.product,
       })
       this.$notifier.showMessage({
-        text: product1.name + ' added to cart',
+        text: this.product.name + ' added to cart',
         timeout: 1000,
       })
     },
-    checkout(product) {
-      this.updateCart(product, 'add')
+    checkout() {
+      this.updateCart('add')
       this.$router.push('/checkout')
     },
   },

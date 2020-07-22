@@ -37,12 +37,6 @@ const OrderDetail = db.define(
         productName: {
             type: DataTypes.STRING(255),
             allowNull: false,
-            references: {
-                model: {
-                    tableName: "products",
-                },
-                key: "name",
-            },
         },
         productQuantity: {
             type: DataTypes.INTEGER(11),
@@ -53,12 +47,6 @@ const OrderDetail = db.define(
             type: DataTypes.DOUBLE,
             allowNull: false,
             defaultValue: "0",
-            references: {
-                model: {
-                    tableName: "products",
-                },
-                key: "price",
-            },
         },
         productWeight: {
             type: DataTypes.DOUBLE,
@@ -91,5 +79,23 @@ const OrderDetail = db.define(
 
 OrderDetail.belongsTo(Order);
 OrderDetail.belongsTo(Product);
+
+OrderDetail.beforeCreate(async(detail, options) => {
+    let tax =
+        detail.productQuantity * detail.productPrice * (detail.taxRate / 100);
+    detail.totalPrice =
+        detail.productQuantity * detail.productPrice + tax + detail.shippingPrice;
+    return detail;
+});
+
+OrderDetail.beforeBulkCreate(async(details, options) => {
+    details.forEach((detail) => {
+        let tax =
+            detail.productQuantity * detail.productPrice * (detail.taxRate / 100);
+        detail.totalPrice =
+            detail.productQuantity * detail.productPrice + tax + detail.shippingPrice;
+    });
+    return details;
+});
 
 module.exports = OrderDetail;

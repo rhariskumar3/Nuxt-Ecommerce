@@ -12,7 +12,6 @@ export default {
   // PRODUCTS
   collections: (state) => state.collections,
   products: (state) => state.products,
-  singleProduct: (state) => state.singleProduct,
 
   // HOME
   carousels: (state) => state.carousels,

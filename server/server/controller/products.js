@@ -125,6 +125,15 @@ exports.changeState = function(req, res) {
     }
 };
 
+exports.purchased = function(data) {
+    Product.findOne({ where: { id: data.productId } })
+        .then((values) => {
+            values.increment("purchasedTimes", { by: data.productQuantity });
+            values.decrement("quantity", { by: data.productQuantity });
+        })
+        .catch((err) => print(err));
+};
+
 const fileToUrl = (url) =>
     url.includes("http") ?
     url ?

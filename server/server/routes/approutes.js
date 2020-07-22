@@ -31,7 +31,7 @@ module.exports = function(app) {
     // shop Data Routes
     app.route("/shop-data").get(shopData.read);
     // Addresses
-    app.route("/address/:id").get(customerAddress.listAllById);
+    app.route("/address/:id").all(authenticate).get(customerAddress.listAllById);
     // carrier Routes
     app.route("/carriers").get(carriers.listAllLive);
     // payment methods Routes
@@ -39,6 +39,9 @@ module.exports = function(app) {
         .route("/payment-methods")
         .all(authenticate)
         .get(paymentMethods.listAllLive);
+    // orders Routes
+    app.route("/order").all(authenticate).post(orders.create);
+    app.route("/order/:id").all(authenticate).get(orders.listAllById);
 
     // ADMIN ROUTES
     // carousel Routes

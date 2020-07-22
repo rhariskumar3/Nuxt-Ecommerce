@@ -47,12 +47,17 @@
                   :items-per-page="10"
                   :search="search"
                 >
-                  <template v-slot:item.total_paid="{ item }"
-                    >₹{{ item.total_paid }}
+                  <template v-slot:item.user="{ item }"
+                    >{{ item.user.name }}
                   </template>
-                  <template v-slot:item.actions="{ item }">
-                    <v-icon @click="item">mdi-pencil</v-icon>
-                    <v-icon @click="item">mdi-delete-forever</v-icon>
+                  <template v-slot:item.totalPaid="{ item }"
+                    >₹{{ item.totalPaid }}
+                  </template>
+                  <template v-slot:item.orderState="{ item }"
+                    >{{ item.orderState.name }}
+                  </template>
+                  <template v-slot:item.createdAt="{ item }"
+                    >{{ new Date(item.createdAt).toLocaleString() }}
                   </template>
                 </v-data-table>
               </div>
@@ -75,12 +80,12 @@ export default {
     headers: [
       { text: 'ID', value: 'id' },
       { text: 'Reference', value: 'reference' },
-      { text: 'Customer', value: 'name' },
-      { text: 'Total', value: 'total_paid' },
+      { text: 'Customer', value: 'user' },
+      { text: 'Total', value: 'totalPaid' },
+      { text: 'Status', value: 'orderState' },
       { text: 'Payment', value: 'payment' },
-      { text: 'Status', value: 'order_state' },
-      { text: 'Date', value: 'created_at' },
-      { text: 'Actions', value: 'actions', sortable: false },
+      { text: 'Payment ID', value: 'paymentId' },
+      { text: 'Date', value: 'createdAt' },
     ],
   }),
   computed: {

@@ -2,7 +2,7 @@
   <v-container id="contact-us" fluid class="pa-0">
     <v-sheet class="grey mt-n12 lighten-2" light tile>
       <iframe
-        :src="this.$store.getters.shopData.embedded_map_url"
+        :src="this.$store.getters.shopData.embeddedMapUrl"
         class="mt-12"
         frameborder="0"
         height="450"

@@ -308,6 +308,10 @@ export default {
       required: false,
       default: () => [],
     },
+    carts: {
+      type: Array,
+      required: true,
+    },
   },
   data: () => ({
     e6: 2,
@@ -385,19 +389,36 @@ export default {
       }
     },
     shippingMethodSubmit() {
-      this.e6 = 5
+      if (this.shippers.length > 0) {
+        if (!this.order.carrierId) this.order.carrierId = this.shippers[0].id
+        this.e6 = 5
+      } else this.snack(`No shipping methods found`, 'red')
     },
     paymentMethodSubmit() {
-      console.log(this.order)
-
-      const result = confirm('Confirm Purchase?')
-      if (result) {
-        this.order = {}
-        this.$store.dispatch('updateCarts', {
-          operation: 'clean',
-          product: null,
+      if (this.paymentMethods.length > 0) {
+        if (!this.order.payment)
+          this.order.payment = this.paymentMethods[0].name
+        this.createOrder()
+      } else this.snack(`No payment methods found`, 'red')
+    },
+    async createOrder() {
+      try {
+        this.order.userId = this.$auth.user.id
+        this.order.currentState = 1
+        this.order.carts = this.carts
+        await this.$axios.post('/order', this.order).then((result) => {
+          if (result.status) {
+            this.snack(result.message, 'green')
+            this.order = {}
+            this.$store.dispatch('updateCarts', {
+              operation: 'clean',
+              product: null,
+            })
+            this.$router.push('/')
+          } else this.snack(result.message, 'red')
         })
-        this.$router.push('/')
+      } catch (error) {
+        this.snack('There was an issue create order.  Please try again.', 'red')
       }
     },
     shippingMethod(val) {
@@ -405,6 +426,11 @@ export default {
     },
     paymentMethod(val) {
       this.order.payment = val.name
+    },
+    snack(text, color) {
+      try {
+        this.$notifier.showMessage({ text, color })
+      } catch (error) {}
     },
   },
 }

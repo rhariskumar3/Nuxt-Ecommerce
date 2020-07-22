@@ -25,10 +25,6 @@ export default {
     )
     commit('setProducts', data)
   },
-  async loadSingleProduct({ commit }, payload) {
-    const data = await getData('/product/' + payload, this.$axios, commit)
-    commit('setSingleProduct', data)
-  },
   // HOME
   async fetchCarousels({ commit }) {
     const data = await getData('/carousel', this.$axios, commit)

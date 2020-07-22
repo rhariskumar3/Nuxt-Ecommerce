@@ -14,9 +14,6 @@ export default {
   setProducts(state, payload) {
     state.products = payload
   },
-  setSingleProduct(state, payload) {
-    state.singleProduct = payload
-  },
 
   // HOME
   setCarousels(state, payload) {

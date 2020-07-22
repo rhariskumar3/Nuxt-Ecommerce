@@ -6,7 +6,6 @@ export default () => ({
   // PRODUCTS
   collections: {},
   products: {},
-  singleProduct: {},
 
   // HOME
   carousels: {},

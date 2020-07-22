@@ -21,6 +21,7 @@ const OrderState = db.define(
         },
     }, {
         tableName: "order_states",
+        timestamps: false,
     }
 );
 

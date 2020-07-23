@@ -34,12 +34,19 @@
                   <v-flex class="xs12" md="4">
                     <v-text-field v-model="method.subTitle" label="SubTitle" />
                   </v-flex>
-                  <v-flex class="xs12" md="4">
+                  <v-flex class="xs9" md="4">
                     <v-file-input
                       v-model="method.image"
                       label="Image"
                       accept="image/png, image/jpeg"
                       prepend-icon="mdi-camera"
+                    />
+                  </v-flex>
+                  <v-flex class="xs3" md="4">
+                    <v-checkbox
+                      v-model="method.featured"
+                      class="mx-2"
+                      label="Featured"
                     />
                   </v-flex>
                   <v-flex class="xs4" md="4">
@@ -75,6 +82,7 @@ export default {
       action: '',
       url: '',
       image: undefined,
+      featured: false,
     },
     loading: false,
   }),

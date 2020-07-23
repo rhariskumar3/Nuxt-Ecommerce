@@ -51,34 +51,36 @@
           </v-col>
           <v-col cols="12" lg="4" class="d-flex flex-wrap pa-0">
             <v-row class="ma-0" style="max-width: 100%;">
-              <v-col cols="12" md="6" lg="12" class="d-md-flex">
-                <v-card
-                  href="/product/premium-vuetify-mouse-pad"
-                  class="d-flex grow align-center flex-wrap"
-                >
-                  <v-col cols="12" class="mx-auto text-center text-md-left">
-                    <div class="title font-weight-bold pl-2 mb-1">
-                      Premium Vuetify Mouse Pad
-                    </div>
-                    <div class="display-2 font-italic font-weight-black mb-1">
-                      Trending Product
-                    </div>
-                  </v-col>
-                </v-card>
-              </v-col>
-              <v-col cols="12" md="6" lg="12" class="d-md-flex">
-                <v-card
-                  href="/product/premium-vuetify-mouse-pad"
-                  class="d-flex grow align-center flex-wrap"
-                >
-                  <v-col cols="12" class="mx-auto text-center text-md-left">
-                    <div class="title font-weight-bold pl-2 mb-1">
-                      Vuetify Dark Stickers
-                    </div>
-                    <div class="display-2 font-italic font-weight-black mb-1">
-                      Trending Product
-                    </div>
-                  </v-col>
+              <v-col
+                v-for="(item, i) in featured"
+                :key="i"
+                cols="12"
+                md="6"
+                lg="12"
+                class="d-md-flex"
+              >
+                <v-card :to="item.url" class="d-flex grow flex-wrap">
+                  <v-img :src="item.image">
+                    <v-card-text class="title white--text">
+                      <v-row
+                        class="fill-height flex-column text-center align-center justify-center text-xs-center"
+                        justify="space-between"
+                      >
+                        <div
+                          v-if="item.subTitle"
+                          class="title font-weight-bold pl-2 mb-1"
+                        >
+                          {{ item.subTitle }}
+                        </div>
+                        <div
+                          v-if="item.title"
+                          class="display-2 font-italic font-weight-black mb-1"
+                        >
+                          {{ item.title }}
+                        </div>
+                      </v-row>
+                    </v-card-text>
+                  </v-img>
                 </v-card>
               </v-col>
             </v-row>
@@ -93,7 +95,15 @@
 export default {
   computed: {
     carousels() {
-      return this.$store.getters.carousels
+      return this.$store.getters.carousels.filter(
+        (element) => element.featured === false
+      )
+    },
+    featured() {
+      const list = this.$store.getters.carousels
+        .filter((element) => element.featured === true)
+        .slice(0, 2)
+      return list.length > 0 ? list : this.$store.getters.carousels.slice(0, 2)
     },
   },
 }

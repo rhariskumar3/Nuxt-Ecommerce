@@ -33,6 +33,11 @@ const Carousel = db.define("carousel", {
         type: DataTypes.STRING(100),
         allowNull: true,
     },
+    featured: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+    },
     enabled: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
@@ -40,6 +45,16 @@ const Carousel = db.define("carousel", {
     },
 });
 
-const fileToUrl = (url) => url ? (url.toString().includes("http") ? url : "http://" + process.env.API_HOST + ":" + process.env.API_PORT + "/" + url) : url;
+const fileToUrl = (url) =>
+    url ?
+    url.toString().includes("http") ?
+    url :
+    "http://" +
+    process.env.API_HOST +
+    ":" +
+    process.env.API_PORT +
+    "/" +
+    url :
+    url;
 
 module.exports = Carousel;

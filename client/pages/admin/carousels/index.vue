@@ -59,6 +59,12 @@
                       max-height="120px"
                     />
                   </template>
+                  <template v-slot:item.featured="{ item }">
+                    <v-icon v-if="item.featured" color="success"
+                      >mdi-check</v-icon
+                    >
+                    <v-icon v-else color="error">mdi-close</v-icon>
+                  </template>
                   <template v-slot:item.enabled="{ item }">
                     <v-icon
                       v-if="item.enabled"
@@ -99,8 +105,9 @@ export default {
       { text: 'ID', value: 'id' },
       { text: 'Image', value: 'image', sortable: false },
       { text: 'Title', value: 'title' },
-      { text: 'Sub Title', value: 'sub_title' },
+      { text: 'Sub Title', value: 'subTitle' },
       { text: 'Action', value: 'action' },
+      { text: 'Featured', value: 'featured' },
       { text: 'Enabled', value: 'enabled' },
       { text: 'Actions', value: 'actions', sortable: false },
     ],

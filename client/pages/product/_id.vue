@@ -151,7 +151,7 @@
 </template>
 
 <script>
-import AppError from '~/components/base/Error'
+import AppError from '@/components/base/Error'
 
 export default {
   components: { AppError },

@@ -29,7 +29,7 @@
               :key="i"
               class="col-auto primary--text"
             >
-              <a :to="'/collections/' + collection.friendly_url">
+              <a :href="'/collections/' + collection.friendlyUrl">
                 <v-avatar style="height: 96px; min-width: 96px; width: 96px;">
                   <v-img :src="collection.image">
                     <v-overlay
@@ -68,12 +68,6 @@ export default {
     await store.dispatch('fetchCollectionProducts', params.category)
     await store.dispatch('fetchCollections')
   },
-  data: () => ({
-    banner: {
-      title: 'Collections',
-      image: require('@/assets/banner/gardening_banner_1.jpg'),
-    },
-  }),
   computed: {
     products() {
       return this.$store.getters.products
@@ -81,16 +75,18 @@ export default {
     collections() {
       return this.$store.getters.collections
     },
-    // banner() {
-    //   const current = this.collections.find(
-    //     (element) => element.friendly_url === this.$route.params.category
-    //   )
-    //   return {
-    //     title: current.title,
-    //     image: current.image,
-    //     description: current.description,
-    //   }
-    // },
+    banner() {
+      const current = this.collections.find(
+        (element) => element.friendlyUrl === this.$route.params.category
+      )
+      return {
+        title: current ? current.title : 'Collections',
+        image: current
+          ? current.image
+          : require('@/assets/banner/gardening_banner_1.jpg'),
+        description: current ? current.description : '',
+      }
+    },
   },
   head() {
     return {

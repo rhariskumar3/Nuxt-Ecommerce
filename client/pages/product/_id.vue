@@ -44,9 +44,7 @@
               <v-container class="pa-0">
                 <v-row>
                   <v-col cols="12">
-                    <Nuxt-link to="/" class="text--primary body-2 mb-3 d-block">
-                      Back to Shop
-                    </Nuxt-link>
+                    <v-breadcrumbs :items="crumbs" />
                     <h1 class="font-weight-bold mb-6 display-2">
                       {{ product.name }}
                     </h1>
@@ -181,6 +179,25 @@ export default {
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       if (images[0]) this.mainImage = images[0]
       return images
+    },
+    crumbs() {
+      return [
+        {
+          text: 'Home',
+          disabled: false,
+          href: '',
+        },
+        {
+          text: 'Collections',
+          disabled: false,
+          href: '',
+        },
+        {
+          text: this.product.category.title,
+          disabled: false,
+          href: '',
+        },
+      ]
     },
   },
   methods: {

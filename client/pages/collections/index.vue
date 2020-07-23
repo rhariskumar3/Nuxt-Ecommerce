@@ -48,8 +48,7 @@ export default {
   data: () => ({
     banner: {
       title: 'Collections',
-      image:
-        'https://cdn.shopify.com/s/files/1/2695/0984/collections/Ogio_Open_800px.png?v=1568487181',
+      image: require('@/assets/banner/gardening_banner_1.jpg'),
     },
   }),
   computed: {

@@ -20,8 +20,8 @@
               center-active
               class="pa-0 v-slide-group--has-affixes v-slide-group--is-overflowing"
             >
-              <v-slide-item v-for="n in 15" :key="n">
-                <product />
+              <v-slide-item v-for="item in products" :key="item.id">
+                <product :product="item" />
               </v-slide-item>
             </v-slide-group>
           </v-col>
@@ -36,6 +36,12 @@ import Product from '~/components/product/Normal'
 export default {
   components: {
     Product,
+  },
+  props: {
+    products: {
+      type: Array,
+      required: true,
+    },
   },
 }
 </script>

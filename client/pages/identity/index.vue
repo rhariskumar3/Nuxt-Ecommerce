@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="aligin-center justify-center">
-    <v-layout column>
-      <div class="v-offset">
+    <v-row no-gutters>
+      <div class="v-offset" style="width: 100%;">
         <v-card
           dark
           class="v-card--material__header elevation-2 green elevation-10"
@@ -18,44 +18,48 @@
         </v-card>
       </div>
 
-      <v-card class="mt-5">
-        <v-card-text>
-          <v-text-field
-            v-model="name"
-            prepend-icon="mdi-face"
-            :rules="[required('name')]"
-            label="Name"
-          />
-          <v-text-field
-            v-model="this.$auth.user.email"
-            label="Email Address"
-            prepend-icon="mdi-email"
-            disabled
-          ></v-text-field>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn :loading="loading">
-            Save Changes
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+      <v-flex class="xs12 mt-5 mx-lg-auto" md="4">
+        <v-card>
+          <v-card-text>
+            <v-text-field
+              v-model="name"
+              prepend-icon="mdi-face"
+              :rules="[required('name')]"
+              label="Name"
+            />
+            <v-text-field
+              v-model="this.$auth.user.email"
+              label="Email Address"
+              prepend-icon="mdi-email"
+              disabled
+            ></v-text-field>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn :loading="loading">
+              Save Changes
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
 
-      <v-card class="mt-5">
-        <v-card-title>Password</v-card-title>
-        <v-card-text>
-          <Password v-model="oldPassword" label="Current Password" />
-          <Password v-model="newPassword" label="New Password" />
-          <Password v-model="confirmPassword" label="Verify Password" />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn :loading="loading">
-            Update password
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-layout>
+      <v-flex class="xs12 mt-5 mx-lg-auto" md="4">
+        <v-card>
+          <v-card-title>Password</v-card-title>
+          <v-card-text>
+            <Password v-model="oldPassword" label="Current Password" />
+            <Password v-model="newPassword" label="New Password" />
+            <Password v-model="confirmPassword" label="Verify Password" />
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn :loading="loading">
+              Update password
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-row>
   </v-container>
 </template>
 

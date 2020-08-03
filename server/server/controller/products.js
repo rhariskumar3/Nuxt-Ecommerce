@@ -3,7 +3,7 @@
 const Util = require("../util/index.js");
 
 const db = require("../db/db.js");
-const { QueryTypes } = require("sequelize");
+const { Sequelize, QueryTypes } = require("sequelize");
 const Product = require("../model/products");
 
 const MediaController = require("../controller/productMedia");
@@ -132,6 +132,17 @@ exports.purchased = function(data) {
             values.decrement("quantity", { by: data.productQuantity });
         })
         .catch((err) => print(err));
+};
+
+exports.listAllLiveFeatured = function(req, res) {
+    Product.findAll({
+            order: [Sequelize.fn("RAND")],
+            limit: 10,
+            where: { enabled: true },
+            include: { all: true },
+        })
+        .then((values) => res.send(values))
+        .catch((err) => res.status(500).send({ message: err.message }));
 };
 
 const fileToUrl = (url) =>

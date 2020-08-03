@@ -3,7 +3,7 @@
     <v-row>
       <app-carousel />
       <app-highlights />
-      <app-featured-products />
+      <app-featured-products :products="featured" />
       <app-reviews />
       <app-newsletter />
     </v-row>
@@ -27,6 +27,11 @@ export default {
   async fetch({ store, params }) {
     await store.dispatch('fetchCarousels')
     await store.dispatch('fetchReviews')
+  },
+  asyncData({ app: { $axios, $auth }, params, error }) {
+    return $axios.get('/product/featured').then((res) => {
+      return { featured: res.data }
+    })
   },
   head() {
     return {

@@ -1,7 +1,7 @@
 <template>
   <v-hover v-slot:default="{ hover }">
     <v-card
-      :to="'/product/' + product.friendlyUrl"
+      :to="'/product/' + product.friendly_url"
       class="mx-4 my-1"
       style="width: 250px; white-space: normal;"
     >

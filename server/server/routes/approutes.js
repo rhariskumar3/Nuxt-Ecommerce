@@ -27,6 +27,7 @@ module.exports = function(app) {
     // product Routes
     app.route("/product").get(product.listAllLive);
     app.route("/product/featured").get(product.listAllLiveFeatured);
+    app.route("/product/new").get(product.listAllLiveNew);
     app.route("/product/category_url=:url").get(product.listAllByCategoryURL);
     app.route("/product/:url").get(product.readByUrl);
     // shop Data Routes

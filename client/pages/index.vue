@@ -4,6 +4,7 @@
       <app-carousel />
       <app-highlights />
       <app-featured-products :products="featured" />
+      <app-new-products :products="newProducts" />
       <app-reviews />
       <app-newsletter />
     </v-row>
@@ -14,6 +15,7 @@
 import AppCarousel from '@/components/home/Carousel'
 import AppHighlights from '@/components/home/Highlights'
 import AppFeaturedProducts from '@/components/home/FeaturedProducts'
+import AppNewProducts from '@/components/home/NewProducts'
 import AppReviews from '@/components/home/Reviews'
 import AppNewsletter from '@/components/home/Newsletter'
 export default {
@@ -21,6 +23,7 @@ export default {
     AppCarousel,
     AppHighlights,
     AppFeaturedProducts,
+    AppNewProducts,
     AppReviews,
     AppNewsletter,
   },
@@ -30,7 +33,7 @@ export default {
   },
   asyncData({ app: { $axios, $auth }, params, error }) {
     return $axios.get('/product/featured').then((res) => {
-      return { featured: res.data }
+      return { featured: res.data, newProducts: res.data }
     })
   },
   head() {

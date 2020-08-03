@@ -145,6 +145,17 @@ exports.listAllLiveFeatured = function(req, res) {
         .catch((err) => res.status(500).send({ message: err.message }));
 };
 
+exports.listAllLiveNew = function(req, res) {
+    Product.findAll({
+            order: [Sequelize.fn("RAND")],
+            limit: 10,
+            where: { enabled: true },
+            include: { all: true },
+        })
+        .then((values) => res.send(values))
+        .catch((err) => res.status(500).send({ message: err.message }));
+};
+
 const fileToUrl = (url) =>
     url.includes("http") ?
     url ?

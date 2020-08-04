@@ -64,24 +64,28 @@ exports.create = function(req, res) {
         Util.validate(res, req.body.categoryId, "Product category") &&
         Util.validate(res, req.body.taxId, "Product Tax")
     ) {
-        if (req.files)
-            MediaController.createLocal(req.files).then((result) => {
-                const obj = {};
-                for (let [key, value] of Object.entries(req.body)) obj[key] = value;
-                if (result.data) obj.mediaId = result.data.id;
-
-                Product.create(obj)
-                    .then((values) => {
-                        res.send(values);
-                    })
-                    .catch((err) => {
-                        res.status(500).send({ message: err.message });
+        Product.findAll({ where: { name: req.body.name } })
+            .then((products) => {
+                if (products.length > 0)
+                    return res.json({
+                        status: false,
+                        message: "Product already exists.",
                     });
-            });
-        else
-            Product.create(req.body)
-            .then((values) => {
-                res.send(values);
+
+                if (req.files)
+                    MediaController.createLocal(req.files).then((result) => {
+                        const obj = {};
+                        for (let [key, value] of Object.entries(req.body)) obj[key] = value;
+                        if (result.data) obj.mediaId = result.data.id;
+
+                        Product.create(obj)
+                            .then((values) => res.send(values))
+                            .catch((err) => res.status(500).send({ message: err.message }));
+                    });
+                else
+                    Product.create(req.body)
+                    .then((values) => res.send(values))
+                    .catch((err) => res.status(500).send({ message: err.message }));
             })
             .catch((err) => res.status(500).send({ message: err.message }));
     }
@@ -92,9 +96,7 @@ exports.update = function(req, res) {
         .then((updated) => {
             if (updated)
                 Product.findOne({ where: { id: req.params.id } })
-                .then((values) => {
-                    res.send(values);
-                })
+                .then((values) => res.send(values))
                 .catch((err) => res.status(500).send({ message: err.message }));
         })
         .catch((err) => res.status(500).send({ message: err.message }));

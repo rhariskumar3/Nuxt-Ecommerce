@@ -49,14 +49,23 @@ exports.register = function(req, res) {
         Util.validate(res, req.body.email, "Email") &&
         Util.validate(res, req.body.password, "Password")
     )
-        User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
+        User.findOne({ where: { email: req.body.email } })
+        .then((user) => {
+            if (user)
+                return res.send({
+                    message: "Email: " + req.body.email + " is already taken",
+                });
+            else
+                User.create({
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: req.body.password,
+                })
+                .then((user) =>
+                    res.json({ message: user.name + " registered successfully" })
+                )
+                .catch((err) => res.status(500).send({ message: err.message }));
         })
-        .then((user) =>
-            res.json({ message: user.name + " registered successfully" })
-        )
         .catch((err) => res.status(500).send({ message: err.message }));
 };
 

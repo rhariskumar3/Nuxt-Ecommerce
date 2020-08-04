@@ -56,6 +56,16 @@ const toSeoUrl = (url) => {
         .replace(/-*$/, ""); // Remove trailing dashes
 };
 
-const fileToUrl = (url) => url ? (url.toString().includes("http") ? url : "http://" + process.env.API_HOST + ":" + process.env.API_PORT + "/" + url) : url;
+const fileToUrl = (url) =>
+    url ?
+    url.toString().includes("http") ?
+    url :
+    "http://" +
+    process.env.API_HOST +
+    ":" +
+    process.env.API_PORT +
+    "/" +
+    url :
+    url;
 
 module.exports = Categories;

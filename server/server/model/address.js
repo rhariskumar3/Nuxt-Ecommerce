@@ -1,13 +1,12 @@
 `user strict`;
 
 const db = require("../db/db.js");
-const { Sequelize, DataTypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 
 const City = require("./cities");
 const Country = require("./countries");
 const State = require("./states");
 const User = require("./user");
-const ShopData = require("./shopData.js");
 
 const Address = db.define("address", {
     id: {

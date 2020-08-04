@@ -67,13 +67,17 @@ export default {
     async loginUser(loginInfo) {
       this.$notifier.show('Logging in...')
       try {
-        await this.$auth.loginWith('local', {
-          data: loginInfo,
-        })
+        await this.$auth
+          .loginWith('local', {
+            data: loginInfo,
+          })
+          .then((data) => {
+            if (data.data.message) this.$notifier.error(data.data.message)
+          })
         this.$notifier.success(`Thanks for signing in, ${this.$auth.user.name}`)
         this.postLoginAction()
       } catch {
-        this.notifier.error(
+        this.$notifier.error(
           'There was an issue signing in.  Please try again.',
           'red'
         )
@@ -82,7 +86,11 @@ export default {
     async registerUser(registrationInfo) {
       this.$notifier.show('Signing up...')
       try {
-        await this.$axios.post('/sessions/user', registrationInfo)
+        await this.$axios
+          .post('/sessions/user', registrationInfo)
+          .then((data) => {
+            if (data.data.message) this.$notifier.error(data.data.message)
+          })
         await this.$auth.loginWith('local', {
           data: registrationInfo,
         })

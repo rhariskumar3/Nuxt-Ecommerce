@@ -77,9 +77,6 @@ const OrderDetail = db.define(
     }
 );
 
-OrderDetail.belongsTo(Order);
-OrderDetail.belongsTo(Product);
-
 OrderDetail.beforeCreate(async(detail, options) => {
     let tax =
         detail.productQuantity * detail.productPrice * (detail.taxRate / 100);
@@ -97,5 +94,8 @@ OrderDetail.beforeBulkCreate(async(details, options) => {
     });
     return details;
 });
+
+OrderDetail.belongsTo(Order);
+OrderDetail.belongsTo(Product);
 
 module.exports = OrderDetail;

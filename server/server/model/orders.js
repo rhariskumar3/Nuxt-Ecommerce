@@ -77,6 +77,7 @@ const Order = db.define("orders", {
     },
     shippingNumber: {
         type: DataTypes.STRING(64),
+        unique: true,
         allowNull: true,
     },
     totalDiscounts: {
@@ -106,6 +107,7 @@ const Order = db.define("orders", {
     },
     invoiceNumber: {
         type: DataTypes.INTEGER(11),
+        unique: true,
         allowNull: true,
     },
     invoiceDate: {
@@ -118,6 +120,7 @@ const Order = db.define("orders", {
     },
     paymentId: {
         type: DataTypes.STRING(255),
+        unique: true,
         allowNull: true,
     },
 });

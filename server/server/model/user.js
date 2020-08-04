@@ -80,7 +80,7 @@ User.prototype.generateToken = function() {
         name: this.name,
     };
 
-    return jwt.sign(payload, process.env.JWT_SECRET, {
+    return jwt.sign(payload, process.env.JWT_SECRET || "JWT_SUPER_SECRET", {
         expiresIn: parseInt(expirationDate.getTime() / 1000, 10),
     });
 };

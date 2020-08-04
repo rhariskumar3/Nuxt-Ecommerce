@@ -69,10 +69,6 @@ export default {
   },
 
   // ORDERS
-  async fetchAdminOrders({ commit }) {
-    const data = await getData('/admin/orders', this.$axios, commit)
-    commit('setAdminOrders', data)
-  },
   async fetchAdminCustomers({ commit }) {
     const data = await getData('/admin/users', this.$axios, commit)
     commit(

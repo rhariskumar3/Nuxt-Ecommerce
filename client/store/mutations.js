@@ -68,9 +68,6 @@ export default {
   },
 
   // ORDERS
-  setAdminOrders(state, payload) {
-    state.adminOrders = payload
-  },
   setAdminCustomers(state, payload) {
     state.adminCustomers = payload
   },

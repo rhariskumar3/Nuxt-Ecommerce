@@ -8,7 +8,9 @@ const OrderDetails = require("./orderDetails");
 const rzp = require("../config/razorpay");
 
 exports.listAll = function(req, res) {
-    Orders.findAll({ include: { all: true } })
+    Orders.findAll({ include: { all: true }, order: [
+                ["createdAt", "DESC"]
+            ] })
         .then((values) => res.send(values))
         .catch((err) => res.status(500).send({ message: err.message }));
 };

@@ -72,13 +72,13 @@
                     <v-icon
                       v-if="item.enabled"
                       color="success"
-                      @click="updateState(item.id, item.enabled)"
+                      @click="updateState(item, item.enabled)"
                       >mdi-check</v-icon
                     >
                     <v-icon
                       v-else
                       color="error"
-                      @click="updateState(item.id, item.enabled)"
+                      @click="updateState(item, item.enabled)"
                       >mdi-close</v-icon
                     >
                   </template>
@@ -122,12 +122,15 @@ export default {
     },
   },
   methods: {
-    async updateState(id, state) {
+    async updateState(item, state) {
       try {
         await this.$axios
-          .put('admin/products/' + id + '/state', { enabled: !state })
+          .put('admin/products/' + item.id + '/state', { enabled: !state })
           .then((result) => {
-            if (result.success) this.$notifier.success('updated')
+            if (result.data.success)
+              this.$notifier.success(
+                item.name + ' ' + (result.data.state ? 'enabled' : 'disabled')
+              )
             else this.$notifier.error('try again')
           })
           .catch((err) => {

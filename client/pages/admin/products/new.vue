@@ -293,8 +293,8 @@ export default {
         .replace(/^-*/, '') // Remove starting dashes
         .replace(/-*$/, '') // Remove trailing dashes
 
-      this.loading = true
       try {
+        this.$nuxt.$loading.start()
         const formData = new FormData()
         for (const [key, value] of Object.entries(this.product))
           formData.append(key, value)
@@ -315,8 +315,10 @@ export default {
           .catch((err) => {
             this.$notifier.error(err)
           })
-      } catch {}
-      this.loading = false
+      } catch {
+      } finally {
+        this.$nuxt.$loading.finish()
+      }
     },
   },
 }

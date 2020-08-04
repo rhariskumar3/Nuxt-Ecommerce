@@ -20,7 +20,6 @@ export default {
   adminProducts: (state) => state.adminProducts,
 
   // ORDERS
-  adminOrders: (state) => state.adminOrders,
   adminCustomers: (state) => state.adminCustomers,
   adminAddresses: (state) => state.adminAddresses,
 

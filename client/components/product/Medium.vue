@@ -1,12 +1,12 @@
 <template>
   <v-hover v-slot:default="{ hover }">
     <v-card
-      :to="'/product/' + product.friendly_url"
+      :to="'/product/' + product.friendlyUrl"
       class="grow"
       style="white-space: normal;"
     >
       <v-img
-        :src="product.image_1"
+        :src="product.image"
         class="grey lighten-4"
         style="min-height: 300px; max-height: 300px;"
       />

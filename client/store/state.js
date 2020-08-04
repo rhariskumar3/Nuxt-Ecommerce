@@ -23,7 +23,6 @@ export default () => ({
   adminProducts: {},
 
   // ORDERS
-  adminOrders: {},
   adminCustomers: {},
   adminAddresses: {},
 

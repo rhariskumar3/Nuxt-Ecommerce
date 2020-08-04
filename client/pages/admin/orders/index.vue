@@ -72,8 +72,15 @@
 <script>
 export default {
   layout: 'admin',
-  async fetch({ store, params }) {
-    await store.dispatch('fetchAdminOrders')
+  asyncData({ app: { $axios, $auth }, params, error }) {
+    return $axios
+      .get('/admin/orders')
+      .then((res) => {
+        return { orders: res.data }
+      })
+      .catch((e) => {
+        error({ statusCode: 404, message: 'Orders not found' })
+      })
   },
   data: () => ({
     search: '',
@@ -88,11 +95,6 @@ export default {
       { text: 'Date', value: 'createdAt' },
     ],
   }),
-  computed: {
-    orders() {
-      return this.$store.getters.adminOrders
-    },
-  },
 }
 </script>
 

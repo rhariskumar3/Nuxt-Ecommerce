@@ -402,6 +402,7 @@ export default {
     },
     async createOrder() {
       try {
+        this.$nuxt.$loading.start()
         this.order.userId = this.$auth.user.id
         this.order.carts = this.carts
         await this.$axios.post('/order', this.order).then((result) => {
@@ -412,6 +413,8 @@ export default {
         this.$notifier.error(
           'There was an issue create order.  Please try again.'
         )
+      } finally {
+        this.$nuxt.$loading.finish()
       }
     },
     shippingMethod(val) {
@@ -450,6 +453,7 @@ export default {
     },
     async paymentUpdate(order, payment) {
       try {
+        this.$nuxt.$loading.start()
         const data = {}
         data.userId = this.$auth.user.id
         data.reference = order.reference
@@ -472,6 +476,8 @@ export default {
         this.$notifier.error(
           'There was an issue create order.  Please try again.'
         )
+      } finally {
+        this.$nuxt.$loading.finish()
       }
     },
   },

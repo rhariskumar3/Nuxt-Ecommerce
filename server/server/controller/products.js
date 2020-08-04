@@ -22,14 +22,14 @@ exports.listAllLive = function(req, res) {
 
 exports.listAllByCategoryURL = function(req, res) {
     db.query(
-            "SELECT products.id, name, quantity, price, friendly_url, pm.image_1 FROM products RIGHT JOIN product_media pm on products.media_id = pm.id WHERE category_id = (SELECT id FROM categories WHERE friendly_url = :url LIMIT 1) AND enabled = 1;", {
+            "SELECT products.id, name, quantity, price, friendly_url as friendlyUrl, pm.image_1 as image FROM products RIGHT JOIN product_media pm on products.media_id = pm.id WHERE category_id = (SELECT id FROM categories WHERE friendly_url = :url LIMIT 1) AND enabled = 1;", {
                 replacements: { url: req.params.url },
                 type: QueryTypes.SELECT,
             }
         )
         .then((values) => {
             values.forEach((value) => {
-                if (value.image_1) value.image_1 = fileToUrl(value.image_1);
+                if (value.image) value.image = fileToUrl(value.image);
             });
             res.send(values);
         })
@@ -58,12 +58,11 @@ exports.read = function(req, res) {
 };
 
 exports.create = function(req, res) {
-    console.log(req);
-
     if (
         Util.validate(res, req.body.name, "Product name") &&
         Util.validate(res, req.body.price, "Product price") &&
-        Util.validate(res, req.body.categoryId, "Product category")
+        Util.validate(res, req.body.categoryId, "Product category") &&
+        Util.validate(res, req.body.taxId, "Product Tax")
     ) {
         if (req.files)
             MediaController.createLocal(req.files).then((result) => {

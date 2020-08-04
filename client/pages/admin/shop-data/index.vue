@@ -105,20 +105,14 @@ export default {
         await this.$axios
           .put('admin/shop-data/state', { maintanance: !state })
           .then((result) => {
-            if (result.success) this.snack('updated', 1)
-            else this.snack('try again', 0)
+            if (result.success) this.$notifier.success('updated')
+            else this.$notifier.error('try again')
           })
           .catch((err) => {
-            this.snack(err, 0)
+            this.$notifier.error(err)
           })
         await this.$store.dispatch('fetchAdminShopData')
       } catch (error) {}
-    },
-    snack(message, state) {
-      this.$notifier.showMessage({
-        text: message,
-        color: state === 0 ? 'red' : 'green',
-      })
     },
   },
 }

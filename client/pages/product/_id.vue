@@ -209,10 +209,7 @@ export default {
         operation: operation1,
         product: this.product,
       })
-      this.$notifier.showMessage({
-        text: this.product.name + ' added to cart',
-        timeout: 1000,
-      })
+      this.$notifier.success(this.product.name + ' added to cart')
     },
     checkout() {
       this.updateCart('add')

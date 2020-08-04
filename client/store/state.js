@@ -1,8 +1,4 @@
 export default () => ({
-  // SYSTEM
-  LOADING: false,
-  ERR: null,
-
   // PRODUCTS
   collections: {},
   products: {},

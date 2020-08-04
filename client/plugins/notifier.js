@@ -1,7 +1,16 @@
 export default ({ app, store }, inject) => {
   inject('notifier', {
-    showMessage({ text = '', color = 'info' }) {
-      store.commit('snackbar/showMessage', { text, color })
+    success(text) {
+      app.$toast.success(text)
+    },
+    error(text) {
+      app.$toast.error(text)
+    },
+    info(text) {
+      app.$toast.info(text)
+    },
+    show(text) {
+      app.$toast.show(text)
     },
   })
 }

@@ -152,6 +152,7 @@ export default {
     authClick(item) {
       if (item.text === 'Logout') {
         this.$auth.logout()
+        this.$notifier.success('Logged out successfully')
       }
     },
   },

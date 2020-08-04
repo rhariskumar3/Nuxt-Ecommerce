@@ -5,7 +5,6 @@
       <nuxt keep-alive />
     </v-main>
     <app-footer />
-    <Snackbar />
     <client-only>
       <back-to-top id="back_to_bottom" visible-offset="500">
         <v-btn id="back_to_top" color="accent" class="ma-2 white--text">
@@ -18,11 +17,10 @@
 
 <script>
 import AppHeader from '~/components/base/Header'
-import Snackbar from '@/components/base/Snackbar'
 const AppFooter = () => import('~/components/base/Footer')
 
 export default {
-  components: { AppHeader, AppFooter, Snackbar },
+  components: { AppHeader, AppFooter },
   data: () => ({
     links: [
       {

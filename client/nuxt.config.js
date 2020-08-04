@@ -86,4 +86,10 @@ export default {
       logout: false,
     },
   },
+
+  toast: {
+    position: 'bottom-right',
+    duration: 5000,
+    theme: 'bubble',
+  },
 }

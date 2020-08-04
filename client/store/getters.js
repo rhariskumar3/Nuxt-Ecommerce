@@ -1,11 +1,4 @@
 export default {
-  // SYSTEM
-  LOADING: (state) => state.LOADING, // (Boolean) global loading flag
-  ERR: (state) => state.ERR, // (Object) global error object
-
-  // DICTIONARIES
-  dictionaries: (state) => state.dictionaries,
-
   // ORDERS
   PAYMENT_METHODS: (state) => state.PAYMENT_METHODS,
 

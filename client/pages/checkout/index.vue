@@ -31,6 +31,7 @@ import CartFinal from '~/components/checkout/FinalCart'
 import AppError from '~/components/base/Error'
 
 export default {
+  middleware: 'auth-guard',
   layout: 'error',
   components: {
     CartForm,
@@ -41,15 +42,13 @@ export default {
     await store.dispatch('fetchCarriers')
     await store.dispatch('fetchPaymentMethods')
   },
-  asyncData({ app: { $axios, $auth }, params, error }) {
+  asyncData({ app: { $axios, $auth, $notifier }, params, error }) {
     return $axios
       .get(`/address/` + $auth.user.id)
       .then((res) => {
         return { addresses: res.data }
       })
-      .catch((e) => {
-        error({ statusCode: 404, message: 'Addresses not found' })
-      })
+      .catch((e) => $notifier.error('Addresses not found'))
   },
   computed: {
     carts() {

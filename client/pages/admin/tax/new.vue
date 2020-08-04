@@ -69,23 +69,17 @@ export default {
         this.$axios
           .post('admin/tax', this.tax)
           .then((values) => {
-            if (values.data.message) this.snack(values.data.message, 0)
+            if (values.data.message) this.$notifier.error(values.data.message)
             else {
-              this.snack(this.tax.name + ' created', 1)
+              this.$notifier.success(this.tax.name + ' created')
               this.$router.back()
             }
           })
           .catch((err) => {
-            this.snack(err, 0)
+            this.$notifier.error(err)
           })
       } catch {}
       this.loading = false
-    },
-    snack(message, state) {
-      this.$notifier.showMessage({
-        text: message,
-        color: state === 0 ? 'red' : 'green',
-      })
     },
   },
 }

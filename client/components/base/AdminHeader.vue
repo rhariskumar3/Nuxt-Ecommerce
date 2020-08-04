@@ -51,6 +51,7 @@ export default {
     logout() {
       this.$auth.logout()
       this.$router.push('/')
+      this.$notifier.success('Logged out successfully')
     },
   },
 }

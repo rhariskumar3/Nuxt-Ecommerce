@@ -1,12 +1,9 @@
-export default function ({ $auth, redirect, store }) {
+export default function ({ $auth, redirect, $notifier }) {
   const user = $auth.user
   if (user && user.admin) {
     // let the user in
   } else {
-    store.dispatch('snackbar/setSnackbar', {
-      color: 'error',
-      text: 'You must be an admin to view that page.',
-    })
     redirect('/')
+    $notifier.error('You must be an admin to view that page.')
   }
 }

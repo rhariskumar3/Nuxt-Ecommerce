@@ -1,12 +1,4 @@
 export default {
-  // SYSTEM
-  LOADING(state, payload) {
-    state.LOADING = payload
-  },
-  ERR(state, payload) {
-    state.ERR = payload
-  },
-
   // PRODUCT
   setCollections(state, payload) {
     state.collections = payload

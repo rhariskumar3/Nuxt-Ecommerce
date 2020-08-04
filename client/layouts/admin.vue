@@ -4,7 +4,6 @@
     <v-main>
       <nuxt />
     </v-main>
-    <Snackbar />
     <client-only>
       <back-to-top id="back_to_bottom" visible-offset="500">
         <v-btn id="back_to_top" color="accent" class="ma-2 white--text">
@@ -17,11 +16,10 @@
 
 <script>
 import AppHeader from '~/components/base/AdminHeader'
-import Snackbar from '@/components/base/Snackbar'
 
 export default {
   middleware: ['auth-admin'],
-  components: { AppHeader, Snackbar },
+  components: { AppHeader },
   data: () => ({
     links: [
       {

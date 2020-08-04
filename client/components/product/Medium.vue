@@ -64,8 +64,9 @@ export default {
     updateCart(product1, operation1) {
       this.$store.dispatch('updateCarts', {
         operation: operation1,
-        product: product1,
+        product: this.product,
       })
+      this.$notifier.success(this.product.name + ' added to cart')
     },
   },
 }

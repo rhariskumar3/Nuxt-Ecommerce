@@ -1,7 +1,7 @@
 <template>
   <v-hover v-slot:default="{ hover }">
     <v-card
-      :to="'/product/' + product.friendly_url"
+      :to="'/product/' + product.friendlyUrl"
       class="mx-4 my-1"
       style="width: 250px; white-space: normal;"
     >
@@ -63,8 +63,9 @@ export default {
     updateCart(product1, operation1) {
       this.$store.dispatch('updateCarts', {
         operation: operation1,
-        product: product1,
+        product: this.product,
       })
+      this.$notifier.success(this.product.name + ' added to cart')
     },
   },
 }

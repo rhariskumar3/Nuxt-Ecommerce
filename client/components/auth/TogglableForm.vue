@@ -65,31 +65,34 @@ export default {
   },
   methods: {
     async loginUser(loginInfo) {
-      this.loading = true
+      this.$notifier.show('Logging in...')
       try {
         await this.$auth.loginWith('local', {
           data: loginInfo,
         })
-        this.snack(`Thanks for signing in, ${this.$auth.user.name}`, 'green')
+        this.$notifier.success(`Thanks for signing in, ${this.$auth.user.name}`)
         this.postLoginAction()
       } catch {
-        this.snack('There was an issue signing in.  Please try again.', 'red')
+        this.notifier.error(
+          'There was an issue signing in.  Please try again.',
+          'red'
+        )
       }
-      this.loading = false
     },
     async registerUser(registrationInfo) {
-      this.loading = true
+      this.$notifier.show('Signing up...')
       try {
         await this.$axios.post('/sessions/user', registrationInfo)
         await this.$auth.loginWith('local', {
           data: registrationInfo,
         })
-        this.snack(`Thanks for signing up, ${this.$auth.user.name}`, 'green')
+        this.$notifier.success(`Thanks for signing up, ${this.$auth.user.name}`)
         this.postRegisterAction()
       } catch {
-        this.snack('There was an issue signing up.  Please try again.', 'red')
+        this.$notifier.error(
+          'There was an issue signing up.  Please try again.'
+        )
       }
-      this.loading = false
     },
     changeScreen(newScreen) {
       this.authScreen = newScreen
@@ -99,11 +102,6 @@ export default {
           authScreen: newScreen,
         },
       })
-    },
-    snack(text, color) {
-      try {
-        this.$notifier.showMessage({ text, color })
-      } catch (error) {}
     },
   },
 }

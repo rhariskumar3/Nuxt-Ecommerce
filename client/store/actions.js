@@ -3,14 +3,9 @@ export default {
     return Promise.all([dispatch('fetchShopData')])
   },
   // APP
-  ERR({ commit }, payload) {
-    commit('ERR', payload)
-  },
   LOG({ commit }, payload) {
     // eslint-disable-next-line no-console
     console.log(payload)
-    commit('ERR', payload)
-    commit('LOADING', false)
   },
   // PRODUCTS
   async fetchCollections({ commit }) {
@@ -51,9 +46,7 @@ export default {
 
   // ORDER
   updateCarts: ({ commit }, payload) => {
-    commit('LOADING', true)
     commit('setCarts', payload)
-    commit('LOADING', false)
   },
   async fetchCarriers({ commit }) {
     const data = await getData('/carriers', this.$axios, commit)
@@ -128,7 +121,6 @@ export default {
 }
 
 const getData = async function (url, axios, commit) {
-  commit('LOADING', true)
   const response = await axios.get(url)
   // eslint-disable-next-line no-console
   console.log(
@@ -136,12 +128,11 @@ const getData = async function (url, axios, commit) {
   )
   // eslint-disable-next-line no-console
   console.log(response.data)
-  commit('LOADING', false)
   return response.data
 }
 
 // const setData = async function (url, data, axios, commit) {
-//   commit('LOADING', true)
+//
 //   const response = await axios.post(url, data)
 //   // eslint-disable-next-line no-console
 //   console.log(
@@ -149,6 +140,6 @@ const getData = async function (url, axios, commit) {
 //   )
 //   // eslint-disable-next-line no-console
 //   console.log(response.data)
-//   commit('LOADING', false)
+//
 //   return response.data
 // }

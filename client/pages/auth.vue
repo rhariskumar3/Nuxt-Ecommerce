@@ -4,11 +4,12 @@
       <v-img
         class="white--text"
         height="200px"
-        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        :src="require('@/assets/banner/gardening_banner_1.jpg')"
       >
-        <v-card-title class="align-end fill-height"
-          >Welcome {{ $route.query.redirect }}</v-card-title
-        >
+        <v-card-title class="align-end fill-height">Welcome</v-card-title>
+        <v-card-subtitle v-if="$route.query.redirect">{{
+          $route.query.redirect
+        }}</v-card-subtitle>
       </v-img>
       <v-card-text>
         <UserAuthTogglableForm

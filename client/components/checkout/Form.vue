@@ -391,14 +391,14 @@ export default {
       if (this.shippers.length > 0) {
         if (!this.order.carrierId) this.order.carrierId = this.shippers[0].id
         this.e6 = 5
-      } else this.snack(`No shipping methods found`, 'red')
+      } else this.$notifier.error(`No shipping methods found`)
     },
     paymentMethodSubmit() {
       if (this.paymentMethods.length > 0) {
         if (!this.order.payment)
           this.order.payment = this.paymentMethods[0].name
         this.createOrder()
-      } else this.snack(`No payment methods found`, 'red')
+      } else this.$notifier.error(`No payment methods found`)
     },
     async createOrder() {
       try {
@@ -406,10 +406,12 @@ export default {
         this.order.carts = this.carts
         await this.$axios.post('/order', this.order).then((result) => {
           if (result.data.status) this.openPayment(result.data.data)
-          else this.snack(result.data.message, 'red')
+          else this.$notifier.error(result.data.message)
         })
       } catch (error) {
-        this.snack('There was an issue create order.  Please try again.', 'red')
+        this.$notifier.error(
+          'There was an issue create order.  Please try again.'
+        )
       }
     },
     shippingMethod(val) {
@@ -417,11 +419,6 @@ export default {
     },
     paymentMethod(val) {
       this.order.payment = val.name
-    },
-    snack(text, color) {
-      try {
-        this.$notifier.showMessage({ text, color })
-      } catch (error) {}
     },
     openPayment(payData) {
       const self = this
@@ -436,7 +433,7 @@ export default {
         },
         modal: {
           ondismiss() {
-            self.snack('Payment Failed', 'red')
+            self.$notifier.error('Payment Failed')
           },
         },
         prefill: {
@@ -462,17 +459,19 @@ export default {
 
         await this.$axios.put('/order', data).then((result) => {
           if (result.data.status) {
-            this.snack(result.data.message, 'green')
+            this.$notifier.success(result.data.message)
             this.order = {}
             this.$store.dispatch('updateCarts', {
               operation: 'clean',
               product: null,
             })
             this.$router.push('/')
-          } else this.snack(result.data.message, 'red')
+          } else this.$notifier.error(result.data.message)
         })
       } catch (error) {
-        this.snack('There was an issue create order.  Please try again.', 'red')
+        this.$notifier.error(
+          'There was an issue create order.  Please try again.'
+        )
       }
     },
   },

@@ -140,9 +140,9 @@ exports.paymentSuccess = function(req, res) {
         .then((updated) => {
             res.json({
                 status: updated,
-                message: "Payment " + req.body.paymentId ?
-                    "Succes" :
-                    "Failed" + " and Order Updated",
+                message: "Payment " +
+                    (req.body.paymentId ? "Succes" : "Failed") +
+                    " and Order Updated",
             });
         })
         .catch((err) => res.status(500).send({ message: err.message }));

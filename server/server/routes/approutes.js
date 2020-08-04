@@ -42,7 +42,11 @@ module.exports = function(app) {
         .all(authenticate)
         .get(paymentMethods.listAllLive);
     // orders Routes
-    app.route("/order").all(authenticate).post(orders.create);
+    app
+        .route("/order")
+        .all(authenticate)
+        .post(orders.create)
+        .put(orders.paymentSuccess);
     app.route("/order/:id").all(authenticate).get(orders.listAllById);
 
     // ADMIN ROUTES

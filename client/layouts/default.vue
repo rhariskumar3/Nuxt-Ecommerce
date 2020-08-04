@@ -1,18 +1,18 @@
 <template>
   <v-app>
-    <no-ssr><app-header :links="links" /></no-ssr>
+    <client-only><app-header :links="links" /></client-only>
     <v-main>
       <nuxt keep-alive />
     </v-main>
     <app-footer />
     <Snackbar />
-    <no-ssr>
+    <client-only>
       <back-to-top id="back_to_bottom" visible-offset="500">
         <v-btn id="back_to_top" color="accent" class="ma-2 white--text">
           <v-icon>mdi-chevron-double-up</v-icon>
         </v-btn>
       </back-to-top>
-    </no-ssr>
+    </client-only>
   </v-app>
 </template>
 

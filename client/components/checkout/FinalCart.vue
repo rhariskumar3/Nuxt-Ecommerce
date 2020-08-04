@@ -161,7 +161,9 @@ export default {
       return Object.keys(this.carts).reduce(
         (sum, key) =>
           sum +
-          parseFloat(this.carts[key].product.price * this.carts[key].count),
+          parseFloat(
+            (this.carts[key].product.price * this.carts[key].count).toFixed(2)
+          ),
         0
       )
     },
@@ -169,7 +171,13 @@ export default {
       return Object.keys(this.carts).reduce(
         (sum, key) =>
           sum +
-          parseFloat(this.carts[key].product.tax.rate * this.carts[key].count),
+          parseFloat(
+            (
+              (this.carts[key].product.tax.rate / 100) *
+              this.carts[key].product.price *
+              this.carts[key].count
+            ).toFixed(2)
+          ),
         0
       )
     },
@@ -178,7 +186,9 @@ export default {
         (sum, key) =>
           sum +
           parseFloat(
-            this.carts[key].product.shippingFee * this.carts[key].count
+            (
+              this.carts[key].product.shippingFee * this.carts[key].count
+            ).toFixed(2)
           ),
         0
       )

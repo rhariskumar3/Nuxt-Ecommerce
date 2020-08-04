@@ -17,7 +17,7 @@ const Order = db.define("orders", {
     },
     reference: {
         type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV1,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: true,
     },
     userId: {
@@ -62,13 +62,14 @@ const Order = db.define("orders", {
     },
     currentState: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
+        allowNull: true,
         references: {
             model: {
                 tableName: "order_states",
             },
             key: "id",
         },
+        defaultValue: 10,
     },
     payment: {
         type: DataTypes.STRING(255),

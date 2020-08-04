@@ -353,7 +353,6 @@ export default {
       carrierId: '',
       addressDelivery: '',
       addressInvoice: '',
-      currentState: '',
       payment: '',
       paymentId: '',
     },
@@ -404,18 +403,10 @@ export default {
     async createOrder() {
       try {
         this.order.userId = this.$auth.user.id
-        this.order.currentState = 1
         this.order.carts = this.carts
         await this.$axios.post('/order', this.order).then((result) => {
-          if (result.status) {
-            this.snack(result.message, 'green')
-            this.order = {}
-            this.$store.dispatch('updateCarts', {
-              operation: 'clean',
-              product: null,
-            })
-            this.$router.push('/')
-          } else this.snack(result.message, 'red')
+          if (result.data.status) this.openPayment(result.data.data)
+          else this.snack(result.data.message, 'red')
         })
       } catch (error) {
         this.snack('There was an issue create order.  Please try again.', 'red')
@@ -432,6 +423,65 @@ export default {
         this.$notifier.showMessage({ text, color })
       } catch (error) {}
     },
+    openPayment(payData) {
+      const self = this
+      const options = {
+        key: payData.key,
+        amount: payData.amount,
+        currency: payData.currency,
+        description: payData.desc,
+        order_id: payData.id,
+        handler(response) {
+          self.paymentUpdate(payData, response)
+        },
+        modal: {
+          ondismiss() {
+            self.snack('Payment Failed', 'red')
+          },
+        },
+        prefill: {
+          name: this.invoiceAddress.name,
+          email: this.$auth.user.email,
+          contact: this.invoiceAddress.mobile,
+        },
+        notes: {
+          address: payData.reference,
+        },
+      }
+      // eslint-disable-next-line no-undef
+      new Razorpay(options).open()
+    },
+    async paymentUpdate(order, payment) {
+      try {
+        const data = {}
+        data.userId = this.$auth.user.id
+        data.reference = order.reference
+        data.paymentId = payment.razorpay_payment_id
+        data.orderId = payment.razorpay_order_id
+        data.sign = payment.razorpay_signature
+
+        await this.$axios.put('/order', data).then((result) => {
+          if (result.data.status) {
+            this.snack(result.data.message, 'green')
+            this.order = {}
+            this.$store.dispatch('updateCarts', {
+              operation: 'clean',
+              product: null,
+            })
+            this.$router.push('/')
+          } else this.snack(result.data.message, 'red')
+        })
+      } catch (error) {
+        this.snack('There was an issue create order.  Please try again.', 'red')
+      }
+    },
+  },
+  head: {
+    script: [
+      {
+        src: 'https://checkout.razorpay.com/v1/checkout.js',
+      },
+    ],
   },
 }
 </script>

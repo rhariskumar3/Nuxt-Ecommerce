@@ -2,42 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e2982c0-9875-4736-a884-be8f4eda26c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/CSS.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/pages/admin/categories/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/categories/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/components/auth/TogglableForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/components/auth/TogglableForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/pages/admin/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/admin/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/pages/collections/_category/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../client/pages/collections/_category/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/carosuel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/carosuel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/carrier.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/carrier.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/city.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/city.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/country.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/country.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/customers.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/customers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/customersAddress.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/customersAddress.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/orders.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/paymentMethods.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/paymentMethods.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/products.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/reviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/reviews.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/sessions.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/sessions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/shopData.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/shopData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/state.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/tax.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/tax.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/middleware/authenticate.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/authenticate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/middleware/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/validate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/carousel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/carriers.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/carriers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/categories.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/paymentMethods.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/paymentMethods.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/productMedia.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/productMedia.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/products.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/shopData.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/shopData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/approutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/approutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/util/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/util/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/util/multer.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,6 +193,8 @@
       <workItem from="1582954865102" duration="258000" />
       <workItem from="1595086258586" duration="5062000" />
       <workItem from="1595091890901" duration="1018000" />
+      <workItem from="1597998105046" duration="108000" />
+      <workItem from="1598112810222" duration="14000" />
     </task>
     <task id="LOCAL-00001" summary="Admin Pages">
       <created>1582445487547</created>
@@ -316,9 +286,9 @@
       <screen x="0" y="0" width="1575" height="886" />
     </state>
     <state x="269" y="18" key="SettingsEditor/0.0.1575.886@0.0.1575.886" timestamp="1595088077512" />
-    <state x="490" y="267" key="com.intellij.ide.util.TipDialog" timestamp="1595091891176">
+    <state x="490" y="267" key="com.intellij.ide.util.TipDialog" timestamp="1597998211143">
       <screen x="0" y="0" width="1575" height="886" />
     </state>
-    <state x="490" y="267" key="com.intellij.ide.util.TipDialog/0.0.1575.886@0.0.1575.886" timestamp="1595091891176" />
+    <state x="490" y="267" key="com.intellij.ide.util.TipDialog/0.0.1575.886@0.0.1575.886" timestamp="1597998211143" />
   </component>
 </project>

@@ -2,7 +2,12 @@
   <div>
     <div v-if="authScreen == 'login'">
       <h1>{{ loginPhrase }}</h1>
-      <AuthForm class="mt-2" button-text="Login" :submit-form="loginUser" />
+      <AuthForm
+        class="mt-2"
+        button-text="Login"
+        :submit-form="loginUser"
+        :disabled="loading"
+      />
       <p>
         Don't have an account?
         <a @click="changeScreen('register')">Create one</a>

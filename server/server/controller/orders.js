@@ -33,6 +33,24 @@ exports.read = function(req, res) {
         .catch((err) => res.status(500).send({ message: err.message }));
 };
 
+exports.readByReference = function(req, res) {
+    Orders.findOne({
+            where: { reference: req.params.reference },
+            include: { all: true },
+        })
+        .then((values) => {
+            let order = values;
+            OrderDetails.readByOrderId(order.id)
+                .then((details) => {
+                    res.json({ data: order, products: details });
+                })
+                .catch((err) =>
+                    res.status(500).json({ status: false, message: err.message })
+                );
+        })
+        .catch((err) => res.status(500).send({ message: err.message }));
+};
+
 exports.create = function(req, res) {
     console.log(req.body);
     if (

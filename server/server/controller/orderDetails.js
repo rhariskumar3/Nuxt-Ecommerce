@@ -17,6 +17,17 @@ exports.read = function(req, res) {
         .catch((err) => res.status(500).send({ message: err.message }));
 };
 
+exports.readByOrderId = function(id) {
+    return new Promise((resolve, reject) => {
+        OrderDetails.findAll({
+                where: { orderId: id },
+                include: { all: true },
+            })
+            .then((values) => resolve(values))
+            .catch((err) => reject({ message: err.message }));
+    });
+};
+
 exports.create = function(req, res) {
     OrderDetails.create(req.body)
         .then((values) => {

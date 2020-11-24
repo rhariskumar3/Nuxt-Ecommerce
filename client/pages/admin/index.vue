@@ -1,5 +1,6 @@
 <template>
   <v-container fill-height fluid grid-list-xl>
+    <info-box />
     <v-layout wrap>
       <v-flex v-for="(card, i) in cards" :key="i" sm6 xs12 md6 lg3>
         <v-card>
@@ -19,8 +20,12 @@
 </template>
 
 <script>
+import InfoBox from '@/components/dashboard/InfoBox'
 export default {
   layout: 'admin',
+  components: {
+    InfoBox,
+  },
   data: () => ({
     cards: [
       {

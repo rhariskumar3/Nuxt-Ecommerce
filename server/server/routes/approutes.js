@@ -8,6 +8,7 @@ const shopData = require("../controller/shopData");
 const carriers = require("../controller/carrier");
 const customerAddress = require("../controller/customersAddress");
 const orders = require("../controller/orders");
+const orderDetails = require("../controller/orderDetails");
 const paymentMethods = require("../controller/paymentMethods");
 const tax = require("../controller/tax");
 const session = require("../controller/sessions");
@@ -48,6 +49,11 @@ module.exports = function(app) {
         .post(orders.create)
         .put(orders.paymentSuccess);
     app.route("/order/:id").all(authenticate).get(orders.listAllById);
+    app
+        .route("/order/:reference/detail")
+        .all(authenticate)
+        .get(orders.readByReference);
+    app.route("/order-details/:id").all(authenticate).get(orderDetails.read);
 
     // ADMIN ROUTES
     // carousel Routes

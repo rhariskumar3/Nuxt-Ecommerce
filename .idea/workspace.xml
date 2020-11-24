@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="58741990-adb4-40db-90f9-8a00a294f1c1" name="Default Changelist" comment="" />
+    <list default="true" id="bc60d2b6-790e-474d-b205-cba4d3268129" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ecom.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ecom.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/auth/TogglableForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/auth/TogglableForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/admin/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/admin/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/collections/_category/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/collections/_category/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ecom" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
-  <component name="ProjectId" id="1XsNPW33Mio574G8kJG6QQKYMsE" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
+  </component>
+  <component name="ProjectId" id="1gSi5phGJYJBVPIiJVwUB5MdqYM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -19,24 +39,105 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="prettierjs.PrettierConfiguration.Package" value="D:\projects\nuxt\ecom\ecom\node_modules\prettier" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/server.js" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RunManager" selected="npm.client dev">
+    <configuration name="server" type="NodeJSConfigurationType" path-to-js-file="server.js" working-dir="$PROJECT_DIR$/server">
+      <envs>
+        <env name="API_HOST" value="localhost" />
+        <env name="API_PORT" value="3030" />
+      </envs>
+      <method v="2" />
+    </configuration>
+    <configuration name="client dev" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="server dev" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.server" />
+      <item itemvalue="npm.client dev" />
+      <item itemvalue="npm.server dev" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="58741990-adb4-40db-90f9-8a00a294f1c1" name="Default Changelist" comment="" />
-      <created>1581830817188</created>
+      <changelist id="bc60d2b6-790e-474d-b205-cba4d3268129" name="Default Changelist" comment="" />
+      <created>1598114213036</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1581830817188</updated>
-      <workItem from="1581830818473" duration="9000" />
+      <updated>1598114213036</updated>
+      <workItem from="1598114214579" duration="2488000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="243" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598114476307">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="243" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1575.886@0.0.1575.886" timestamp="1598114476307" />
+    <state x="568" y="148" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1598114292045">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="568" y="148" key="#com.intellij.ide.macro.MacrosDialog/0.0.1575.886@0.0.1575.886" timestamp="1598114292045" />
+    <state x="523" y="205" key="EnvironmentVariablesDialog" timestamp="1598114391802">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="523" y="205" key="EnvironmentVariablesDialog/0.0.1575.886@0.0.1575.886" timestamp="1598114391802" />
+    <state x="568" y="198" key="FileChooserDialogImpl" timestamp="1598114340096">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="568" y="198" key="FileChooserDialogImpl/0.0.1575.886@0.0.1575.886" timestamp="1598114340096" />
+    <state width="1532" height="233" key="GridCell.Tab.0.bottom" timestamp="1598117306178">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state width="1532" height="233" key="GridCell.Tab.0.bottom/0.0.1575.886@0.0.1575.886" timestamp="1598117306178" />
+    <state width="1532" height="233" key="GridCell.Tab.0.center" timestamp="1598117306178">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state width="1532" height="233" key="GridCell.Tab.0.center/0.0.1575.886@0.0.1575.886" timestamp="1598117306178" />
+    <state width="1532" height="233" key="GridCell.Tab.0.left" timestamp="1598117306177">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state width="1532" height="233" key="GridCell.Tab.0.left/0.0.1575.886@0.0.1575.886" timestamp="1598117306177" />
+    <state width="1532" height="233" key="GridCell.Tab.0.right" timestamp="1598117306178">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state width="1532" height="233" key="GridCell.Tab.0.right/0.0.1575.886@0.0.1575.886" timestamp="1598117306178" />
+    <state x="369" y="186" key="IDE.errors.dialog" timestamp="1598114598467">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="369" y="186" key="IDE.errors.dialog/0.0.1575.886@0.0.1575.886" timestamp="1598114598467" />
+    <state x="297" y="86" key="SettingsEditor" timestamp="1598115308553">
+      <screen x="0" y="0" width="1575" height="886" />
+    </state>
+    <state x="297" y="86" key="SettingsEditor/0.0.1575.886@0.0.1575.886" timestamp="1598115308553" />
   </component>
 </project>

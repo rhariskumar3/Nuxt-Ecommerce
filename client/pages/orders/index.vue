@@ -35,7 +35,11 @@
         </p>
         <p v-else class="text-start">-</p>
       </template>
-      <template v-slot:item.details="{}">Details </template>
+      <template v-slot:item.details="{ item }">
+        <NuxtLink style="cursor: pointer;" :to="'/orders/' + item.reference">
+          Details
+        </NuxtLink>
+      </template>
     </v-data-table>
   </v-container>
 </template>

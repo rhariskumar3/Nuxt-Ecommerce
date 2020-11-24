@@ -125,8 +125,14 @@ const Order = db.define("orders", {
     },
 });
 
-Order.belongsTo(Address, { foreignKey: "addressDelivery" });
-Order.belongsTo(Address, { foreignKey: "addressInvoice" });
+Order.belongsTo(Address, {
+    as: "deliveryAddress",
+    foreignKey: "addressDelivery",
+});
+Order.belongsTo(Address, {
+    as: "invoiceAddress",
+    foreignKey: "addressInvoice",
+});
 Order.belongsTo(Carrier);
 Order.belongsTo(User);
 Order.belongsTo(OrderState, { foreignKey: "currentState" });

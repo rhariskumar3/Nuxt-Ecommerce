@@ -7,7 +7,7 @@
           class="grey lighten-3 hidden-xs-only"
           style="height: 60px; min-width: 60px; width: 60px;"
         >
-          <v-img :src="cart.product.media.image1" />
+          <v-img :src="cart.product.media.image1 || ''" />
         </v-list-item-avatar>
         <v-responsive class="grow" style="min-width: 150px; max-width: 50%;">
           <v-list-item-title>

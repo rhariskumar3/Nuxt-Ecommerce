@@ -31,7 +31,7 @@
               <v-select
                 v-model="deliveryAddress"
                 :items="addresses"
-                item-text="name"
+                item-text="id"
                 label="Shipping Address"
                 return-object
                 solo
@@ -143,7 +143,7 @@
               <v-select
                 v-model="invoiceAddress"
                 :items="addresses"
-                item-text="name"
+                item-text="id"
                 label="Billing Address"
                 return-object
                 solo
@@ -372,6 +372,9 @@ export default {
     invoiceAddress(val) {
       this.order.addressInvoice = val.id
     },
+  },
+  mounted() {
+    console.log(this.addresses)
   },
   methods: {
     shippingAddressSubmit() {
